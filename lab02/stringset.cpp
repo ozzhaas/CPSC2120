@@ -24,7 +24,7 @@ int myhash(string s, int table_size) {
 
 Stringset::Stringset() {
     size = 4;
-    Node **table = new Node *[size];// allocate table, initialize head ptrs all to NULL
+    table = new Node *[size];// allocate table, initialize head ptrs all to NULL
     for (int i=0; i<size; i++)
     table[i] = NULL;
     num_elems = 0;
@@ -70,14 +70,16 @@ void Stringset::insert(string key) {
 
         size = size * 2;
         Node **newTable = new Node*[size];
+        for (int j=0; j<size; j++)
+        newTable[j] = NULL;
 
         for (int i = 0; i < size/2; i++) {
-            // Node *n = table[i];
-            while (table[i] != NULL) {
-                int h = myhash(table[i]->key, size);
-                newTable[h] = new Node(table[i]->key, newTable[h]);
-                Node *remNode = table[i];
-                table[i] = table[i]->next;
+            Node *n = table[i];
+            while (n != NULL) {
+                int h = myhash(n->key, size);
+                newTable[h] = new Node(n->key, newTable[h]);
+                Node *remNode = n;
+                n = n->next;
                 delete remNode;
             }
         }
