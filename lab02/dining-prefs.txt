@@ -2,3 +2,6 @@
 "Brian Dean" likes "All In Coffee Shop"
 "Brian Dean" likes "The Village Baker"
 "Brian Dean" likes "Sardi's"
+"Kellen Haas" likes "Tokyo"
+"Kellen Haas" likes "Joe's New York Pizza"
+"Kellen Haas" likes "Insomnia Cookies"

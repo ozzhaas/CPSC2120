@@ -1,7 +1,7 @@
 /* Kellen Haas
    CPSC 2121
    Lab02
-   09/03/20
+   09/06/20
 */
 
 
@@ -61,20 +61,23 @@ void Stringset::insert(string key) {
     num_elems++;
 
     if (num_elems == size) {
-        // TBD: Expand table -- allocate new table of twice the size,
-        // re-insert all keys into new table, and de-allocate old table.
-        // (you may want to wait and add this code last, once everything
-        // else is working, since the class will still function properly,
-        // albeit slowly, without this part)
+        /*Expand table -- allocate new table of twice the size,
+          re-insert all keys into new table, and de-allocate old table.*/
         cout << "Size of Table Doubled...\n";
 
         size = size * 2;
+        //Create new table doubled in size
         Node **newTable = new Node*[size];
+
+        //Initialize new table values to NULL
         for (int j=0; j<size; j++)
         newTable[j] = NULL;
 
         for (int i = 0; i < size/2; i++) {
             Node *n = table[i];
+            //For every value in the old table that isn't null,
+            //insert it into the new table, then remove the old
+            //table's node
             while (n != NULL) {
                 int h = myhash(n->key, size);
                 newTable[h] = new Node(n->key, newTable[h]);
@@ -83,10 +86,11 @@ void Stringset::insert(string key) {
                 delete remNode;
             }
         }
+    //Deallocate old table
     delete[] table;
     table = newTable;
     }
-    // TBD: Insert new element
+    //Insert new element
     int h = myhash(key, size);
     table[h] = new Node(key, table[h]);
 }
@@ -96,13 +100,17 @@ void Stringset::remove(string key) {
     assert (find(key));
     num_elems--;
 
-    // TBD: Delete element
+    //Delete an element in the table
     int h = myhash(key, size);
+
+    //If the element has a matching key remove it
     if (table[h]->key == key) {
         Node *remNode = table[h];
         table[h] = table[h]->next;
         delete remNode;
     }
+    //Else iterator through the elements until you find the one
+    //with a matching key, then remove it.
     else {
         Node *n = table[h];
         while (n->next->key != key) {
@@ -114,8 +122,9 @@ void Stringset::remove(string key) {
     }
 }
 
+/*Print the entire table as long as the element is not NULL*/
 void Stringset::print(void) {
-    // TBD: Print contents of table
+    //Print contents of table
     for (int i = 0; i < size; i++) {
         Node *n = table[i];
         while (n != NULL) {

@@ -1,3 +1,10 @@
+/* Kellen Haas
+   CPSC 2121
+   Lab02
+   09/06/20
+*/
+
+
 #ifndef STRINGSET_H /* Prevent multiple inclusion... */
 #define STRINGSET_H
 
