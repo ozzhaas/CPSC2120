@@ -86,16 +86,16 @@ Node *join(Node *L, Node *R)
     if (randn < L->size) {
     // Make L the root of the joined tree in this case
         L->right = join(L->right, R);
-        if (L->left) {L->size = L->size + L->left->size;}
-        if (L->right) {L->size = L->size + L->right->size;}
+        if (L->left) {L->size += L->left->size;}
+        if (L->right) {L->size += L->right->size;}
         return L;
     }
     // Happens with probability R->size / total
     else {
         // Make R the root of the joined tree in this case
         R->left = join(L, R->left);
-        if (R->left) {R->size = R->size + R->left->size;}
-        if (R->right) {R->size = R->size + R->right->size;}
+        if (R->left) {R->size += R->left->size;}
+        if (R->right) {R->size += R->right->size;}
         return R;
     }
 }
@@ -103,6 +103,9 @@ Node *join(Node *L, Node *R)
 // remove key k from T, returning a pointer to the resulting tree.
 // if k isn't present in T, then return the pointer to T's root, with T unchanged
 Node *remove(Node *T, int k) {
+    //Base Case
+    if (T == NULL) {return NULL;}
+
     //Delete the root
     if (k == T->key) {return join(T->left, T->right);}
 
@@ -117,26 +120,29 @@ Node *remove(Node *T, int k) {
 // Split tree T on key k into tree L (containing keys <= k) and a tree R (containing keys > k)
 pair<Node *, Node *> split(Node *T, int k)
 {
+    pair <Node*, Node*> result;
     //Base case
-    if (T == NULL) {return (make_pair((Node*)NULL, (Node*) NULL));}
+    if (T == NULL) {return (make_pair((Node*)NULL, (Node*)NULL));}
 
-    if (k <= T->key) {
+    if (k < T->key) {
         pair <Node*, Node*> result = split(T->left, k);
         T->left = result.second;
+        result.second = NULL;
         if (result.first != NULL) {
-            T->size = T->size - result.first->size;
+            T->size = T->size - (result.first)->size;
         }
         return make_pair(result.first, T);
     }
-    if (k > T->key) {
+    if (k >= T->key) {
         pair <Node*, Node*> result = split(T->right, k);
         T->right = result.first;
+        result.first = NULL;
         if (result.second != NULL) {
-            T->size = T->size - result.second->size;
+            T->size = T->size - (result.second)->size;
         }
-        return make_pair(result.second, T);
+        return make_pair(T, result.second);
     }
-    return make_pair((Node*)NULL, (Node*)NULL);
+    return result;
 }
 
 // insert key k into the tree T, returning a pointer to the resulting tree
@@ -147,18 +153,18 @@ pair<Node *, Node *> split(Node *T, int k)
 // ... otherwise recursively call insert_keep_balanced on the left or right
 Node *insert_keep_balanced(Node *T, int k)
 {
-    if (T == NULL) return new Node(k);
-        if (rand() % (1 + T->size) == 0) {
-        // With probability 1/N, insert at root...
-        pair<Node *, Node *> result = split (T, k);
-        T = new Node(k); // ok to re-use T for new root, since result keeps pointers to remnants of original tree after splitting it
-        T->left = result.first;
-        T->right = result.second;
-        }
-        else {
-    // Otherwise, recurseively insert on left or right side...
-            if (k < T->key) T->left  = insert_keep_balanced(T->left,  k);
-            else T->right = insert_keep_balanced(T->right, k);
+    if (T == NULL) {return new Node(k);}
+    if (rand() % (1 + T->size) == 0) {
+    // With probability 1/N, insert at root...
+    pair<Node *, Node *> result = split (T, k);
+    T = new Node(k); // ok to re-use T for new root, since result keeps pointers to remnants of original tree after splitting it
+    T->left = result.first;
+    T->right = result.second;
+    }
+    else {
+        // Otherwise, recurseively insert on left or right side...
+        if (k < T->key) T->left  = insert_keep_balanced(T->left,  k);
+        else T->right = insert_keep_balanced(T->right, k);
     }
     // Make sure T's size is correct, since its subtrees may have changed
     T->size = 1;
