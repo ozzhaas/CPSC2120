@@ -1,3 +1,10 @@
+/* Kellen Haas
+  CPSC 2120
+  Lab4
+  9/26/20
+*/
+
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
