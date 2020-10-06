@@ -5,27 +5,14 @@
 */
 
 
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <algorithm>
-#include <tuple>
+#include "bst.h"
 using namespace std;
 
-struct Node {
-    int key;
 
-    //Number of nodes in this node's subtree
-    int size;
-
-    Node *left;
-    Node *right;
-    Node (int k) { key = k; size = 1; left = right = NULL; }
-};
 
 
 /*Function: Insert key k into tree T, returning a pointer to the resulting tree*/
-Node *insert(Node *T, int k) {
+Node *insert(Node *T, double k) {
     //Base case
     if (T == NULL) return new Node(k);
 
@@ -57,7 +44,7 @@ void print_inorder(Node *T) {
 
 /*Function: Return a pointer to the node with key k in tree T,
   or NULL if it doesn't exist*/
-Node *find(Node *T, int k) {
+Node *find(Node *T, double k) {
     //Base case
     if (T == NULL) {return NULL;}
     if (k == T->key) {return T;}
@@ -70,7 +57,7 @@ Node *find(Node *T, int k) {
 /*Function: Return pointer to the node with key k if it exists
   If not, return a pointer to the node with the largest key smaller than k (i.e.,
   k's predecessor) or NULL if there isn't any node with key smaller than k.*/
-Node *predfind(Node *T, int k) {
+Node *predfind(Node *T, double k) {
     if (T == NULL) {return NULL;}
     if (k == T->key) {return T;}
     if (k <= T->key) {return predfind(T->left, k);}
@@ -118,7 +105,7 @@ Node *join(Node *L, Node *R)
 
 /*Function: Remove key k from T, returning a pointer to the resulting tree.
   if k isn't present in T, then return the pointer to T's root, with T unchanged*/
-Node *remove(Node *T, int k) {
+Node *remove(Node *T, double k) {
     //Base Case
     if (T == NULL) {return NULL;}
 
@@ -136,7 +123,7 @@ Node *remove(Node *T, int k) {
 
 /*Function: Split tree T on key k into tree L (containing keys <= k)
   and a tree R (containing keys > k)*/
-pair<Node *, Node *> split(Node *T, int k) {
+pair<Node *, Node *> split(Node *T, double k) {
     pair <Node*, Node*> result;
     //Base case
     if (T == NULL) {return (make_pair((Node*)NULL, (Node*)NULL));}
@@ -168,7 +155,7 @@ the resulting tree keep the tree balanced by using randomized balancing:
     if N represents the size of our tree after the insert, then
         - with probability 1/N, insert k at the root of T (by splitting on k)
         - otherwise, recursively call insert_keep_balanced on the left or right*/
-Node *insert_keep_balanced(Node *T, int k)
+Node *insert_keep_balanced(Node *T, double k)
 {
     if (T == NULL) {return new Node(k);}
 
@@ -195,93 +182,143 @@ Node *insert_keep_balanced(Node *T, int k)
     return T;
 }
 
-int main(void)
-    {
-    /*Testing insert and print_inorder*/
-    int A[10];
 
-    /*Put 0..9 into A[0..9] in random order*/
-    for (int i=0; i<10; i++) A[i] = i;
-    for (int i=9; i>0; i--) swap(A[i], A[rand()%i]);
+int get_rank(Node *root, double x) {
+    if (root == NULL) {return -1;}
 
-    /*Insert contents of A into a BST*/
-    Node *T = NULL;
-    for (int i=0; i<10; i++) T = insert(T, A[i] * 10);
+    pair<Node*, Node*> tmpPair = split(root, x);
 
+    if ((tmpPair.second)->key == x) {return (tmpPair.second)->size;}
 
-    /*Print contents of BST (should be 0, 10, 20, ..., 90 in sorted order)*/
-    cout << "\nTesting insert and print_inorder (should be 0,10,20,...,90)\n";
-    print_inorder(T);
-    cout << "Size (should be 10): " << (T ? T-> size : 0) << "\n";
+    else if ((tmpPair.second)->key < x) {return get_rank((tmpPair.second)->left, x);}
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Find~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    /*Elements 0,10,...,90 should be found; 100 should not be found*/
-    cout << "\nTesting find (should be 0,10,20,...,90 found, 100 not found)\n";
-    for (int i=0; i<=100; i+=10)
-        if (find(T,i)) {cout << i << " found\n";}
-        else {cout << i << " not found\n";}
+    else if ((tmpPair.second)->key > x) {return (get_rank((tmpPair.second)->right, x) + (tmpPair.second)->left->size + 1);}
 
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test predfind~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    /* -- if nothing printed, that's good news */
-    if (predfind(T,-1)) {cout << "Error: predfind(-1) returned something and should have returned NULL\n";}
-    if (predfind(T,50)->key != 50) {cout << "Error: predfind(50) didn't return the node with 50 as its key\n";}
-    for (int i=0; i<=90; i+=10) {
-        if (predfind(T,i+3)->key != i) {cout << "Error: predfind(" << i+3 << ") didn't return the node with " << i << " as its key\n";}
+    else {
+        return -1;
     }
-
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Split~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    cout << "\nTesting split\n";
-    Node *L, *R;
-    tie(L,R) = split(T, 20);
-    /*Alternatively, could say:
-      pair<Node *, Node *> result = split(T, 20);
-      Node *L = result.first, *R = result.second;*/
-
-    cout << "Contents of left tree after split (should be 0..20):\n";
-    print_inorder(L);
-    cout << "\nSize left subtree (should be 3): " << L->size << "\n";
-    cout << "Contents of right tree after split (should be 30..90):\n";
-    print_inorder(R);
-    cout << "\nSize right subtree (should be 7): " << R->size << "\n";
-
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Join~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    T = join(L, R);
-    cout << "\nTesting join\n";
-    cout << "Contents of re-joined tree (should be 0,10,20,...,90)\n";
-    print_inorder(T);
-    cout << "\nSize (should be 10): " << T->size << "\n";
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Remove~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    cout << "\nTesting remove\n";
-    for (int i=0; i<10; i++) A[i] = i*10;
-    for (int i=9; i>0; i--) swap(A[i], A[rand()%i]);
-    for (int i=0; i<10; i++) {
-      T = remove(T, A[i]);
-      cout << "Contents of tree after removing " << A[i] << ":\n";
-      print_inorder(T);
-      cout << "\nSize of tree after this removal (should be 1 less than before): " << (T ? T->size : 0) << "\n";
-    }
-
-
-    /* ~~~~~~~~~~~~~~~~~~~~~Test insert_keep_balanced~~~~~~~~~~~~~~~~~~~~~ */
-    /*test insert_keep_balanced basic functionality
-      insert contents of A into a BST*/
-    for (int i=0; i<10; i++) T = insert_keep_balanced(T, A[i]);
-
-
-    /*Print contents of BST*/
-    cout << "\n" << "Testing insert_keep_balanced (should be 0,10,20,..90)\n";
-    print_inorder(T);
-    cout << "\n" << "Size (should be 10): " << T->size << "\n";
-
-    /*Test insert_keep_balanced speed*/
-    cout << "Inserting 10 million elements in order; this should be very fast if insert_balance is working...\n";
-    for (int i=0; i<10000000; i++) T = insert_keep_balanced(T, i+10); // 10 million ints starting at 10
-    cout << "Done\n";
-    cout << "Size (should be 10000010): " << T->size << "\n\n";
-
-    return 0;
 }
+
+
+
+
+
+    // int rightS = 0;
+    // if (root == NULL) {
+    //     return NULL;
+    // }
+    // else if (root->key == x) {
+    //     cout << root->left->size << endl;
+    //     return root->left->size;
+    // }
+    // else if (x < root->key) {
+    //     if (root->left == NULL) {
+    //         return -1;
+    //     }
+    //     else {
+    //         pair<Node*, Node*> tmpPair = split(root, x);
+    //         cout << get_rank(tmpPair.first, x) << endl;
+    //         return get_rank(tmpPair.first, x);
+    //     }
+    // }
+    // else {
+    //     if (root->right == NULL) {
+    //         return -1;
+    //     }
+    //     else {
+    //         pair<Node*, Node*> tmpPair2 = split(root, x);
+    //         return get_rank(tmpPair2.second, x);
+    //             // return root->left->size + rightS + 1;
+    //     }
+    // }
+
+// int main(void)
+//     {
+//     /*Testing insert and print_inorder*/
+//     int A[10];
+//
+//     /*Put 0..9 into A[0..9] in random order*/
+//     for (int i=0; i<10; i++) A[i] = i;
+//     for (int i=9; i>0; i--) swap(A[i], A[rand()%i]);
+//
+//     /*Insert contents of A into a BST*/
+//     Node *T = NULL;
+//     for (int i=0; i<10; i++) T = insert(T, A[i] * 10);
+//
+//
+//     /*Print contents of BST (should be 0, 10, 20, ..., 90 in sorted order)*/
+//     cout << "\nTesting insert and print_inorder (should be 0,10,20,...,90)\n";
+//     print_inorder(T);
+//     cout << "Size (should be 10): " << (T ? T-> size : 0) << "\n";
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Find~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//     /*Elements 0,10,...,90 should be found; 100 should not be found*/
+//     cout << "\nTesting find (should be 0,10,20,...,90 found, 100 not found)\n";
+//     for (int i=0; i<=100; i+=10)
+//         if (find(T,i)) {cout << i << " found\n";}
+//         else {cout << i << " not found\n";}
+//
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test predfind~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//     /* -- if nothing printed, that's good news */
+//     if (predfind(T,-1)) {cout << "Error: predfind(-1) returned something and should have returned NULL\n";}
+//     if (predfind(T,50)->key != 50) {cout << "Error: predfind(50) didn't return the node with 50 as its key\n";}
+//     for (int i=0; i<=90; i+=10) {
+//         if (predfind(T,i+3)->key != i) {cout << "Error: predfind(" << i+3 << ") didn't return the node with " << i << " as its key\n";}
+//     }
+//
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Split~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//     cout << "\nTesting split\n";
+//     Node *L, *R;
+//     tie(L,R) = split(T, 20);
+//     /*Alternatively, could say:
+//       pair<Node *, Node *> result = split(T, 20);
+//       Node *L = result.first, *R = result.second;*/
+//
+//     cout << "Contents of left tree after split (should be 0..20):\n";
+//     print_inorder(L);
+//     cout << "\nSize left subtree (should be 3): " << L->size << "\n";
+//     cout << "Contents of right tree after split (should be 30..90):\n";
+//     print_inorder(R);
+//     cout << "\nSize right subtree (should be 7): " << R->size << "\n";
+//
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Join~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//     T = join(L, R);
+//     cout << "\nTesting join\n";
+//     cout << "Contents of re-joined tree (should be 0,10,20,...,90)\n";
+//     print_inorder(T);
+//     cout << "\nSize (should be 10): " << T->size << "\n";
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~~~~~Test Remove~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//     cout << "\nTesting remove\n";
+//     for (int i=0; i<10; i++) A[i] = i*10;
+//     for (int i=9; i>0; i--) swap(A[i], A[rand()%i]);
+//     for (int i=0; i<10; i++) {
+//       T = remove(T, A[i]);
+//       cout << "Contents of tree after removing " << A[i] << ":\n";
+//       print_inorder(T);
+//       cout << "\nSize of tree after this removal (should be 1 less than before): " << (T ? T->size : 0) << "\n";
+//     }
+//
+//
+//     /* ~~~~~~~~~~~~~~~~~~~~~Test insert_keep_balanced~~~~~~~~~~~~~~~~~~~~~ */
+//     /*test insert_keep_balanced basic functionality
+//       insert contents of A into a BST*/
+//     for (int i=0; i<10; i++) T = insert_keep_balanced(T, A[i]);
+//
+//
+//     /*Print contents of BST*/
+//     cout << "\n" << "Testing insert_keep_balanced (should be 0,10,20,..90)\n";
+//     print_inorder(T);
+//     cout << "\n" << "Size (should be 10): " << T->size << "\n";
+//
+//     /*Test insert_keep_balanced speed*/
+//     cout << "Inserting 10 million elements in order; this should be very fast if insert_balance is working...\n";
+//     for (int i=0; i<10000000; i++) T = insert_keep_balanced(T, i+10); // 10 million ints starting at 10
+//     cout << "Done\n";
+//     cout << "Size (should be 10000010): " << T->size << "\n\n";
+//
+//     return 0;
+// }
