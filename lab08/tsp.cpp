@@ -23,7 +23,7 @@ const int N = 50;
 struct Point {
     double x, y;
     int index;
-}
+};
 
 Point P[N];
 
