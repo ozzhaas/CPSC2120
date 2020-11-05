@@ -95,7 +95,7 @@ int main (void) {
     in.close();
 
 
-    double best_num = 9999999999999.9;
+    double best_num = 1000;
 
     for (int i = 0; i < N; i++) {
         make_rand(tour);
