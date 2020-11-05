@@ -82,8 +82,8 @@ bool refine_tour(int* T) {
 
 
 int main (void) {
-    int* tour[N];
-    int* best_tour;
+    int tour[N];
+    int best_tour[N];
 
     ifstream in;
     in.open("tsp_points.txt");
