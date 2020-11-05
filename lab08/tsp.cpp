@@ -69,11 +69,11 @@ bool refine_tour(int* T) {
 
     for (int i = 0; i < N; i++) {
         for (int j = i + 2; j < N; j++) {
-            substitute(T, a + 1, b);
+            substitute(T, i + 1, j);
             if (tour_length(T) < og_len) {
                 return true;
             }
-            substitute(T, a + 1, b);
+            substitute(T, i + 1, j);
         }
     }
     return false;
@@ -83,12 +83,12 @@ bool refine_tour(int* T) {
 
 int main (void) {
     int* tour[N];
-    int* best;
+    int* best_tour;
 
     ifstream in;
     in.open("tsp_points.txt");
 
-    for (itn i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++) {
         in >> P[i].x >> P[i].y;
     }
 
@@ -96,18 +96,17 @@ int main (void) {
 
 
     double best_num = 9999999999999.9;
+
     for (int i = 0; i < N; i++) {
-        tour[i] = i;
-        swap(tour[i], tour[rand() % (i + 1)]);
-    }
+        make_rand(tour);
+        while (refine_tour(tour));
 
-    while (refine_tour(tour));
-
-    double new_len = tour_length(tour);
-    if (new_len < best_num) {
-        best_num = new_len;
-        for (int i = 0; i < N; i++) {
-            best[i] = tour[i];
+        double new_len = tour_length(tour);
+        if (new_len < best_num) {
+            best_num = new_len;
+            for (int j = 0; j < N; j++) {
+                best_tour[j] = tour[j];
+            }
         }
     }
 
@@ -115,7 +114,7 @@ int main (void) {
     cout << "~~~~~~~~~~~~~~~~~~~Path~~~~~~~~~~~~~~~~~~~" << endl;
 
     for (int i = 0; i < N; i++) {
-        cout << best[i] << " ";
+        cout << best_tour[i] << " ";
     }
     cout << endl;
 
