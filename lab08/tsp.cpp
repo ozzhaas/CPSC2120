@@ -98,6 +98,7 @@ int main (void) {
     double best_num = 1000;
 
     for (int i = 0; i < N; i++) {
+        srand(time(NULL));
         make_rand(tour);
         while (refine_tour(tour));
 
