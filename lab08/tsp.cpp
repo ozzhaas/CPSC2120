@@ -123,6 +123,7 @@ int main (void) {
         }
     }
 
+    cout << endl << endl;
     cout << "Length of the most optimal tour: " << best_num << endl;
     cout << "~~~~~~~~~~~~~~~~~~~Path~~~~~~~~~~~~~~~~~~~" << endl;
     cout << endl;
