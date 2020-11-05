@@ -55,13 +55,12 @@ void make_rand(int* T) {
 }
 
 
-
-void switch(int* T, int a, int b) {
+void substitute(int* T, int a, int b) {
     //Base Case
     if (a >= b) {return;}
 
     swap(T[a], T[b]);
-    switch(T, a + 1, b - 1);
+    substitute(T, a + 1, b - 1);
 }
 
 
@@ -70,11 +69,11 @@ bool refine_tour(int* T) {
 
     for (int i = 0; i < N; i++) {
         for (int j = i + 2; j < N; j++) {
-            switch(T, a + 1, b);
+            substitute(T, a + 1, b);
             if (tour_length(T) < og_len) {
                 return true;
             }
-            switch(T, a + 1, b);
+            substitute(T, a + 1, b);
         }
     }
     return false;
