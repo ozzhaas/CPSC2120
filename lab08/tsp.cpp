@@ -51,6 +51,7 @@ void make_rand(int* T) {
     for (int i = 0; i < N; i++) {
         T[i] = i;
         swap(T[i], T[rand() % (i + 1)]);
+    }
 }
 
 
