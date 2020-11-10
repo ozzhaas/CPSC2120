@@ -52,9 +52,6 @@ void sort_tasty() {
     }
 }
 
-// void greedy() {
-//
-// }
 
 
 int main (void) {
