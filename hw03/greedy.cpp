@@ -20,7 +20,7 @@ struct Candy {
     int value;
 };
 
-int N = 16;
+const int N = 16;
 Candy candies[N];
 int maxWeight = 2000;
 
