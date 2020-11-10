@@ -34,7 +34,7 @@ void sort_tasty() {
     for (i = 0; i < N - 1; i++) {
         min = i;
         for (j = i + 1; j < N; j++) {
-            if (candies[j] < candies[min]) {
+            if (candies[j].value < candies[min].value) {
                 min = j;
             }
         }
