@@ -127,7 +127,6 @@ int main (void) {
         input >> tempVar;
         tempCandy.value = tempVar;
         candies.push_back(tempCandy);
-        i++;
     }
 
     sort_tasty();
