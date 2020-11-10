@@ -78,8 +78,7 @@ int main (void) {
     sort_tasty();
 
     for (int i = N - 1; i >= 0; i--) {
-        if (stored_candies[i] != true) {
-            if (bag1.weight + candies[i].weight > 2000) {break;}
+        if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag1.weight += candies[i].weight;
             bag1.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
@@ -88,8 +87,7 @@ int main (void) {
     }
 
     for (int i = N - 1; i >= 0; i--) {
-        if (stored_candies[i] != true) {
-            if (bag2.weight + candies[i].weight > 2000) {break;}
+        if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag2.weight += candies[i].weight;
             bag2.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
@@ -98,8 +96,7 @@ int main (void) {
     }
 
     for (int i = N - 1; i >= 0; i--) {
-        if (stored_candies[i] != true) {
-            if (bag3.weight + candies[i].weight > 2000) {break;}
+        if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag3.weight += candies[i].weight;
             bag3.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
