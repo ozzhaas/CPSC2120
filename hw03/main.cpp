@@ -56,6 +56,9 @@ void sort_tasty() {
 
 
 void greedy() {
+    int i = 0;
+    bool stored_candies[N];
+    Bag bag1, bag2, bag3;
     for (int i = N - 1; i >= 0; i--) {
         if (stored_candies[i] != true) {
             if (bag1.weight + candies[i].weight < 2000) {break;}
@@ -118,9 +121,7 @@ int main (void) {
     string valString;
     string weightString;
     int tempVar = 0;
-    int i = 0;
-    bool stored_candies[N];
-    Bag bag1, bag2, bag3;
+
 
 
     while (input >> tempVar) {
