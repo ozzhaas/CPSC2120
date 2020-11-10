@@ -53,29 +53,9 @@ void sort_tasty() {
 }
 
 
-
-int main (void) {
-    ifstream input;
-    input.open("candy.txt");
-    string line;
-    string valString;
-    string weightString;
-    int tempVar = 0;
-    int i = 0;
+void greedy() {
     bool stored_candies[N];
     Bag bag1, bag2, bag3;
-
-
-    while (input >> tempVar) {
-        Candy tempCandy;
-        tempCandy.weight = tempVar;
-        input >> tempVar;
-        tempCandy.value = tempVar;
-        candies[i] = tempCandy;
-        i++;
-    }
-
-    sort_tasty();
 
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
@@ -123,7 +103,33 @@ int main (void) {
     cout << endl;
 
     cout << "Greedy: " << bag1.totalVal + bag2.totalVal + bag3.totalVal << endl;
+}
 
+
+
+int main (void) {
+    ifstream input;
+    input.open("candy.txt");
+    string line;
+    string valString;
+    string weightString;
+    int tempVar = 0;
+    int i = 0;
+
+
+
+    while (input >> tempVar) {
+        Candy tempCandy;
+        tempCandy.weight = tempVar;
+        input >> tempVar;
+        tempCandy.value = tempVar;
+        candies[i] = tempCandy;
+        i++;
+    }
+
+    sort_tasty();
+
+    greedy();
 
     return 0;
 }
