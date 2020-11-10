@@ -62,9 +62,10 @@ void greedy() {
     bag3.candies_in_bag.clear();
 
     for (int i = N - 1; i >= 0; i--) {
-        cout << "Test Weight: " << candies[i].weight << endl;
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+            cout << "Test Weight: " << candies[i].weight << endl;
             bag1.weight += candies[i].weight;
+            cout << "bag1 weight: " << bag1.weight << endl;
             bag1.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bag1.totalVal += candies[i].value;
