@@ -43,8 +43,8 @@ int main (void) {
         getline(candySS, weightString, ' ');
         getline(candySS, valString, ' ');
         Candy tempCandy;
-        tempCandy.weight = atoi(weightString);
-        tempCandy.value = atoi(valString);
+        tempCandy.weight = stoi(weightString);
+        tempCandy.value = stoi(valString);
         inputArray[i] = tempCandy;
     }
 
