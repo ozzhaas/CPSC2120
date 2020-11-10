@@ -41,16 +41,13 @@ int main (void) {
     int i = 0;
 
 
-    while (input >> line) {
-        stringstream lineStream(line);
-        while (lineStream >> tempVar) {
-            Candy tempCandy;
-            tempCandy.weight = tempVar;
-            lineStream >> tempVar;
-            tempCandy.value = tempVar;
-            inputArray[i] = tempCandy;
-            i++;
-        }
+    while (input >> tempVar) {
+        Candy tempCandy;
+        tempCandy.weight = tempVar;
+        input >> tempVar;
+        tempCandy.value = tempVar;
+        inputArray[i] = tempCandy;
+        i++;
     }
 
 
