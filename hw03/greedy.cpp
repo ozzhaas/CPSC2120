@@ -77,6 +77,7 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag1.weight += candies[i].weight;
+            bag1.candies_in_bag[i] = candies[i];
             stored_candies[i] = true;
             bag1.totalVal += candies[i].value;
         }
@@ -85,6 +86,7 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag2.weight += candies[i].weight;
+            bag2.candies_in_bag[i] = candies[i];
             stored_candies[i] = true;
             bag2.totalVal += candies[i].value;
         }
@@ -93,10 +95,29 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag3.weight += candies[i].weight;
+            bag3.candies_in_bag[i] = candies[i];
             stored_candies[i] = true;
             bag3.totalVal += candies[i].value;
         }
     }
+
+    for (int i = 0; i < N; i++) {
+        cout << "Candy in Bag1: " << endl;
+        cout << bag1.candies_in_bag[i] << " ";
+    }
+    cout << endl;
+
+    for (int i = 0; i < N; i++) {
+        cout << "Candy in Bag2: " << endl;
+        cout << bag2.candies_in_bag[i] << " ";
+    }
+    cout << endl;
+
+    for (int i = 0; i < N; i++) {
+        cout << "Candy in Bag3: " << endl;
+        cout << bag3.candies_in_bag[i] << " ";
+    }
+    cout << endl;
 
     cout << "Greedy: " << bag1.totalVal + bag2.totalVal + bag3.totalVal << endl;
 
