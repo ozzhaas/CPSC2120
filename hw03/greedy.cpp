@@ -25,7 +25,7 @@ struct Bag {
     int weight;
     int totalVal;
     Candy candies_in_bag;
-}
+};
 
 
 const int N = 16;
@@ -98,7 +98,7 @@ int main (void) {
         }
     }
 
-    cout << "Greedy: " << bag1.value + bag2.value + bag3.value << endl;
+    cout << "Greedy: " << bag1.totalVal + bag2.totalVal + bag3.totalVal << endl;
 
 
     return 0;
