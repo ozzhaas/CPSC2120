@@ -19,8 +19,8 @@ using namespace std;
 
 
 struct Candy {
-    int weight;
-    int value;
+    int weight = 0;
+    int value = 0;
 };
 
 const int N = 16;
@@ -28,8 +28,8 @@ Candy candies[N];
 int maxWeight = 2000;
 
 struct Bag {
-    int weight;
-    int totalVal;
+    int weight = 0;
+    int totalVal = 0;
     vector<Candy> candies_in_bag;
 };
 
