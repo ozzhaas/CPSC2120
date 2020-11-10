@@ -63,6 +63,8 @@ int main (void) {
         i++;
     }
 
+    sort_tasty();
+
 
     for (int i = 0; i < N; i++) {
         cout << candies[i].weight << " " << candies[i].value << endl;
