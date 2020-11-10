@@ -107,9 +107,9 @@ void greedy() {
     cout << "Greedy: " << bag1.totalVal + bag2.totalVal + bag3.totalVal << endl;
 }
 
-void refined() {
-
-}
+// void refined() {
+//
+// }
 
 int main (void) {
     ifstream input;
