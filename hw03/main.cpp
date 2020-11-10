@@ -25,7 +25,7 @@ struct Candy {
 
 const int N = 16;
 const int T = 1000;
-Candy candies[N];
+vector<Candy> candies;
 int maxWeight = 2000;
 
 struct Bag {
@@ -120,14 +120,13 @@ int main (void) {
     string valString;
     string weightString;
     int tempVar = 0;
-    int i = 0;
 
     while (input >> tempVar) {
         Candy tempCandy;
         tempCandy.weight = tempVar;
         input >> tempVar;
         tempCandy.value = tempVar;
-        candies[i] = tempCandy;
+        candies.push_back(tempCandy);
         i++;
     }
 
