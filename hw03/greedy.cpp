@@ -80,7 +80,8 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag1.weight += candies[i].weight;
-            bag1.candies_in_bag[i] = candies[i];
+            bag1.candies_in_bag[i].weight = candies[i].weight;
+            bag1.candies_in_bag[i].value = candies[i].value;
             stored_candies[i] = true;
             bag1.totalVal += candies[i].value;
         }
@@ -89,7 +90,8 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag2.weight += candies[i].weight;
-            bag2.candies_in_bag[i] = candies[i];
+            bag2.candies_in_bag[i].weight = candies[i].weight;
+            bag2.candies_in_bag[i].value = candies[i].value;
             stored_candies[i] = true;
             bag2.totalVal += candies[i].value;
         }
@@ -98,7 +100,8 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag3.weight += candies[i].weight;
-            bag3.candies_in_bag[i] = candies[i];
+            bag3.candies_in_bag[i].weight = candies[i].weight;
+            bag3.candies_in_bag[i].value = candies[i].value;
             stored_candies[i] = true;
             bag3.totalVal += candies[i].value;
         }
