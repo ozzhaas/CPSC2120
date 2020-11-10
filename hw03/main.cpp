@@ -57,7 +57,9 @@ void greedy() {
     bool stored_candies[N];
     Bag bag1, bag2, bag3;
     sort_tasty();
-
+    bag1.candies_in_bag.clear();
+    bag2.candies_in_bag.clear();
+    bag3.candies_in_bag.clear();
 
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
