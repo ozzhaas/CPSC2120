@@ -38,6 +38,7 @@ int main (void) {
     string weightString;
     Candy inputArray[N];
     int tempVar = 0;
+    int i = 0;
 
 
     while (input >> line) {
@@ -48,6 +49,7 @@ int main (void) {
             lineStream >> tempVar;
             tempCandy.value = tempVar;
             inputArray[i] = tempCandy;
+            i++;
         }
     }
 
