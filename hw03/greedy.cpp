@@ -30,7 +30,7 @@ int maxWeight = 2000;
 struct Bag {
     int weight;
     int totalVal;
-    Candy candies_in_bag[N];
+    vector<Candy> candies_in_bag;
 };
 
 
@@ -80,8 +80,7 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag1.weight += candies[i].weight;
-            bag1.candies_in_bag[i].weight = candies[i].weight;
-            bag1.candies_in_bag[i].value = candies[i].value;
+            bag1.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bag1.totalVal += candies[i].value;
         }
@@ -90,8 +89,7 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag2.weight += candies[i].weight;
-            bag2.candies_in_bag[i].weight = candies[i].weight;
-            bag2.candies_in_bag[i].value = candies[i].value;
+            bag2.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bag2.totalVal += candies[i].value;
         }
@@ -100,8 +98,7 @@ int main (void) {
     for (int i = N - 1; i >= 0; i--) {
         if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
             bag3.weight += candies[i].weight;
-            bag3.candies_in_bag[i].weight = candies[i].weight;
-            bag3.candies_in_bag[i].value = candies[i].value;
+            bag3.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bag3.totalVal += candies[i].value;
         }
