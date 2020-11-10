@@ -106,19 +106,19 @@ int main (void) {
 
     for (int i = 0; i < N; i++) {
         cout << "Candy in Bag1: " << endl;
-        cout << bag1.candies_in_bag[i] << " ";
+        cout << bag1.candies_in_bag[i].weight << " " << bag1.candies_in_bag[i].value << " ";
     }
     cout << endl;
 
     for (int i = 0; i < N; i++) {
         cout << "Candy in Bag2: " << endl;
-        cout << bag2.candies_in_bag[i] << " ";
+        cout << bag2.candies_in_bag[i].weight << " " << bag2.candies_in_bag[i].value << " ";
     }
     cout << endl;
 
     for (int i = 0; i < N; i++) {
         cout << "Candy in Bag3: " << endl;
-        cout << bag3.candies_in_bag[i] << " ";
+        cout << bag3.candies_in_bag[i].weight << " " << bag3.candies_in_bag[i].value << " ";
     }
     cout << endl;
 
