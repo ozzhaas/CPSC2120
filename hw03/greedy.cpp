@@ -16,14 +16,16 @@
 
 using namespace std;
 
-const int N = 16;
-Candy candies[N];
-int maxWeight = 2000;
+
 
 struct Candy {
     int weight;
     int value;
 };
+
+const int N = 16;
+Candy candies[N];
+int maxWeight = 2000;
 
 struct Bag {
     int weight;
