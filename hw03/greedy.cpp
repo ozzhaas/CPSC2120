@@ -37,18 +37,17 @@ int main (void) {
     string valString;
     string weightString;
     Candy inputArray[N];
+    int tempVar = 0;
 
-    for (int i = 0; i < N; i++) {
-        input >> line;
-        stringstream candySS(line);
-        getline(candySS, weightString, ' ');
-        getline(candySS, valString, ' ');
-        Candy tempCandy;
-        int tempW = stoi(weightString);
-        int tempV = stoi(valString);
-        tempCandy.weight = tempW;
-        tempCandy.value = tempV;
-        inputArray[i] = tempCandy;
+
+    while (input >> line) {
+        stringstream lineStream(line);
+        while (lineStream >> tempVar) {
+            tempCandy.weight = tempVar;
+            lineStream >> tempVar;
+            tempCandy.value = tempVar;
+            inputArray[i] = tempCandy;
+        }
     }
 
 
