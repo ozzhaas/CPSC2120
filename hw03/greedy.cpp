@@ -29,6 +29,20 @@ int max (int a, int b) {
     return (a > b) ? a : b;
 }
 
+void sort_tasty() {
+    int i, j, min;
+    for (i = 0; i < N - 1; i++) {
+        min = i;
+        for (j = i + 1; j < N; j++) {
+            if (candies[j] < candies[min]) {
+                min = j;
+            }
+        }
+        swap(candies[min], candies[i]);
+    }
+}
+
+
 
 int main (void) {
     ifstream input;
@@ -36,7 +50,6 @@ int main (void) {
     string line;
     string valString;
     string weightString;
-    Candy inputArray[N];
     int tempVar = 0;
     int i = 0;
 
@@ -46,15 +59,11 @@ int main (void) {
         tempCandy.weight = tempVar;
         input >> tempVar;
         tempCandy.value = tempVar;
-        inputArray[i] = tempCandy;
+        candies[i] = tempCandy;
         i++;
     }
 
 
-    for (int i = 0; i < N; i++) {
-        cout << "Weight: " << inputArray[i].weight << "         " << "Value: "
-             << inputArray[i].value << endl;
-    }
 
     return 0;
 }
