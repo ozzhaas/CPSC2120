@@ -43,6 +43,7 @@ int main (void) {
     while (input >> line) {
         stringstream lineStream(line);
         while (lineStream >> tempVar) {
+            Candy tempCandy;
             tempCandy.weight = tempVar;
             lineStream >> tempVar;
             tempCandy.value = tempVar;
