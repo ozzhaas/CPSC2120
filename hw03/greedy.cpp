@@ -12,9 +12,13 @@
 #include <cmath>
 #include <sstream>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
+const int N = 16;
+Candy candies[N];
+int maxWeight = 2000;
 
 struct Candy {
     int weight;
@@ -24,13 +28,10 @@ struct Candy {
 struct Bag {
     int weight;
     int totalVal;
-    Candy candies_in_bag;
+    Candy candies_in_bag[N];
 };
 
 
-const int N = 16;
-Candy candies[N];
-int maxWeight = 2000;
 
 int max (int a, int b) {
     return (a > b) ? a : b;
