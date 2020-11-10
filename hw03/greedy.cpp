@@ -21,6 +21,13 @@ struct Candy {
     int value;
 };
 
+struct Bag {
+    int weight;
+    int totalVal;
+    Candy candies_in_bag;
+}
+
+
 const int N = 16;
 Candy candies[N];
 int maxWeight = 2000;
@@ -52,6 +59,8 @@ int main (void) {
     string weightString;
     int tempVar = 0;
     int i = 0;
+    bool stored_candies[N];
+    Bag bag1, bag2, bag3;
 
 
     while (input >> tempVar) {
@@ -65,10 +74,31 @@ int main (void) {
 
     sort_tasty();
 
-
-    for (int i = 0; i < N; i++) {
-        cout << candies[i].weight << " " << candies[i].value << endl;
+    for (int i = N - 1; i >= 0; i--) {
+        if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+            bag1.weight += candies[i].weight;
+            stored_candies[i] = true;
+            bag1.totalVal += candies[i].value;
+        }
     }
+
+    for (int i = N - 1; i >= 0; i--) {
+        if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+            bag2.weight += candies[i].weight;
+            stored_candies[i] = true;
+            bag2.totalVal += candies[i].value;
+        }
+    }
+
+    for (int i = N - 1; i >= 0; i--) {
+        if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+            bag3.weight += candies[i].weight;
+            stored_candies[i] = true;
+            bag3.totalVal += candies[i].value;
+        }
+    }
+
+    cout << "Greedy: " << bag1.value + bag2.value + bag3.value << endl;
 
 
     return 0;
