@@ -142,6 +142,7 @@ void shuffle_candies(vector<Bag> bags) {
            stored_candies[i] = true;
            bags[random].totalVal += candies[i].value;
        }
+   }
 }
 
 
