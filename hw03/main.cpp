@@ -120,20 +120,30 @@ int refined(vector<Bag> &bags) {
     bag2 = bags[1];
     bag3 = bags[2];
     int total = 0;
+    bool refine_me = true;
 
     for (int i = 0; i < T; i++) {
-        int currYum = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
         shuffle_candies(bags);
-        int newYum = yummiest(bags[0]) + yummiest(bags[1]) + yummiest(bags[2]);
-        if (currYum > newYum) {
-            total = currYum;
+        int best = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+        while (refine_me == true) {
+            refine_me = false;
+            for (int i = 0; i < N; i++) {
+                int currYum = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+                shuffle_candies(bags);
+                int newYum = yummiest(bags[0]) + yummiest(bags[1]) + yummiest(bags[2]);
+                if (currYum > newYum) {
+                    total = currYum;
+                }
+                else {
+                    total = newYum;
+                }
+            }
+        if (total > best) {best = total; refine_me = true;}
+        else {refine_me = false;}
         }
-        else {
-            total = newYum;
-        }
-        cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << total << endl << endl;
     }
-    return total;
+    cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << best << endl << endl;
+    return best;
 }
 
 
