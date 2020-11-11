@@ -111,6 +111,9 @@ void shuffle_candies(vector<Bag> &bags) {
                         stored_candies[i] = true;
                         bags[0].totalVal += candies[i].value;
                     }
+                    else {
+                        continue;
+                    }
                 }
                 else if (bags[1].weight < 2000) {
                     if (bags[1].weight + candies[i].weight < 2000) {
@@ -119,6 +122,9 @@ void shuffle_candies(vector<Bag> &bags) {
                         stored_candies[i] = true;
                         bags[1].totalVal += candies[i].value;
                     }
+                    else {
+                        continue;
+                    }
                 }
                 else if (bags[2].weight < 2000) {
                     if (bags[2].weight + candies[i].weight < 2000) {
@@ -126,6 +132,9 @@ void shuffle_candies(vector<Bag> &bags) {
                         bags[2].candies_in_bag.push_back(candies[i]);
                         stored_candies[i] = true;
                         bags[2].totalVal += candies[i].value;
+                    }
+                    else {
+                        continue;
                     }
                 }
             }
