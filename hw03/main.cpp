@@ -109,10 +109,6 @@ int refined(vector<Bag> bags) {
     bag3 = bags[2];
     int best = 0;
 
-    for (int i = 0; i < N; i++) {
-        stored_candies[i] = false;
-    }
-
     int j = rand() % 3;
     for (int i = 0; i < T; i++) {
         srand(time(NULL));
@@ -154,9 +150,16 @@ int main (void) {
     int greed = greedy(mainBags);
     cout << "Greedy: " << greed << endl;
 
+
+    //Clear bag contents
     mainBags[0].candies_in_bag.clear();
     mainBags[1].candies_in_bag.clear();
     mainBags[2].candies_in_bag.clear();
+
+    //Clear array of stored "used" candies
+    for (int i = 0; i < N; i++) {
+        stored_candies[i] = false;
+    }
 
     int refine = refined(mainBags);
     cout << "Refinement: " << refine << endl;
