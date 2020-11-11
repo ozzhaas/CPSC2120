@@ -58,6 +58,7 @@ void sort_tasty() {
 
 void add_to_bag(Bag &b, int i) {
     if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
+        int weightOfCurr = candies[i].weight;
         b.weight += candies[i].weight;
         b.candies_in_bag.push_back(candies[i]);
         stored_candies[i] = true;
@@ -105,6 +106,21 @@ void shuffle_candies(vector<Bag> &bags) {
 }
 
 
+void yummiest(vector<Bag> &bags) {
+    for (unsigned int i = 0; i < bags[0].size(); i++) {
+        if (bags[0].candies_in_bag[i].value < candies[i].value) {
+            swap(bags[0].candies_in_bag[i], candies[i]);
+        }
+        if (bags[1].candies_in_bag[i].value < candies[i].value) {
+            swap(bags[1].candies_in_bag[i], candies[i]);
+        }
+        if (bags[2].candies_in_bag[i].value < candies[i].value) {
+            swap(bags[2].candies_in_bag[i], candies[i]);
+        }
+    }
+}
+
+
 
 int refined(vector<Bag> &bags) {
     Bag bag1, bag2, bag3;
@@ -116,7 +132,9 @@ int refined(vector<Bag> &bags) {
 
     for (int i = 0; i < T; i++) {
         shuffle_candies(bags);
+        yummiest();
         total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+
         if (total > best) {
             cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << total << endl << endl;
             best = total;
