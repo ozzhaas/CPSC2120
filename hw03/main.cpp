@@ -89,29 +89,31 @@ int greedy(vector<Bag> &bags) {
 
 
 void shuffle_candies(vector<Bag> &bags) {
-    for (int i = 0; i < N; i++) {
+    // for (int i = 0; i < N; i++) {
+    while (bags[random].weight < 2000) {
         int random = rand() % 3;
-        if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
-
-            // cout << "Adding candies[" << i << "]: " << endl;
-            // cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
-            // cout << "candies[" << i << "].value = " << candies[i].value << endl;
-
+        if (bags[random].weight >= 2000) {break;}
+        else if (!stored_candies[i]) {
             bags[random].weight += candies[i].weight;
             bags[random].candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bags[random].totalVal += candies[i].value;
         }
-        while (bags[random].weight < 2000) {
-            if (bags[random].weight >= 2000) {break;}
-            else if (!stored_candies[i]) {
-                bags[random].weight += candies[i].weight;
-                bags[random].candies_in_bag.push_back(candies[i]);
-                stored_candies[i] = true;
-                bags[random].totalVal += candies[i].value;
-            }
-        }
     }
+
+        // if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
+        //
+        //     // cout << "Adding candies[" << i << "]: " << endl;
+        //     // cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
+        //     // cout << "candies[" << i << "].value = " << candies[i].value << endl;
+        //
+        //     bags[random].weight += candies[i].weight;
+        //     bags[random].candies_in_bag.push_back(candies[i]);
+        //     stored_candies[i] = true;
+        //     bags[random].totalVal += candies[i].value;
+        // }
+
+    //}
 }
 
 
