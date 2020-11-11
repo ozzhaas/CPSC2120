@@ -92,10 +92,13 @@ void shuffle_candies(vector<Bag> &bags) {
     for (int i = 0; i < N; i++) {
         int random = rand() % 3;
         if (bags[random].weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-           bags[random].weight += candies[i].weight;
-           bags[random].candies_in_bag.push_back(candies[i]);
-           stored_candies[i] = true;
-           bags[random].totalVal += candies[i].value;
+            cout << "Adding candies[" << i << "]: " << endl;
+            cout << "candies[" << i << "].weight = " candies[i].weight << endl;
+            cout << "candies[" << i << "].value = " candies[i].value << endl;
+            bags[random].weight += candies[i].weight;
+            bags[random].candies_in_bag.push_back(candies[i]);
+            stored_candies[i] = true;
+            bags[random].totalVal += candies[i].value;
        }
    }
 }
@@ -163,21 +166,6 @@ int main (void) {
 
     int refine = refined(mainBags);
     cout << "Refinement: " << refine << endl;
-
-    
-    cout << "Candy in Bag 1: " << "\n";
-    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
-        cout << mainBags[0].candies_in_bag[i].weight << " " << mainBags[0].candies_in_bag[i].value << "\n";
-    }
-    cout << "Candy in Bag 2: " << "\n";
-    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
-        cout << mainBags[1].candies_in_bag[i].weight << " " << mainBags[1].candies_in_bag[i].value << "\n";
-    }
-    cout << "Candy in Bag 3: " << "\n";
-    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
-        cout << mainBags[2].candies_in_bag[i].weight << " " << mainBags[2].candies_in_bag[i].value << "\n";
-    }
-
 
 
     return 0;
