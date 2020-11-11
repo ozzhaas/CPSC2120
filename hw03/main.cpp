@@ -56,6 +56,19 @@ void sort_tasty() {
     }
 }
 
+bool add_to_bag(Bag &b, int i) {
+    if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
+        b.weight += candies[i].weight;
+        b.candies_in_bag.push_back(candies[i]);
+        stored_candies[i] = true;
+        b.totalVal += candies[i].value;
+        return true;
+    }
+    return false;
+}
+
+
+
 
 int greedy_loop(Bag &b) {
     for (int i = N - 1; i >= 0; i--) {
@@ -89,73 +102,18 @@ int greedy(vector<Bag> &bags) {
 
 
 void shuffle_candies(vector<Bag> &bags) {
-    // for (int i = 0; i < N; i++) {
-    int i = 0;
-    int j = 0;
-    while (stored_candies[i] != true) {
-        if (bags[j].weight > 2000) {break;}
-        bags[j].weight += candies[i].weight;
-        bags[j].candies_in_bag.push_back(candies[i]);
-        stored_candies[i] = true;
-        bags[j].totalVal += candies[i].value;
-        if (j == 2) {j = 0;}
-        i++;
-    }
-        for (int i = 0; i < N; i++) {
-            if (stored_candies[i] == false) {
-                if (bags[0].weight < 2000) {
-                    //Try adding the candy to the bag
-                    if (bags[0].weight + candies[i].weight < 2000) {
-                        bags[0].weight += candies[i].weight;
-                        bags[0].candies_in_bag.push_back(candies[i]);
-                        stored_candies[i] = true;
-                        bags[0].totalVal += candies[i].value;
-                    }
-                    else {
-                        continue;
-                    }
+    for (int i = 0; i < N; i++) {
+        if (candies[i].weight > candies[i + 1].weight && candies[i].value < candies[i + 1].value) {
+            i++;
+        }
+        if (!add_to_bag(bags[0], i)) {
+            if (!add_to_bag(bags[1], i)) {
+                if (!add_to_bag(bags[2], i)) {
+                    i++;
                 }
-                else if (bags[1].weight < 2000) {
-                    if (bags[1].weight + candies[i].weight < 2000) {
-                        bags[1].weight += candies[i].weight;
-                        bags[1].candies_in_bag.push_back(candies[i]);
-                        stored_candies[i] = true;
-                        bags[1].totalVal += candies[i].value;
-                    }
-                    else {
-                        continue;
-                    }
-                }
-                else if (bags[2].weight < 2000) {
-                    if (bags[2].weight + candies[i].weight < 2000) {
-                        bags[2].weight += candies[i].weight;
-                        bags[2].candies_in_bag.push_back(candies[i]);
-                        stored_candies[i] = true;
-                        bags[2].totalVal += candies[i].value;
-                    }
-                    else {
-                        continue;
-                    }
-                }
-            }
-            else {
-                i = i+1;
             }
         }
-
-        // if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
-        //
-        //     // cout << "Adding candies[" << i << "]: " << endl;
-        //     // cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
-        //     // cout << "candies[" << i << "].value = " << candies[i].value << endl;
-        //
-        //     bags[random].weight += candies[i].weight;
-        //     bags[random].candies_in_bag.push_back(candies[i]);
-        //     stored_candies[i] = true;
-        //     bags[random].totalVal += candies[i].value;
-        // }
-
-    //}
+    }
 }
 
 
