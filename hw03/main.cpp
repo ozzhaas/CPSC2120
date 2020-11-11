@@ -113,14 +113,15 @@ int refined(vector<Bag> &bags) {
     bag2 = bags[1];
     bag3 = bags[2];
     int best = 0;
+    int total = 0;
 
     int j = rand() % 3;
     for (int i = 0; i < T; i++) {
-        srand(time(NULL));
         shuffle_candies(bags);
-        if (bags[j].totalVal > best) {
-            cout << endl << endl << "TEST: " << bags[j].totalVal << endl << endl;
-            best = bags[j].totalVal;
+        total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+        if (total > best) {
+            cout << endl << endl << "TEST: " << total << endl << endl;
+            best = total;
         }
     }
     return best;
