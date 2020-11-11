@@ -91,7 +91,7 @@ int greedy(vector<Bag> &bags) {
 void shuffle_candies(vector<Bag> &bags) {
     // for (int i = 0; i < N; i++) {
     int i = 0;
-    while (bags[random].weight < 2000 && !stored_candies[i]) {
+    while (bags[random].weight < 2000 && stored_candies[i] != true) {
         int random = rand() % 3;
         if (bags[random].weight >= 2000) {break;}
         bags[random].weight += candies[i].weight;
