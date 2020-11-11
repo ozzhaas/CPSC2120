@@ -83,51 +83,6 @@ int greedy(vector<Bag> bags) {
     total += greedy_loop(bag2);
     total += greedy_loop(bag3);
 
-    // for (int i = N - 1; i >= 0; i--) {
-    //     if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-    //         bag1.weight += candies[i].weight;
-    //         bag1.candies_in_bag.push_back(candies[i]);
-    //         stored_candies[i] = true;
-    //         bag1.totalVal += candies[i].value;
-    //     }
-    // }
-    //
-    // for (int i = N - 1; i >= 0; i--) {
-    //     if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-    //         bag2.weight += candies[i].weight;
-    //         bag2.candies_in_bag.push_back(candies[i]);
-    //         stored_candies[i] = true;
-    //         bag2.totalVal += candies[i].value;
-    //     }
-    // }
-    //
-    // for (int i = N - 1; i >= 0; i--) {
-    //     if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-    //         bag3.weight += candies[i].weight;
-    //         bag3.candies_in_bag.push_back(candies[i]);
-    //         stored_candies[i] = true;
-    //         bag3.totalVal += candies[i].value;
-    //     }
-    // }
-
-    // cout << "Candy in Bag1: " << endl;
-    // for (unsigned int i = 0; i < bag1.candies_in_bag.size(); i++) {
-    //     cout << bag1.candies_in_bag[i].weight << " " << bag1.candies_in_bag[i].value << endl;
-    // }
-    // cout << endl;
-    //
-    // cout << "Candy in Bag2: " << endl;
-    // for (unsigned int i = 0; i < bag2.candies_in_bag.size(); i++) {
-    //     cout << bag2.candies_in_bag[i].weight << " " << bag2.candies_in_bag[i].value << endl;
-    // }
-    // cout << endl;
-    //
-    // cout << "Candy in Bag3: " << endl;
-    // for (unsigned int i = 0; i < bag3.candies_in_bag.size(); i++) {
-    //     cout << bag3.candies_in_bag[i].weight << " " << bag3.candies_in_bag[i].value << endl;
-    // }
-    // cout << endl;
-
     return (total);
 
 }
@@ -154,17 +109,16 @@ int refined(vector<Bag> bags) {
     bag3 = bags[2];
     int best = 0;
 
+    for (int i = 0; i < N; i++) {
+        stored_candies[i] = false;
+    }
+
+    int j = rand() % 3;
     for (int i = 0; i < T; i++) {
         srand(time(NULL));
         shuffle_candies(bags);
-        int greedVal = greedy(bags);
-
-        for (int i = 0; i < N; i++) {
-            stored_candies[i] = false;
-        }
-
-        if (greedVal > best) {
-            best = greedVal;
+        if (bags[j].totalVal > best) {
+            best = bags[j].totalVal;
         }
     }
     return best;
