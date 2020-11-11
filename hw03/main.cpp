@@ -135,7 +135,7 @@ int greedy(vector<Bag> bags) {
 
 void shuffle_candies(vector<Bag> bags) {
     for (int i = 0; i < N; i++) {
-        int temp = rand() % (i + 1);
+        int temp = rand() % (i);
         bags[rand() % 3].candies_in_bag.push_back(candies[temp]);
     }
 }
