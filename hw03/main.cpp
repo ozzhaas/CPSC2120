@@ -98,23 +98,23 @@ int greedy() {
         }
     }
 
-    cout << "Candy in Bag1: " << endl;
-    for (unsigned int i = 0; i < bag1.candies_in_bag.size(); i++) {
-        cout << bag1.candies_in_bag[i].weight << " " << bag1.candies_in_bag[i].value << endl;
-    }
-    cout << endl;
-
-    cout << "Candy in Bag2: " << endl;
-    for (unsigned int i = 0; i < bag2.candies_in_bag.size(); i++) {
-        cout << bag2.candies_in_bag[i].weight << " " << bag2.candies_in_bag[i].value << endl;
-    }
-    cout << endl;
-
-    cout << "Candy in Bag3: " << endl;
-    for (unsigned int i = 0; i < bag3.candies_in_bag.size(); i++) {
-        cout << bag3.candies_in_bag[i].weight << " " << bag3.candies_in_bag[i].value << endl;
-    }
-    cout << endl;
+    // cout << "Candy in Bag1: " << endl;
+    // for (unsigned int i = 0; i < bag1.candies_in_bag.size(); i++) {
+    //     cout << bag1.candies_in_bag[i].weight << " " << bag1.candies_in_bag[i].value << endl;
+    // }
+    // cout << endl;
+    //
+    // cout << "Candy in Bag2: " << endl;
+    // for (unsigned int i = 0; i < bag2.candies_in_bag.size(); i++) {
+    //     cout << bag2.candies_in_bag[i].weight << " " << bag2.candies_in_bag[i].value << endl;
+    // }
+    // cout << endl;
+    //
+    // cout << "Candy in Bag3: " << endl;
+    // for (unsigned int i = 0; i < bag3.candies_in_bag.size(); i++) {
+    //     cout << bag3.candies_in_bag[i].weight << " " << bag3.candies_in_bag[i].value << endl;
+    // }
+    // cout << endl;
 
     return (bag1.totalVal + bag2.totalVal + bag3.totalVal);
 
