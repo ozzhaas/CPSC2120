@@ -134,10 +134,6 @@ int greedy(vector<Bag> bags) {
 
 
 void shuffle_candies(vector<Bag> bags) {
-    bags.at(0).clear();
-    bags.at(1).clear();
-    bags.at(2).clear();
-
     int j = 0;
     for (int i = 0; i < N; i++) {
         int temp = rand() % (i + 1);
