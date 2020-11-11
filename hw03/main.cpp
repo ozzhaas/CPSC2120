@@ -28,6 +28,7 @@ const int T = 1000;
 Candy candies[N];
 int maxWeight = 2000;
 bool stored_candies[N];
+Bag bag1, bag2, bag3;
 
 
 struct Bag {
@@ -56,16 +57,7 @@ void sort_tasty() {
 }
 
 
-void shuffle() {
-    for (int i = 0; i < N; i++) {
-        int temp = rand() % (i + 1);
-        swap(candies[i], candies[temp]);
-    }
-}
-
-
 int greedy() {
-    Bag bag1, bag2, bag3;
     bag1.candies_in_bag.clear();
     bag2.candies_in_bag.clear();
     bag3.candies_in_bag.clear();
@@ -120,12 +112,22 @@ int greedy() {
 }
 
 
+void shake_bags() {
+    for (int i = 0; i < N; i++) {
+        int temp = rand() % (i + 1);
+        swap(bag1[i], bag2[temp]);
+        swap(bag1[temp], bag3[i]);
+    }
+}
+
+
+
 int refined() {
     int best = 0;
 
     for (int i = 0; i < T; i++) {
         srand(time(NULL));
-        shuffle();
+        shake_bags();
         int greedVal = greedy();
 
         for (int i = 0; i < N; i++) {
