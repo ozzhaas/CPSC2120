@@ -99,7 +99,6 @@ void shuffle_candies(vector<Bag> &bags) {
             cout << endl << endl;
             bags[random].weight += candies[i].weight;
             bags[random].candies_in_bag.push_back(candies[i]);
-            cout << "Bag weight: " << bags[random].weight << endl;
             stored_candies[i] = true;
             bags[random].totalVal += candies[i].value;
        }
@@ -169,6 +168,12 @@ int main (void) {
 
     int refine = refined(mainBags);
     cout << "Refinement: " << refine << endl;
+
+    cout << endl << endl;
+    cout << "~~~~~~~~~~~~~~~~Weights~~~~~~~~~~~~~~~~" << endl;
+    cout << "Bag1 weight: " << mainBags[0].weight << endl;
+    cout << "Bag2 weight: " << mainBags[1].weight << endl;
+    cout << "Bag3 weight: " << mainBags[2].weight << endl;
 
 
     return 0;
