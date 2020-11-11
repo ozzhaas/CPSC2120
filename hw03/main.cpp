@@ -177,9 +177,9 @@ int main (void) {
 
     cout << endl << endl;
     cout << "~~~~~~~~~~~~~~~~Values~~~~~~~~~~~~~~~~" << endl;
-    cout << "Bag1 value: " << mainBags[0].value << endl;
-    cout << "Bag2 value: " << mainBags[1].value << endl;
-    cout << "Bag3 value: " << mainBags[2].value << endl;
+    cout << "Bag1 value: " << mainBags[0].totalVal << endl;
+    cout << "Bag2 value: " << mainBags[1].totalVal << endl;
+    cout << "Bag3 value: " << mainBags[2].totalVal << endl;
 
 
 
