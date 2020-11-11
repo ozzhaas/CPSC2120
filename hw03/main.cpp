@@ -93,9 +93,10 @@ void shuffle_candies(vector<Bag> &bags) {
         int random = rand() % 3;
         if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
             cout << endl << endl;
-            cout << "Adding candies[" << i << "]: " << endl;
-            cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
-            cout << "candies[" << i << "].value = " << candies[i].value << endl;
+            cout << "Used Candies: " << stored_candies[i] << endl;
+            // cout << "Adding candies[" << i << "]: " << endl;
+            // cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
+            // cout << "candies[" << i << "].value = " << candies[i].value << endl;
             cout << endl << endl;
             bags[random].weight += candies[i].weight;
             bags[random].candies_in_bag.push_back(candies[i]);
@@ -103,10 +104,6 @@ void shuffle_candies(vector<Bag> &bags) {
             bags[random].totalVal += candies[i].value;
         }
     }
-
-    if (bags[random])
-
-
 }
 
 
