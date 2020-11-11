@@ -133,7 +133,7 @@ int greedy(vector<Bag> bags) {
 }
 
 
-void shuffle_candies(vector<Bags> bags) {
+void shuffle_candies(vector<Bag> bags) {
     bags[0].clear();
     bags[1].clear();
     bags[2].clear();
