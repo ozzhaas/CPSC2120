@@ -125,6 +125,7 @@ int refined() {
     int best = 0;
 
     for (int i = 0; i < T; i++) {
+        srand(time(NULL));
         shuffle();
         int greedVal = greedy();
 
