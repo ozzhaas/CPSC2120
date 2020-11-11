@@ -23,6 +23,12 @@ struct Candy {
     int value = 0;
 };
 
+struct Bag {
+    int weight = 0;
+    int totalVal = 0;
+    vector<Candy> candies_in_bag;
+};
+
 const int N = 16;
 const int T = 1000;
 Candy candies[N];
@@ -31,11 +37,6 @@ bool stored_candies[N];
 Bag bag1, bag2, bag3;
 
 
-struct Bag {
-    int weight = 0;
-    int totalVal = 0;
-    vector<Candy> candies_in_bag;
-};
 
 
 
