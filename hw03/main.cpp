@@ -135,9 +135,13 @@ int greedy(vector<Bag> bags) {
 
 void shuffle_candies(vector<Bag> bags) {
     for (int i = 0; i < N; i++) {
-        int temp = rand() % (i);
-        bags[rand() % 3].candies_in_bag.push_back(candies[temp]);
-    }
+        int random = rand() % 3;
+        if (bags[random].weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+           bags[random].weight += candies[i].weight;
+           bags[random].candies_in_bag.push_back(candies[i]);
+           stored_candies[i] = true;
+           bags[random].totalVal += candies[i].value;
+       }
 }
 
 
@@ -195,6 +199,9 @@ int main (void) {
     int greed = greedy(mainBags);
     cout << "Greedy: " << greed << endl;
 
+    mainBags[0].candies_in_bag.clear();
+    mainBags[1].candies_in_bag.clear();
+    mainBags[2].candies_in_bag.clear();
 
     int refine = refined(mainBags);
     cout << "Refinement: " << refine << endl;
