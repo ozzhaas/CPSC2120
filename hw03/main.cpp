@@ -59,7 +59,7 @@ void sort_tasty() {
 
 int greedy_loop(Bag &b) {
     for (int i = N - 1; i >= 0; i--) {
-        if (b.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+        if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
             b.weight += candies[i].weight;
             b.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
@@ -91,7 +91,7 @@ int greedy(vector<Bag> &bags) {
 void shuffle_candies(vector<Bag> &bags) {
     for (int i = 0; i < N; i++) {
         int random = rand() % 3;
-        if (bags[random].weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+        if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
             cout << endl << endl;
             cout << "Adding candies[" << i << "]: " << endl;
             cout << "candies[" << i << "].weight = " << candies[i].weight << endl;
@@ -101,8 +101,12 @@ void shuffle_candies(vector<Bag> &bags) {
             bags[random].candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bags[random].totalVal += candies[i].value;
-       }
-   }
+        }
+    }
+
+    if (bags[random])
+
+
 }
 
 
