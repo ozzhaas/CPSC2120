@@ -56,18 +56,14 @@ void sort_tasty() {
     }
 }
 
-bool add_to_bag(Bag &b, int i) {
+void add_to_bag(Bag &b, int i) {
     if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
         b.weight += candies[i].weight;
         b.candies_in_bag.push_back(candies[i]);
         stored_candies[i] = true;
         b.totalVal += candies[i].value;
-        return true;
     }
-    return false;
 }
-
-
 
 
 int greedy_loop(Bag &b) {
@@ -102,17 +98,9 @@ int greedy(vector<Bag> &bags) {
 
 
 void shuffle_candies(vector<Bag> &bags) {
+    int j = rand() % 3;
     for (int i = 0; i < N; i++) {
-        if (candies[i].weight > candies[i + 1].weight && candies[i].value < candies[i + 1].value) {
-            i++;
-        }
-        if (!add_to_bag(bags[0], i)) {
-            if (!add_to_bag(bags[1], i)) {
-                if (!add_to_bag(bags[2], i)) {
-                    i++;
-                }
-            }
-        }
+        add_to_bag(bags[j], i);
     }
 }
 
