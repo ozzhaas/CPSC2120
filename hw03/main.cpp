@@ -101,7 +101,7 @@ void shuffle_candies(vector<Bag> &bags) {
             bags[random].candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             cout << endl << endl;
-            cout << "Used Candies: " << stored_candies[i] << endl;
+            cout << "Used Candies: " << stored_candies[i].weight << " " << stored_candies[i].value << endl;
             cout << endl << endl;
             bags[random].totalVal += candies[i].value;
         }
