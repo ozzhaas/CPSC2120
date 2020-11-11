@@ -93,7 +93,7 @@ void shuffle_candies(vector<Bag> &bags) {
     int i = 0;
     while (bags[random].weight < 2000 && stored_candies[i] != true) {
         int random = rand() % 3;
-        if (bags[random].weight >= 2000) {break;}
+        if (bags[random].weight > 2000) {break;}
         bags[random].weight += candies[i].weight;
         bags[random].candies_in_bag.push_back(candies[i]);
         stored_candies[i] = true;
@@ -126,7 +126,6 @@ int refined(vector<Bag> &bags) {
     int best = 0;
     int total = 0;
 
-    int j = rand() % 3;
     for (int i = 0; i < T; i++) {
         shuffle_candies(bags);
         total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
