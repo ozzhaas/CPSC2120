@@ -120,7 +120,7 @@ int refined(vector<Bag> &bags) {
         shuffle_candies(bags);
         total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
         if (total > best) {
-            cout << endl << endl << "TEST: " << total << endl << endl;
+            cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << total << endl << endl;
             best = total;
         }
     }
