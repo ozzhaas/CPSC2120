@@ -152,7 +152,7 @@ int refined(vector<Bag> bags) {
 
     for (int i = 0; i < T; i++) {
         srand(time(NULL));
-        shuffle_candies(bag1, bag2, bag3);
+        shuffle_candies(bags);
         int greedVal = greedy(bags);
 
         for (int i = 0; i < N; i++) {
