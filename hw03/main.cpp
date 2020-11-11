@@ -90,15 +90,15 @@ int greedy(vector<Bag> &bags) {
 
 void shuffle_candies(vector<Bag> &bags) {
     // for (int i = 0; i < N; i++) {
-    while (bags[random].weight < 2000) {
+    int i = 0;
+    while (bags[random].weight < 2000 && !stored_candies[i]) {
         int random = rand() % 3;
         if (bags[random].weight >= 2000) {break;}
-        else if (!stored_candies[i]) {
-            bags[random].weight += candies[i].weight;
-            bags[random].candies_in_bag.push_back(candies[i]);
-            stored_candies[i] = true;
-            bags[random].totalVal += candies[i].value;
-        }
+        bags[random].weight += candies[i].weight;
+        bags[random].candies_in_bag.push_back(candies[i]);
+        stored_candies[i] = true;
+        bags[random].totalVal += candies[i].value;
+        i++;
     }
 
         // if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
