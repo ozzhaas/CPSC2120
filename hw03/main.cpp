@@ -57,8 +57,7 @@ void sort_tasty() {
 }
 
 void add_to_bag(Bag &b, int i) {
-    // if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
-    if (stored_candies[i] != true) {
+    if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
         b.weight += candies[i].weight;
         b.candies_in_bag.push_back(candies[i]);
         stored_candies[i] = true;
