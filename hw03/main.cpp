@@ -63,8 +63,11 @@ void add_to_bag(Bag &b, int i) {
         stored_candies[i] = true;
         b.totalVal += candies[i].value;
     }
-    else if (b.weight + candies[i].weight > 2000 && stored_candies[i] != true) {
-        i = rand() % (i + 1);
+    else {
+        cout << endl << endl;
+        cout << "Candies left out: " << endl;
+        cout << candies[i].value << " " << candies[i].weight << endl;
+        cout << endl << endl;
     }
 }
 
