@@ -138,6 +138,9 @@ void shuffle_candies(vector<Bag> &bags) {
                     }
                 }
             }
+            else {
+                i = i+1;
+            }
         }
 
         // if (bags[random].weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
