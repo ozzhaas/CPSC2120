@@ -122,8 +122,7 @@ int greedy() {
 
 
 int refined() {
-    Candy best_candy
-    best_candy.value = 0;
+    int best = 0;
 
     for (int i = 0; i < T; i++) {
         shuffle();
@@ -133,11 +132,11 @@ int refined() {
             stored_candies[i] = false;
         }
 
-        if (greedVal > best_candy.value) {
-            best_candy.value = greedVal;
+        if (greedVal > best) {
+            best = greedVal;
         }
     }
-    return best_candy.value;
+    return best;
 }
 
 
