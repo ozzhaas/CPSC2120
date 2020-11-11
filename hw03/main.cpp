@@ -121,10 +121,11 @@ int refined(vector<Bag> &bags) {
     bag3 = bags[2];
     int total = 0;
     bool refine_me = true;
+    int best = 0;
 
     for (int i = 0; i < T; i++) {
         shuffle_candies(bags);
-        int best = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+        best = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
         while (refine_me == true) {
             refine_me = false;
             for (int i = 0; i < N; i++) {
