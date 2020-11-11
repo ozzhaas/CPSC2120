@@ -66,7 +66,6 @@ void shuffle() {
 
 int greedy() {
     Bag bag1, bag2, bag3;
-    sort_tasty();
     bag1.candies_in_bag.clear();
     bag2.candies_in_bag.clear();
     bag3.candies_in_bag.clear();
@@ -161,8 +160,10 @@ int main (void) {
         i++;
     }
 
+    sort_tasty();
     int greed = greedy();
     cout << "Greedy: " << greed << endl;
+
 
     int refine = refined();
     cout << "Refinement: " << refine << endl;
