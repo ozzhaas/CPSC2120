@@ -106,26 +106,26 @@ void shuffle_candies(vector<Bag> &bags) {
                 if (bags[0].weight < 2000) {
                     //Try adding the candy to the bag
                     if (bags[0].weight + candies[i].weight < 2000) {
-                        bags[j].weight += candies[i].weight;
-                        bags[j].candies_in_bag.push_back(candies[i]);
+                        bags[0].weight += candies[i].weight;
+                        bags[0].candies_in_bag.push_back(candies[i]);
                         stored_candies[i] = true;
-                        bags[j].totalVal += candies[i].value;
+                        bags[0].totalVal += candies[i].value;
                     }
                 }
                 else if (bags[1].weight < 2000) {
                     if (bags[1].weight + candies[i].weight < 2000) {
-                        bags[j].weight += candies[i].weight;
-                        bags[j].candies_in_bag.push_back(candies[i]);
+                        bags[1].weight += candies[i].weight;
+                        bags[1].candies_in_bag.push_back(candies[i]);
                         stored_candies[i] = true;
-                        bags[j].totalVal += candies[i].value;
+                        bags[1].totalVal += candies[i].value;
                     }
                 }
                 else if (bags[2].weight < 2000) {
                     if (bags[2].weight + candies[i].weight < 2000) {
-                        bags[j].weight += candies[i].weight;
-                        bags[j].candies_in_bag.push_back(candies[i]);
+                        bags[2].weight += candies[i].weight;
+                        bags[2].candies_in_bag.push_back(candies[i]);
                         stored_candies[i] = true;
-                        bags[j].totalVal += candies[i].value;
+                        bags[2].totalVal += candies[i].value;
                     }
                 }
             }
