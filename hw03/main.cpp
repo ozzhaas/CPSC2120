@@ -34,7 +34,6 @@ const int T = 1000;
 Candy candies[N];
 int maxWeight = 2000;
 bool stored_candies[N];
-Bag bag1, bag2, bag3;
 
 
 
@@ -58,37 +57,58 @@ void sort_tasty() {
 }
 
 
-int greedy() {
-    bag1.candies_in_bag.clear();
-    bag2.candies_in_bag.clear();
-    bag3.candies_in_bag.clear();
-
+int greedy_loop(Bag b) {
     for (int i = N - 1; i >= 0; i--) {
-        if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-            bag1.weight += candies[i].weight;
-            bag1.candies_in_bag.push_back(candies[i]);
+        if (b.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+            b.weight += candies[i].weight;
+            b.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
-            bag1.totalVal += candies[i].value;
+            b.totalVal += candies[i].value;
         }
     }
+    return b.totalVal;
+}
 
-    for (int i = N - 1; i >= 0; i--) {
-        if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-            bag2.weight += candies[i].weight;
-            bag2.candies_in_bag.push_back(candies[i]);
-            stored_candies[i] = true;
-            bag2.totalVal += candies[i].value;
-        }
-    }
 
-    for (int i = N - 1; i >= 0; i--) {
-        if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-            bag3.weight += candies[i].weight;
-            bag3.candies_in_bag.push_back(candies[i]);
-            stored_candies[i] = true;
-            bag3.totalVal += candies[i].value;
-        }
-    }
+
+int greedy(vector<Bag> bags) {
+    Bag bag1, bag2, bag3;
+    bag1 = bags[0];
+    bag2 = bags[1];
+    bag3 = bags[2];
+
+
+    int total = 0;
+    total += greedy_loop(bag1);
+    total += greedy_loop(bag2);
+    total += greedy_loop(bag3);
+
+    // for (int i = N - 1; i >= 0; i--) {
+    //     if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+    //         bag1.weight += candies[i].weight;
+    //         bag1.candies_in_bag.push_back(candies[i]);
+    //         stored_candies[i] = true;
+    //         bag1.totalVal += candies[i].value;
+    //     }
+    // }
+    //
+    // for (int i = N - 1; i >= 0; i--) {
+    //     if (bag2.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+    //         bag2.weight += candies[i].weight;
+    //         bag2.candies_in_bag.push_back(candies[i]);
+    //         stored_candies[i] = true;
+    //         bag2.totalVal += candies[i].value;
+    //     }
+    // }
+    //
+    // for (int i = N - 1; i >= 0; i--) {
+    //     if (bag3.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
+    //         bag3.weight += candies[i].weight;
+    //         bag3.candies_in_bag.push_back(candies[i]);
+    //         stored_candies[i] = true;
+    //         bag3.totalVal += candies[i].value;
+    //     }
+    // }
 
     // cout << "Candy in Bag1: " << endl;
     // for (unsigned int i = 0; i < bag1.candies_in_bag.size(); i++) {
@@ -108,27 +128,31 @@ int greedy() {
     // }
     // cout << endl;
 
-    return (bag1.totalVal + bag2.totalVal + bag3.totalVal);
+    return (total);
 
 }
 
 
-void shake_bags() {
+void shuffle_candies(Bag a, Bag b, Bag c) {
     for (int i = 0; i < N; i++) {
         int temp = rand() % (i + 1);
-        swap(bag1[i], bag2[temp]);
-        swap(bag1[temp], bag3[i]);
+        swap(a.candies_in_bag[i], b.candies_in_bag[temp]);
+        swap(a.candies_in_bag[temp], c.candies_in_bag[i]);
     }
 }
 
 
 
-int refined() {
+int refined(vector<Bag> bags) {
+    Bag bag1, bag2, bag3;
+    bag1 = bags[0];
+    bag2 = bags[1];
+    bag3 = bags[2];
     int best = 0;
 
     for (int i = 0; i < T; i++) {
         srand(time(NULL));
-        shake_bags();
+        shuffle_candies(bag1, bag2, bag3);
         int greedVal = greedy();
 
         for (int i = 0; i < N; i++) {
@@ -151,7 +175,12 @@ int main (void) {
     string weightString;
     int tempVar = 0;
     int i = 0;
+    vector<Bag> mainBags;
+    Bag bag1, bag2, bag3;
 
+    mainBags.push_back(bag1);
+    mainBags.push_back(bag2);
+    mainBags.push_back(bag3);
 
 
     while (input >> tempVar) {
@@ -164,11 +193,11 @@ int main (void) {
     }
 
     sort_tasty();
-    int greed = greedy();
+    int greed = greedy(mainBags);
     cout << "Greedy: " << greed << endl;
 
 
-    int refine = refined();
+    int refine = refined(mainBags);
     cout << "Refinement: " << refine << endl;
 
     return 0;
