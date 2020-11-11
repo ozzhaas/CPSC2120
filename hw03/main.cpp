@@ -24,8 +24,11 @@ struct Candy {
 };
 
 const int N = 16;
+const int T = 1000;
 Candy candies[N];
 int maxWeight = 2000;
+bool stored_candies[N];
+
 
 struct Bag {
     int weight = 0;
@@ -53,8 +56,15 @@ void sort_tasty() {
 }
 
 
-void greedy() {
-    bool stored_candies[N];
+void shuffle() {
+    for (int i = 0; i < N; i++) {
+        int temp = rand() % (i + 1);
+        swap(candies[i], candies[temp]);
+    }
+}
+
+
+int greedy() {
     Bag bag1, bag2, bag3;
     sort_tasty();
     bag1.candies_in_bag.clear();
@@ -63,9 +73,7 @@ void greedy() {
 
     for (int i = N - 1; i >= 0; i--) {
         if (bag1.weight + candies[i].weight < 2000 && stored_candies[i] != true) {
-            cout << "Test Weight: " << candies[i].weight << endl;
             bag1.weight += candies[i].weight;
-            cout << "bag1 weight: " << bag1.weight << endl;
             bag1.candies_in_bag.push_back(candies[i]);
             stored_candies[i] = true;
             bag1.totalVal += candies[i].value;
@@ -108,9 +116,29 @@ void greedy() {
     }
     cout << endl;
 
-    cout << "Greedy: " << bag1.totalVal + bag2.totalVal + bag3.totalVal << endl;
+    return (bag1.totalVal + bag2.totalVal + bag3.totalVal);
+
 }
 
+
+int refined() {
+    Candy best_candy
+    best_candy.value = 0;
+
+    for (int i = 0; i < T; i++) {
+        shuffle();
+        int greedVal = greedy();
+
+        for (int i = 0; i < N; i++) {
+            stored_candies[i] = false;
+        }
+
+        if (greedVal > best_candy.value) {
+            best_candy.value = greedVal;
+        }
+    }
+    return best_candy.value;
+}
 
 
 int main (void) {
@@ -133,8 +161,11 @@ int main (void) {
         i++;
     }
 
+    int greed = greedy();
+    cout << "Greedy: " << greed << endl;
 
-    greedy();
+    int refine = refined();
+    cout << "Refinement: " << refine << endl;
 
     return 0;
 }
