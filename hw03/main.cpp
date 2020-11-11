@@ -156,6 +156,21 @@ int main (void) {
     mainBags[1].candies_in_bag.clear();
     mainBags[2].candies_in_bag.clear();
 
+
+    cout << "Candy in Bag 1: " << "\n";
+    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
+        cout << mainBags[0].candies_in_bag[i].weight << " " << mainBags[0].candies_in_bag[i].value << "\n";
+    }
+    cout << "Candy in Bag 2: " << "\n";
+    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
+        cout << mainBags[1].candies_in_bag[i].weight << " " << mainBags[1].candies_in_bag[i].value << "\n";
+    }
+    cout << "Candy in Bag 3: " << "\n";
+    for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
+        cout << mainBags[2].candies_in_bag[i].weight << " " << mainBags[2].candies_in_bag[i].value << "\n";
+    }
+
+
     //Clear array of stored "used" candies
     for (int i = 0; i < N; i++) {
         stored_candies[i] = false;
