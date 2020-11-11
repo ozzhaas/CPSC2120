@@ -156,7 +156,15 @@ int main (void) {
     mainBags[1].candies_in_bag.clear();
     mainBags[2].candies_in_bag.clear();
 
+    //Clear array of stored "used" candies
+    for (int i = 0; i < N; i++) {
+        stored_candies[i] = false;
+    }
 
+    int refine = refined(mainBags);
+    cout << "Refinement: " << refine << endl;
+
+    
     cout << "Candy in Bag 1: " << "\n";
     for (unsigned int i = 0; i < mainBags[0].candies_in_bag.size(); i++) {
         cout << mainBags[0].candies_in_bag[i].weight << " " << mainBags[0].candies_in_bag[i].value << "\n";
@@ -171,13 +179,6 @@ int main (void) {
     }
 
 
-    //Clear array of stored "used" candies
-    for (int i = 0; i < N; i++) {
-        stored_candies[i] = false;
-    }
-
-    int refine = refined(mainBags);
-    cout << "Refinement: " << refine << endl;
 
     return 0;
 }
