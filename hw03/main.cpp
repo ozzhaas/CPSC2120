@@ -107,7 +107,7 @@ void shuffle_candies(vector<Bag> &bags) {
 
 
 void yummiest(vector<Bag> &bags) {
-    for (unsigned int i = 0; i < bags[0].size(); i++) {
+    for (unsigned int i = 0; i < bags[0].candies_in_bag.size(); i++) {
         if (bags[0].candies_in_bag[i].value < candies[i].value) {
             swap(bags[0].candies_in_bag[i], candies[i]);
         }
@@ -132,7 +132,7 @@ int refined(vector<Bag> &bags) {
 
     for (int i = 0; i < T; i++) {
         shuffle_candies(bags);
-        yummiest();
+        yummiest(bags);
         total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
 
         if (total > best) {
