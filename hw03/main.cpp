@@ -106,17 +106,10 @@ void shuffle_candies(vector<Bag> &bags) {
 }
 
 
-void yummiest(vector<Bag> &bags) {
-    for (unsigned int i = 0; i < bags[0].candies_in_bag.size(); i++) {
-        if (bags[0].candies_in_bag[i].value < candies[i].value) {
-            swap(bags[0].candies_in_bag[i], candies[i]);
-        }
-        if (bags[1].candies_in_bag[i].value < candies[i].value) {
-            swap(bags[1].candies_in_bag[i], candies[i]);
-        }
-        if (bags[2].candies_in_bag[i].value < candies[i].value) {
-            swap(bags[2].candies_in_bag[i], candies[i]);
-        }
+int yummiest(Bag &b) {
+    for (unsigned int i = 0; i < b.candies_in_bag.size(); i++) {
+        int maximum = max(b.candies_in_bag[i].value < candies[i].value);
+        return maximum;
     }
 }
 
@@ -127,20 +120,21 @@ int refined(vector<Bag> &bags) {
     bag1 = bags[0];
     bag2 = bags[1];
     bag3 = bags[2];
-    int best = 0;
     int total = 0;
 
     for (int i = 0; i < T; i++) {
+        int currYum = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
         shuffle_candies(bags);
-        yummiest(bags);
-        total = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
-
-        if (total > best) {
-            cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << total << endl << endl;
-            best = total;
+        int newYum = yummiest(bags[0]) + yummiest(bags[1]) + yummiest(bags[2]);
+        if (currYum > newYum) {
+            total = currYum;
         }
+        else {
+            total = newYum;
+        }
+        cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << total << endl << endl;
     }
-    return best;
+    return total;
 }
 
 
