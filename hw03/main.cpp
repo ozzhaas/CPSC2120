@@ -58,7 +58,6 @@ void sort_tasty() {
 
 void add_to_bag(Bag &b, int i) {
     if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
-        int weightOfCurr = candies[i].weight;
         b.weight += candies[i].weight;
         b.candies_in_bag.push_back(candies[i]);
         stored_candies[i] = true;
@@ -108,7 +107,7 @@ void shuffle_candies(vector<Bag> &bags) {
 
 int yummiest(Bag &b) {
     for (unsigned int i = 0; i < b.candies_in_bag.size(); i++) {
-        int maximum = max(b.candies_in_bag[i].value < candies[i].value);
+        int maximum = max(b.candies_in_bag[i].value, candies[i].value);
         return maximum;
     }
 }
