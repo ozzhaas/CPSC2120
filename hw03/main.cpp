@@ -63,7 +63,7 @@ void add_to_bag(Bag &b, int i) {
         stored_candies[i] = true;
         b.totalVal += candies[i].value;
     }
-    else if (b.weight + candies[i].weight > 2000 && stored_candies != true) {
+    else if (b.weight + candies[i].weight > 2000 && stored_candies[i] != true) {
         i = rand() % (i + 1);
     }
 }
