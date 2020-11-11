@@ -133,11 +133,15 @@ int greedy(vector<Bag> bags) {
 }
 
 
-void shuffle_candies(Bag a, Bag b, Bag c) {
+void shuffle_candies(vector<Bags> bags) {
+    bags[0].clear();
+    bags[1].clear();
+    bags[2].clear();
+
+    int j = 0;
     for (int i = 0; i < N; i++) {
         int temp = rand() % (i + 1);
-        swap(a.candies_in_bag[i], b.candies_in_bag[temp]);
-        swap(a.candies_in_bag[temp], c.candies_in_bag[i]);
+        bags[rand() % 3].candies_in_bag.push_back(candies[i]);
     }
 }
 
