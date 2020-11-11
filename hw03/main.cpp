@@ -119,6 +119,7 @@ int refined(vector<Bag> &bags) {
         srand(time(NULL));
         shuffle_candies(bags);
         if (bags[j].totalVal > best) {
+            cout << endl << endl << "TEST: " << bags[j].totalVal << endl << endl;
             best = bags[j].totalVal;
         }
     }
