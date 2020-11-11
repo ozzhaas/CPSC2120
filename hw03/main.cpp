@@ -134,9 +134,9 @@ int greedy(vector<Bag> bags) {
 
 
 void shuffle_candies(vector<Bag> bags) {
-    bags[0].clear();
-    bags[1].clear();
-    bags[2].clear();
+    bags.at(0).clear();
+    bags.at(1).clear();
+    bags.at(2).clear();
 
     int j = 0;
     for (int i = 0; i < N; i++) {
