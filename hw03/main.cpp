@@ -1,7 +1,7 @@
 /*Kellen Haas
   CPSC 2120
   HW 03
-  11/10/2020
+  11/11/2020
 */
 
 #include <iostream>
@@ -183,7 +183,7 @@ int refined(vector<Bag> &bags) {
     return best;
 }
 
-
+//Still segfaulting
 int pruned(vector<Bag> bags, int p) {
     int total = 0;
 
