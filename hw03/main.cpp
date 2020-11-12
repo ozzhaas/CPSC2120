@@ -97,17 +97,11 @@ int greedy(vector<Bag> &bags) {
 
 
 void shuffle_candies(vector<Bag> &bags) {
-    bool must_leave_out = false;
 
     for (int i = 0; i < N; i++) {
         int random = (rand() % 3) + 1;
-        if (bags[random].weight + candies[i].weight > 2000 && stored_candies[i] != true) {
-            must_leave_out = true;
-            for (int j = 1; j < 4; j++) {
-                add_to_bag(bags[j], i);
-                must_leave_out = false;
-            }
-        if (must_leave_out) {bags[0].candies_in_bag.push_back(candies[i]);}
+        if (bags[random].weight + candies[i].weight > 2000) {
+            add_to_bag(bags[0], i);
         }
         else {
             add_to_bag(bags[random], i);
@@ -135,9 +129,18 @@ int refined(vector<Bag> &bags) {
     bool refine_me = true;
 
     for (int i = 0; i < T; i++) {
+        for (int a = 1; a < 4; a++) {
+            bags[a].candies_in_bag.clear();
+            bags[a].totalVal = 0;
+            bags[a].weight = 0;
+        }
+        for (int b = 0; b < N; b++) {
+            stored_candies[b] = false;
+        }
+
         refine_me = true;
         shuffle_candies(bags);
-        best = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
+        best = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
         while (refine_me == true) {
             refine_me = false;
             for (int j = 1; j < 4; j++) {
