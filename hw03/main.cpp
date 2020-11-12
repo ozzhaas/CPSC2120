@@ -187,7 +187,16 @@ int refined(vector<Bag> &bags) {
 int pruned(vector<Bag> bags, int p) {
     int total = 0;
 
+    for (int a = 1; a < 4; a++) {
+        bags[a].candies_in_bag.clear();
+        bags[a].totalVal = 0;
+        bags[a].weight = 0;
+    }
+    for (int b = 0; b < N; b++) {
+        stored_candies[b] = false;
+    }
 
+    p = (p + 1) % 4;
     for (int i = 1; i < 4; i++) {
         add_to_bag(bags[i], p);
         pruned(bags, p + 1);
