@@ -145,12 +145,19 @@ int refined(vector<Bag> &bags) {
             refine_me = false;
             for (int j = 1; j < 4; j++) {
                 for (unsigned int k = 0; k < bags[j].candies_in_bag.size(); k++) {
-                    unsigned int random = k % bags[1].candies_in_bag.size();
-                    bags[j].weight = bags[j].weight - bags[j].candies_in_bag[k].weight;
-                    bags[j].weight += bags[j].candies_in_bag[random].weight;
-                    bags[j].candies_in_bag[random].weight = bags[j].candies_in_bag[k].weight;
+                    // unsigned int random = k % bags[1].candies_in_bag.size();
+                    // bags[j].weight = bags[j].weight - bags[j].candies_in_bag[k].weight;
+                    // bags[j].weight += bags[j].candies_in_bag[random].weight;
+                    // bags[j].candies_in_bag[random].weight = bags[j].candies_in_bag[k].weight;
+                    //
+                    // swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
+                    bags[0].candies_in_bag.push_back(bags[j].candies_in_bag[k]);
+                    bags[j].candies_in_bag.erase(k);
+                    bags[j + 1].weight += candies[i].weight;
+                    bags[j + 1].candies_in_bag.push_back(candies[i]);
+                    stored_candies[i] = true;
+                    bags[j + 1].totalVal += candies[i].value;
 
-                    swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
 
                     int currYum = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
                     int newYum = yummiest(bags[1]) + yummiest(bags[2]) + yummiest(bags[3]);
