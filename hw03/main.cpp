@@ -160,13 +160,8 @@ int refined(vector<Bag> &bags) {
                     //
                     // swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
 
-                    bags[0].candies_in_bag.push_back(bags[j].candies_in_bag[k]);
-                    remove_from_bag(bags[j], k);
-                    bags[j + 1].weight += candies[i].weight;
-                    bags[j + 1].candies_in_bag.push_back(candies[i]);
-                    stored_candies[i] = true;
-                    bags[j + 1].totalVal += candies[i].value;
-                    total = greedy(bags);
+    
+                    greedy(bags);
                     int currYum = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
                     int newYum = total;
                     if (currYum > newYum) {
