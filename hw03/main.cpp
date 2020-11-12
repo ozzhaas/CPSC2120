@@ -185,8 +185,9 @@ int main (void) {
     int tempVar = 0;
     int i = 0;
     vector<Bag> mainBags;
-    Bag bag1, bag2, bag3;
+    Bag bag1, bag2, bag3, storage_bag;
 
+    mainBags.push_back(storage_bag);
     mainBags.push_back(bag1);
     mainBags.push_back(bag2);
     mainBags.push_back(bag3);
@@ -210,6 +211,7 @@ int main (void) {
     mainBags[0].candies_in_bag.clear();
     mainBags[1].candies_in_bag.clear();
     mainBags[2].candies_in_bag.clear();
+    mainBags[3].candies_in_bag.clear();
 
     //Clear array of stored "used" candies
     for (int i = 0; i < N; i++) {
@@ -221,15 +223,18 @@ int main (void) {
 
     cout << endl << endl;
     cout << "~~~~~~~~~~~~~~~~Weights~~~~~~~~~~~~~~~~" << endl;
-    cout << "Bag1 weight: " << mainBags[0].weight << endl;
-    cout << "Bag2 weight: " << mainBags[1].weight << endl;
-    cout << "Bag3 weight: " << mainBags[2].weight << endl;
+    cout << "Storage Bag weight: " << mainBags[0].weight << endl;
+    cout << "Bag1 weight: " << mainBags[1].weight << endl;
+    cout << "Bag2 weight: " << mainBags[2].weight << endl;
+    cout << "Bag3 weight: " << mainBags[3].weight << endl;
+
 
     cout << endl << endl;
     cout << "~~~~~~~~~~~~~~~~Values~~~~~~~~~~~~~~~~" << endl;
-    cout << "Bag1 value: " << mainBags[0].totalVal << endl;
-    cout << "Bag2 value: " << mainBags[1].totalVal << endl;
-    cout << "Bag3 value: " << mainBags[2].totalVal << endl;
+    cout << "Storage Bag weight: " << mainBags[0].value << endl;
+    cout << "Bag1 value: " << mainBags[1].totalVal << endl;
+    cout << "Bag2 value: " << mainBags[2].totalVal << endl;
+    cout << "Bag3 value: " << mainBags[3].totalVal << endl;
 
 
 
