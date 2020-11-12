@@ -174,7 +174,6 @@ int refined(vector<Bag> &bags) {
                         refine_me = true;
                         remove_from_bag(bags[j], k);
                         stored_candies[k] = false;
-                        add_to_bag(bags[j+1], k);
                     }
                     else {
                         total = newYum;
