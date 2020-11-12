@@ -160,7 +160,7 @@ int refined(vector<Bag> &bags) {
                     //
                     // swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
 
-    
+
                     greedy(bags);
                     int currYum = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
                     int newYum = total;
@@ -196,8 +196,6 @@ int pruned(vector<Bag> bags, int p) {
         stored_candies[p] = false;
 
         if (!stored_candies[p]) {
-            bags[0].weight += bags[0].candies_in_bag[p].weight;
-            stored_candies[p] = true;
             pruned(bags, p + 1);
             stored_candies[p] = false;
             bags[0].weight -= bags[0].candies_in_bag[p].weight;
