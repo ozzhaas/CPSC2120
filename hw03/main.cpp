@@ -167,8 +167,8 @@ int refined(vector<Bag> &bags) {
                     }
                 }
             }
-        // if (total > best) {best = total; refine_me = true;}
-        // else {refine_me = false;}
+        if (total > best) {best = total; refine_me = true;}
+        else {refine_me = false;}
         }
     }
     cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << best << endl << endl;
