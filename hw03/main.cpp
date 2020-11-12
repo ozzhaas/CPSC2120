@@ -179,12 +179,11 @@ int pruned(vector<Bag> bags, int p) {
     }
 
     for (int i = 1; i < 4; i++) {
-            add_to_bag(bags[i], p);
-            pruned(p + 1);
-            best -= bags[i].candies_in_bag[p].value;
-            bags[i] -= bags[i].candies_in_bag[p].weight;
-            stored_candies[p] = false;
-        }
+        add_to_bag(bags[i], p);
+        pruned(p + 1);
+        best -= bags[i].candies_in_bag[p].value;
+        bags[i] -= bags[i].candies_in_bag[p].weight;
+        stored_candies[p] = false;
     }
     return best;
 }
