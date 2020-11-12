@@ -34,8 +34,7 @@ const int T = 1000;
 Candy candies[N];
 int maxWeight = 2000;
 bool stored_candies[N];
-
-
+int best = 0;
 
 
 
@@ -134,7 +133,6 @@ int refined(vector<Bag> &bags) {
     bag3 = bags[3];
     int total = 0;
     bool refine_me = true;
-    int best = 0;
 
     for (int i = 0; i < T; i++) {
         refine_me = true;
@@ -169,6 +167,28 @@ int refined(vector<Bag> &bags) {
     cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << best << endl << endl;
     return best;
 }
+
+
+int pruned(vector<Bag> bags, int p) {
+    int total = 0;
+    if (p == N) {
+        if (best > total) {
+            total = best;
+            return total;
+        }
+    }
+
+    for (int i = 1; i < 4; i++) {
+            add_to_bag(bags[i], p);
+            pruned(p + 1);
+            best -= bags[i].candies_in_bag[p].value;
+            bags[i] -= bags[i].candies_in_bag[p].weight;
+            stored_candies[p] = false;
+        }
+    }
+    return best;
+}
+
 
 
 int main (void) {
@@ -230,8 +250,11 @@ int main (void) {
     cout << "Bag1 value: " << mainBags[1].totalVal << endl;
     cout << "Bag2 value: " << mainBags[2].totalVal << endl;
     cout << "Bag3 value: " << mainBags[3].totalVal << endl;
+    cout << endl << endl;
 
-
+    int recursiveStart = 0;
+    int prune = pruned(mainBags, 0);
+    cout << "Exhaustive: " << prune << endl;
 
     return 0;
 }
