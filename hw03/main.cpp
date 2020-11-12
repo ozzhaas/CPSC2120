@@ -107,7 +107,7 @@ void shuffle_candies(vector<Bag> &bags) {
 
     for (int i = 0; i < N; i++) {
         int random = (rand() % 3) + 1;
-        if (bags[random].weight + candies[i].weight > 2000 && stored_candies != true) {
+        if (bags[random].weight + candies[i].weight > 2000 && stored_candies[i] != true) {
             must_leave_out = true;
             for (int j = 1; j < 4; j++) {
                 add_to_bag(bags[j], i);
