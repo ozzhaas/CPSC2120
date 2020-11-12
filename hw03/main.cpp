@@ -166,7 +166,7 @@ int refined(vector<Bag> &bags) {
                     // bags[j + 1].candies_in_bag.push_back(candies[i]);
                     // stored_candies[i] = true;
                     // bags[j + 1].totalVal += candies[i].value;
-                    total = greedy(bags);
+                    // total = greedy(bags);
                     int currYum = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
                     int newYum = total;
                     if (currYum > newYum) {
