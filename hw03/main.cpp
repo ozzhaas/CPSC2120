@@ -152,7 +152,7 @@ int refined(vector<Bag> &bags) {
                     //
                     // swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
                     bags[0].candies_in_bag.push_back(bags[j].candies_in_bag[k]);
-                    remove(bags[j].candies_in_bag.erase(k);
+                    remove(bags[j].candies_in_bag.erase(int(k));
                     bags[j + 1].weight += candies[i].weight;
                     bags[j + 1].candies_in_bag.push_back(candies[i]);
                     stored_candies[i] = true;
