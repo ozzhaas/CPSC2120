@@ -98,9 +98,26 @@ int greedy(vector<Bag> &bags) {
 
 
 void shuffle_candies(vector<Bag> &bags) {
-    int j = rand() % 3;
+    bool must_leave_out = false;
+
     for (int i = 0; i < N; i++) {
-        add_to_bag(bags[j], i);
+        bags[i].candies_in_bag.clear();
+        bags[i].weight = 0;
+    }
+
+    for (int i = 0; i < N; i++) {
+        int random = (rand() % 3) + 1;
+        if (bags[random].weight + candies[i].weight > 2000 && stored_candies != true) {
+            must_leave_out = true;
+            for (int j = 1; j < 4; j++) {
+                add_to_bag(bags[j], i);
+                must_leave_out = false;
+            }
+        if (must_leave_out) {bags[0].candies_in_bag.push_back(candies[i]);}
+        }
+        else {
+            add_to_bag(bags[random], i);
+        }
     }
 }
 
@@ -115,32 +132,43 @@ int yummiest(Bag &b) {
 
 
 int refined(vector<Bag> &bags) {
-    Bag bag1, bag2, bag3;
-    bag1 = bags[0];
-    bag2 = bags[1];
-    bag3 = bags[2];
+    Bag bag1, bag2, bag3, storage_bag;
+    storage_bag = bags[0];
+    bag1 = bags[1];
+    bag2 = bags[2];
+    bag3 = bags[3];
     int total = 0;
     bool refine_me = true;
     int best = 0;
 
     for (int i = 0; i < T; i++) {
+        refine_me = true;
         shuffle_candies(bags);
         best = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
         while (refine_me == true) {
             refine_me = false;
-            for (int i = 0; i < N; i++) {
-                int currYum = bags[0].totalVal + bags[1].totalVal + bags[2].totalVal;
-                shuffle_candies(bags);
-                int newYum = yummiest(bags[0]) + yummiest(bags[1]) + yummiest(bags[2]);
-                if (currYum > newYum) {
-                    total = currYum;
-                }
-                else {
-                    total = newYum;
+            for (int j = 0; j < 4; j++) {
+                for (int k = 0; k < N; k++) {
+                    int random = k % bags[j].candies_in_bag.size();
+                    bags[j].weight = bags[j].weight - bags[j].candies_in_bag[k].weight;
+                    bags[j].weight += bags[j].candies_in_bag[random].weight;
+                    bags[j].candies_in_bag[random].weight = bags[j].candies_in_bag[k].weight;
+
+                    swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
+
+                    int currYum = bags[1].totalVal + bags[2].totalVal + bags[3].totalVal;
+                    int newYum = yummiest(bags[1]) + yummiest(bags[2]) + yummiest(bags[3]);
+                    if (currYum > newYum) {
+                        total = currYum;
+                        refine_me = true;
+                    }
+                    else {
+                        total = newYum;
+                    }
                 }
             }
-        if (total > best) {best = total; refine_me = true;}
-        else {refine_me = false;}
+        // if (total > best) {best = total; refine_me = true;}
+        // else {refine_me = false;}
         }
     }
     cout << endl << endl << "TEST TOTAL IN REFINED FUNC: " << best << endl << endl;
