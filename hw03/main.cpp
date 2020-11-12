@@ -172,7 +172,6 @@ int refined(vector<Bag> &bags) {
                     if (currYum > newYum) {
                         total = currYum;
                         refine_me = true;
-                        bags[0].candies_in_bag.push_back(candies[k]);
                         remove_from_bag(bags[j], k);
                         stored_candies[k] = false;
                         add_to_bag(bags[j+1], k);
