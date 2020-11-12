@@ -144,7 +144,7 @@ int refined(vector<Bag> &bags) {
             refine_me = false;
             for (int j = 1; j < 4; j++) {
                 for (unsigned int k = 0; k < bags[j].candies_in_bag.size(); k++) {
-                    unsigned int random = k % bags[0].candies_in_bag.size();
+                    unsigned int random = k % bags[1].candies_in_bag.size();
                     bags[j].weight = bags[j].weight - bags[j].candies_in_bag[k].weight;
                     bags[j].weight += bags[j].candies_in_bag[random].weight;
                     bags[j].candies_in_bag[random].weight = bags[j].candies_in_bag[k].weight;
