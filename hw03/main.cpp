@@ -171,16 +171,11 @@ int refined(vector<Bag> &bags) {
 
 int pruned(vector<Bag> bags, int p) {
     int total = 0;
-    if (p == N) {
-        if (best > total) {
-            total = best;
-            return total;
-        }
-    }
+
 
     for (int i = 1; i < 4; i++) {
         add_to_bag(bags[i], p);
-        total = pruned(bags, p + 1);
+        pruned(bags, p + 1);
         best -= bags[i].candies[p].value;
         bags[i].weight -= bags[i].candies_in_bag[p].weight;
         stored_candies[p] = false;
@@ -188,7 +183,7 @@ int pruned(vector<Bag> bags, int p) {
         if (!stored_candies[p]) {
             bags[0].weight += bags[0].candies_in_bag[p].weight;
             stored_candies[p] = true;
-            total = pruned(bags, p + 1);
+            pruned(bags, p + 1);
             stored_candies[p] = false;
             bags[0].weight -= bags[0].candies_in_bag[p].weight;
         }
