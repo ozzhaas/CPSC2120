@@ -231,7 +231,7 @@ int main (void) {
 
     cout << endl << endl;
     cout << "~~~~~~~~~~~~~~~~Values~~~~~~~~~~~~~~~~" << endl;
-    cout << "Storage Bag weight: " << mainBags[0].value << endl;
+    cout << "Storage Bag weight: " << mainBags[0].totalVal << endl;
     cout << "Bag1 value: " << mainBags[1].totalVal << endl;
     cout << "Bag2 value: " << mainBags[2].totalVal << endl;
     cout << "Bag3 value: " << mainBags[3].totalVal << endl;
