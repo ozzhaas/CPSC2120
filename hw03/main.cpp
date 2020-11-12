@@ -65,6 +65,14 @@ void add_to_bag(Bag &b, int i) {
 }
 
 
+void remove_from_bag(Bag &b, int pos) {
+    b.candies_in_bag[pos].weight = 0;
+    b.candies_in_bag[pos].value = 0;
+    stored_candies[pos] = false;
+}
+
+
+
 int greedy_loop(Bag &b) {
     for (int i = N - 1; i >= 0; i--) {
         if (b.weight + candies[i].weight <= 2000 && stored_candies[i] != true) {
@@ -151,8 +159,9 @@ int refined(vector<Bag> &bags) {
                     // bags[j].candies_in_bag[random].weight = bags[j].candies_in_bag[k].weight;
                     //
                     // swap(bags[j].candies_in_bag[k], bags[j].candies_in_bag[random]);
+
                     bags[0].candies_in_bag.push_back(bags[j].candies_in_bag[k]);
-                    remove(bags[j].candies_in_bag.erase(int(k));
+                    remove_from_bag(bags[0], k);
                     bags[j + 1].weight += candies[i].weight;
                     bags[j + 1].candies_in_bag.push_back(candies[i]);
                     stored_candies[i] = true;
