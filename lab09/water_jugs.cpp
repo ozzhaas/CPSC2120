@@ -21,7 +21,7 @@ int marked;
 string prevStep[10] = "start";
 
 
-bool can_visit(int x, int y) {
+void can_visit(int x, int y) {
     cout << "Test\n";
 
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
@@ -172,10 +172,22 @@ int main () {
     int a = 0;
     int b = 0;
 
-    if (can_visit(a, b)){
-        print_transitions(a, b);
+    can_visit(a, b);
+
+    bool loopEnd = false;
+    for (int i = 0; i < 1001; i++) {
+        if (!loopEnd) {
+            for (int j = 0; j < 1001; j++) {
+                if (!loopEnd) {
+                    if (i + j == X && visited[i][j]){
+                        print_transitions(i, j);
+                    }
+
+                }
+            }
+        }
     }
-    else {
+    if (!loopEnd) {
         cout << "Impossible!\n";
     }
 
