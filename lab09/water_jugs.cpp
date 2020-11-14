@@ -22,6 +22,7 @@ string prevStep[10] = "start";
 
 
 bool can_visit(int x, int y) {
+    cout << "Test\n";
 
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         cout << "Test1\n";
