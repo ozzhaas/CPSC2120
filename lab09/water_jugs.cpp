@@ -25,57 +25,58 @@ struct Jug {
 };
 
 
-bool visit(int j1, int j2, string prev) {
-    j1.full = A;
-    j2.full = B;
-    if (j1.curr < 0 || j2.curr < 0 || j1.curr > N-1 || j2.curr > N-1) {
+bool visit(Jug j1, Jug j2, string prev) {
+    int x = j1.curr;
+    int y = j2.curr;
+
+    if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         return false;
     }
 
-    if (visited[j1.curr][j2.curr]) {
+    if (visited[x][y]) {
         return false;
     }
 
-    visited[j1.curr][j2.curr] = true;
+    visited[x][y] = true;
 
-    if (j1.curr + j2.curr == X) {
-        visited[j1.curr][j2.curr] = true;
+    if (x + y == X) {
+        visited[x][y] = true;
         return true;
     }
 
     //State(A, b) jug 1 is filled//
-    if (visit(j1.full, j2.curr, "Fill jug 1")) {
-        marked[j1.curr][j2.curr] = 1; //1 for filling jug1
+    if (visit(A, y, "Fill jug 1")) {
+        marked[x][y] = 1; //1 for filling jug1
         return true;
     }
 
     //State(0, b) jug 1 is emptied//
-    if (visit(0, j2.curr, "Empty jug 1")) {
-        marked[j1.curr][j2.curr] = 2; //2 for emptying jug1
+    if (visit(0, y, "Empty jug 1")) {
+        marked[x][y] = 2; //2 for emptying jug1
         return true;
     }
 
     //State(a, B) jug 2 is filled//
-    if (visit(j1.curr, j2.full, "Fill jug 2")) {
-        marked[j1.curr][j2.curr] = 3; //3 for filling jug2
+    if (visit(x, B, "Fill jug 2")) {
+        marked[x][y] = 3; //3 for filling jug2
         return true;
     }
 
     //State(a, 0) jug 2 is emptied//
-    if (visit(j1.curr, 0, "Empty jug 2")) {
-        marked[j1.curr][j1.curr] = 4; //4 for emptying jug2
+    if (visit(x, 0, "Empty jug 2")) {
+        marked[x][y] = 4; //4 for emptying jug2
         return true;
     }
 
     //State(0, a + b) or ((a + b)-B, B) jug 1 is poured into jug 2//
-    if (visit(0, j1.curr + j2.curr, "Pour 1 -> 2") || visit((j1.curr + j2.curr) - j2.full, j2.full, "Pour 1 -> 2")) {
-        marked[j1.curr][j2.curr] = 5; //5 for pouring jug1 into jug2
+    if (visit(0, x + y, "Pour 1 -> 2") || visit((x + y) - B, B, "Pour 1 -> 2")) {
+        marked[x][y] = 5; //5 for pouring jug1 into jug2
         return true;
     }
 
     //State(a + b, 0) or (B, (a + b)-B) jug 2 is poured into jug 1//
-    if (visit(j1.curr + j2.curr, 0, "Pour 2 -> 1") || visit(j2.full, (j1.curr + j2.curr) - j2.full, "Pour 2 -> 1")) {
-        marked[j1.curr][j2.curr] = 6; //6 for pouring jug2 into jug1
+    if (visit(x + y, 0, "Pour 2 -> 1") || visit(B, (x + y) - B, "Pour 2 -> 1")) {
+        marked[x][y] = 6; //6 for pouring jug2 into jug1
         return true;
     }
     return false;
@@ -83,12 +84,12 @@ bool visit(int j1, int j2, string prev) {
 
 
 void print_transitions(int x, int y) {
-    int finalState = marked[jug1.curr][jug2.curr];
+    int finalState = marked[x][y];
 
     switch(finalState) {
         case 1:
-            cout << "Fill jug 1  [a = " << jug1.full << ", b = " << y << "]\n";
-            print_transitions(jug1.full, y);
+            cout << "Fill jug 1  [a = " << A << ", b = " << y << "]\n";
+            print_transitions(A, y);
             break;
         case 2:
             cout << "Empty jug 1  [a = " << 0 << ", b = " << y << "]\n";
@@ -96,8 +97,8 @@ void print_transitions(int x, int y) {
             break;
 
         case 3:
-            cout << "Fill jug 2  [a = " << x << ", b = " << jug2.full << "]\n";
-            print_transitions(x, jug2.full);
+            cout << "Fill jug 2  [a = " << x << ", b = " << B << "]\n";
+            print_transitions(x, B);
             break;
 
         case 4:
