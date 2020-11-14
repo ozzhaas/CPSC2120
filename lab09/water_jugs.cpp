@@ -17,8 +17,7 @@ const int N = 1001; //Maximum that the max capacity of either jug can be
 int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
 int X; //X is the goal units of water in the jugs combined
 bool visited[N][N];
-char marked[N][N];
-
+int marked;
 
 struct Jug {
     int full; //Equivalent to 'A' for first jug and 'B' for second jug
@@ -45,37 +44,37 @@ bool visit(int x, int y, string prev) {
 
     //State(A, b) jug 1 is filled//
     if (visit(A, y, "Fill jug 1")) {
-        marked[x][y] = 1; //1 for filling jug1
+        marked = 1; //1 for filling jug1
         return true;
     }
 
     //State(0, b) jug 1 is emptied//
     if (visit(0, y, "Empty jug 1")) {
-        marked[x][y] = 2; //2 for emptying jug1
+        marked = 2; //2 for emptying jug1
         return true;
     }
 
     //State(a, B) jug 2 is filled//
     if (visit(x, B, "Fill jug 2")) {
-        marked[x][y] = 3; //3 for filling jug2
+        marked = 3; //3 for filling jug2
         return true;
     }
 
     //State(a, 0) jug 2 is emptied//
     if (visit(x, 0, "Empty jug 2")) {
-        marked[x][y] = 4; //4 for emptying jug2
+        marked = 4; //4 for emptying jug2
         return true;
     }
 
     //State(0, a + b) or ((a + b)-B, B) jug 1 is poured into jug 2//
     if (visit(0, x + y, "Pour 1 -> 2") || visit((x + y) - B, B, "Pour 1 -> 2")) {
-        marked[x][y] = 5; //5 for pouring jug1 into jug2
+        marked = 5; //5 for pouring jug1 into jug2
         return true;
     }
 
     //State(a + b, 0) or (B, (a + b)-B) jug 2 is poured into jug 1//
     if (visit(x + y, 0, "Pour 2 -> 1") || visit(B, (x + y) - B, "Pour 2 -> 1")) {
-        marked[x][y] = 6; //6 for pouring jug2 into jug1
+        marked = 6; //6 for pouring jug2 into jug1
         return true;
     }
     return false;
@@ -84,7 +83,6 @@ bool visit(int x, int y, string prev) {
 
 void print_transitions(int x, int y) {
     int finalState = marked[x][y];
-    cout << "TEST\n";
     switch(finalState) {
         case 1:
             cout << "Fill jug 1  [a = " << A << ", b = " << y << "]\n";
