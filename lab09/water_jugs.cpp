@@ -42,7 +42,8 @@ void can_visit(int x, int y) {
     }
 
     //State(A, b) jug 1 is filled//
-    if (can_visit(A, y) && !visited[x][y]) {
+    if (!visited[x][y]) {
+        can_visit(A, y)
         cout << "Test4\n";
         visited[x][y] = true;
         marked = 1; //1 for filling jug1
