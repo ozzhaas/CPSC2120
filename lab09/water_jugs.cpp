@@ -146,9 +146,6 @@ int main () {
     cin >> X;
     cout << endl << endl;
 
-    mJug1.full = A;
-    mJug2.full = B;
-
     int a = 0, b = 0;
 
     print_transitions(a, b);
