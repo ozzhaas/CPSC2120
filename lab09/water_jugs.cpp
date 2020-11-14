@@ -136,10 +136,6 @@ void print_transitions(int x, int y) {
 
 
 int main () {
-    Jug mJug1, mJug2;
-    mJug1.curr = 0;
-    mJug2.curr = 0;
-
     cout << "Enter A: ";
     cin >> A;
     cout << endl;
@@ -153,7 +149,9 @@ int main () {
     mJug1.full = A;
     mJug2.full = B;
 
-    print_transitions(mJug1.curr, mJug2.curr);
+    int a = 0, b = 0;
+
+    print_transitions(a, b);
 
 
     return 0;
