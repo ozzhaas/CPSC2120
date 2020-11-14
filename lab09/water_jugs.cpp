@@ -9,6 +9,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cstdlib>
+#include <string>
 
 
 const int N = 1001; //Maximum that the max capacity of either jug can be
