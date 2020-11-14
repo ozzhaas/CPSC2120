@@ -25,7 +25,7 @@ struct Jug {
 };
 
 
-bool visit(Jug j1, Jug j2, string prev) {
+bool visit(int j1, int j2, string prev) {
     j1.full = A;
     j2.full = B;
     if (j1.curr < 0 || j2.curr < 0 || j1.curr > N-1 || j2.curr > N-1) {
