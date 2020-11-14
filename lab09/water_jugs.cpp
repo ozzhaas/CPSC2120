@@ -84,7 +84,7 @@ bool visit(int x, int y, string prev) {
 
 void print_transitions(int x, int y) {
     int finalState = marked[x][y];
-
+    cout << "TEST\n";
     switch(finalState) {
         case 1:
             cout << "Fill jug 1  [a = " << A << ", b = " << y << "]\n";
