@@ -21,7 +21,7 @@ int marked;
 string prevStep[10] = "start";
 
 
-bool visit(int x, int y) {
+bool can_visit(int x, int y) {
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         return false;
     }
@@ -37,7 +37,7 @@ bool visit(int x, int y) {
     }
 
     //State(A, b) jug 1 is filled//
-    if (visit(A, y)) {
+    if (can_visit(A, y) && !visited[A][y]) {
         visited[A][y] = true;
         marked = 1; //1 for filling jug1
         prevStep[marked] = "Fill jug 1";
@@ -45,7 +45,7 @@ bool visit(int x, int y) {
     }
 
     //State(0, b) jug 1 is emptied//
-    if (visit(0, y)) {
+    if (can_visit(0, y) && !visited[0][y]) {
         visited[0][y] = true;
         marked = 2; //2 for emptying jug1
         prevStep[marked] = "Empty jug 1";
@@ -53,7 +53,7 @@ bool visit(int x, int y) {
     }
 
     //State(a, B) jug 2 is filled//
-    if (visit(x, B)) {
+    if (can_visit(x, B) && !visited[x][B]) {
         visited[x][B] = true;
         marked = 3; //3 for filling jug2
         prevStep[marked] = "Fill jug 2";
@@ -61,7 +61,7 @@ bool visit(int x, int y) {
     }
 
     //State(a, 0) jug 2 is emptied//
-    if (visit(x, 0)) {
+    if (can_visit(x, 0) && !visited[x][0]) {
         visited[x][0] = true;
         marked = 4; //4 for emptying jug2
         prevStep[marked] = "Empty jug 2";
@@ -69,14 +69,14 @@ bool visit(int x, int y) {
     }
 
     //State(0, a + b) jug 1 is poured into jug 2//
-    if (visit(0, x + y)) {
+    if (can_visit(0, x + y) && !visited[0][x + y]) {
         visited[0][x + y] = true;
         marked = 5; //5 for pouring jug1 into jug2
         prevStep[marked] = "Pour 1 -> 2";
         return true;
     }
     //State((a + b)-B, B) jug 1 is poured into jug 2//
-    if (visit((x + y) - B, B)) {
+    if (can_visit((x + y) - B, B) && !visited[(x + y) - B][B]) {
         visited[(x + y) - B][B] = true;
         marked = 6; //5 for pouring jug1 into jug2
         prevStep[marked] = "Pour 1 -> 2";
@@ -84,7 +84,7 @@ bool visit(int x, int y) {
     }
 
     //State(a + b, 0) jug 2 is poured into jug 1//
-    if (visit(x + y, 0)) {
+    if (can_visit(x + y, 0) && !visited[x + y][0]) {
         visited[x + y][0] = true;
         marked = 7; //6 for pouring jug2 into jug1
         prevStep[marked] = "Pour 2 -> 1";
@@ -92,7 +92,7 @@ bool visit(int x, int y) {
     }
 
     //State(B, (a + b)-B) jug 2 is poured into jug 1//
-    if (visit(B, (x + y) - B)) {
+    if (can_visit(B, (x + y) - B) && !visited[B][(x + y) - B]) {
         visited[B][(x + y) - B] = true;
         marked = 8; //6 for pouring jug2 into jug1
         prevStep[marked] = "Pour 2 -> 1";
@@ -166,7 +166,7 @@ int main () {
 
     int a = 0, b = 0;
 
-    if (visit(a, b)){
+    if (can_visit(a, b)){
         print_transitions(a, b);
     }
     else {
