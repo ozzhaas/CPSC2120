@@ -77,13 +77,14 @@ bool visit(int x, int y, string prev) {
         marked = 6; //6 for pouring jug2 into jug1
         return true;
     }
+    cout << marked << endl;
     return false;
 }
 
 
 void print_transitions(int x, int y) {
     int finalState = marked;
-    cout << finalState;
+    cout << finalState << endl;
     switch(finalState) {
         case 1:
             cout << "Fill jug 1  [a = " << A << ", b = " << y << "]\n";
