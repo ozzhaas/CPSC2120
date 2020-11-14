@@ -18,10 +18,10 @@ int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
 int X; //X is the goal units of water in the jugs combined
 bool visited[N][N];
 int marked;
-string prev = NULL;
+string prevStep = NULL;
 
 
-bool visit(int x, int y, string pre) {
+bool visit(int x, int y, string lastMove) {
 
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         return false;
@@ -159,7 +159,7 @@ int main () {
 
     int a = 0, b = 0;
 
-    visit(a, b, prev);
+    visit(a, b, prevStep);
     print_transitions(a, b);
 
 
