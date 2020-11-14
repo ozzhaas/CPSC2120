@@ -26,19 +26,19 @@ void can_visit(int x, int y) {
 
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         cout << "Test1\n";
-        return false;
+        return;
     }
 
     if (visited[x][y]) {
         cout << "Test2\n";
-        return false;
+        return;
     }
 
 
     if (x + y == X) {
         cout << "Test3\n";
         visited[x][y] = true;
-        return true;
+        return;
     }
 
     //State(A, b) jug 1 is filled//
@@ -47,7 +47,7 @@ void can_visit(int x, int y) {
         visited[x][y] = true;
         marked = 1; //1 for filling jug1
         prevStep[marked] = "Fill jug 1";
-        return true;
+        return;
     }
 
     // //State(0, b) jug 1 is emptied//
@@ -105,7 +105,6 @@ void can_visit(int x, int y) {
     //     return true;
     // }
 
-    return false;
 }
 
 
