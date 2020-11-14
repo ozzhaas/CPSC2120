@@ -25,9 +25,7 @@ struct Jug {
 };
 
 
-bool visit(Jug j1, Jug j2, string prev) {
-    int x = j1.curr;
-    int y = j2.curr;
+bool visit(int x, int y, string prev) {
 
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         return false;
@@ -110,12 +108,12 @@ void print_transitions(int x, int y) {
             //State (0, a + b)
             if (x == 0 && y == x + y) {
                 cout << "Pour 1 -> 2 [a = " << 0 << ", b = " << x + y << "]\n";
-                print_transitions(0, j1.curr + j2.curr);
+                print_transitions(0, x + y);
             }
             //State ((a+b) - B, B)
             else if (x == (x + y) - B && y == B) {
                 cout << "Pour 1 -> 2 [a = " << (x + y) - B << ", b = " << B << "]\n";
-                print_transitions((j1.curr + j2.curr) - j2.full, j2.full);
+                print_transitions((x + y) - B, B);
             }
             break;
 
@@ -123,7 +121,7 @@ void print_transitions(int x, int y) {
             //State (0, a + b)
             if (y == 0 && x == x + y) {
                 cout << "Pour 2 -> 1 [a = " << x + y << ", b = " << 0 << "]\n";
-                print_transitions(j1.curr + j2.curr, 0);
+                print_transitions(x + y, 0);
             }
             //State ((a+b) - B, B)
             else if (x == A && y == (x + y) - B) {
