@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 const int N = 1001; //Maximum that the max capacity of either jug can be
+int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
 int X; //X is the goal units of water in the jugs combined
 bool visited[N][N];
 char marked[N][N];
@@ -18,11 +19,10 @@ struct Jug {
     int curr; //Equivalent to 'a' for first jug and 'b' for second jug
 };
 
-Jug jug1, jug2;
-jug1.full = A;
-jug2.full = B;
 
 bool visit(Jug j1, Jug j2, string prev) {
+    j1.full = A;
+    j2.full = B;
     if (j1.curr < 0 || j2.curr < 0 || j1.curr > N-1 || j2.curr > N-1) {
         return false;
     }
@@ -130,7 +130,6 @@ void print_transitions(int x, int y) {
 
 
 int main () {
-    int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
     Jug mJug1, mJug2;
     mJug1.curr = 0;
     mJug2.curr = 0;
