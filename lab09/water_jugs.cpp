@@ -23,16 +23,18 @@ string prevStep[10] = "start";
 
 bool can_visit(int x, int y) {
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
+        cout << "Test1\n";
         return false;
     }
 
     if (visited[x][y]) {
+        cout << "Test2\n";
         return false;
     }
 
 
     if (x + y == X) {
-        cout << "Test\n";
+        cout << "Test3\n";
         visited[x][y] = true;
         return true;
     }
