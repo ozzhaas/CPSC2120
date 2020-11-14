@@ -108,27 +108,27 @@ void print_transitions(int x, int y) {
 
         case 5:
             //State (0, a + b)
-            if (x == 0 && y == jug1.curr + jug2.curr) {
-                cout << "Pour 1 -> 2 [a = " << 0 << ", b = " << jug1.curr + jug2.curr << "]\n";
+            if (x == 0 && y == x + y) {
+                cout << "Pour 1 -> 2 [a = " << 0 << ", b = " << x + y << "]\n";
                 print_transitions(0, j1.curr + j2.curr);
             }
             //State ((a+b) - B, B)
-            else if (x == (jug1.curr + jug2.curr) - jug2.full && y == jug2.full) {
-                cout << "Pour 1 -> 2 [a = " << (jug1.curr + jug2.curr) - jug2.full << ", b = " << jug2.full << "]\n";
+            else if (x == (x + y) - B && y == B) {
+                cout << "Pour 1 -> 2 [a = " << (x + y) - B << ", b = " << B << "]\n";
                 print_transitions((j1.curr + j2.curr) - j2.full, j2.full);
             }
             break;
 
         case 6:
             //State (0, a + b)
-            if (y == 0 && x == jug1.curr + jug2.curr) {
-                cout << "Pour 2 -> 1 [a = " << jug1.curr + jug2.curr << ", b = " << 0 << "]\n";
+            if (y == 0 && x == x + y) {
+                cout << "Pour 2 -> 1 [a = " << x + y << ", b = " << 0 << "]\n";
                 print_transitions(j1.curr + j2.curr, 0);
             }
             //State ((a+b) - B, B)
-            else if (x == j2.full && y == (jug1.curr + jug2.curr) - jug2.full) {
-                cout << "Pour 2 -> 1 [a = " << j2.full << ", b = " << (jug1.curr + jug2.curr) - jug2.full << "]\n";
-                print_transitions(j2.full, (jug1.curr + jug2.curr) - jug2.full);
+            else if (x == A && y == (x + y) - B) {
+                cout << "Pour 2 -> 1 [a = " << A << ", b = " << (x + y) - B << "]\n";
+                print_transitions(A, (x + y) - B);
             }
             break;
         }
