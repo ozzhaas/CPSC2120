@@ -108,45 +108,45 @@ void print_transitions(int x, int y) {
     cout << finalState << endl;
     switch(finalState) {
         case 1:
-            cout << prevStep[marked] "  [a = " << A << ", b = " << y << "]\n";
+            cout << prevStep[marked] << "  [a = " << A << ", b = " << y << "]\n";
             print_transitions(A, y);
             break;
         case 2:
-            cout << prevStep[marked] "  [a = " << 0 << ", b = " << y << "]\n";
+            cout << prevStep[marked] << "  [a = " << 0 << ", b = " << y << "]\n";
             print_transitions(0, y);
             break;
 
         case 3:
-            cout << prevStep[marked] "  [a = " << x << ", b = " << B << "]\n";
+            cout << prevStep[marked] << "  [a = " << x << ", b = " << B << "]\n";
             print_transitions(x, B);
             break;
 
         case 4:
-            cout << prevStep[marked] "  [a = " << x << ", b = " << 0 << "]\n";
+            cout << prevStep[marked] << "  [a = " << x << ", b = " << 0 << "]\n";
             print_transitions(x, 0);
             break;
 
         case 5:
             //State (0, a + b)
-            cout << prevStep[marked] "  [a = " << 0 << ", b = " << x + y << "]\n";
+            cout << prevStep[marked] << "  [a = " << 0 << ", b = " << x + y << "]\n";
             print_transitions(0, x + y);
             break;
 
         case 6:
             //State ((a+b) - B, B)
-            cout << prevStep[marked] "  [a = " << (x + y) - B << ", b = " << B << "]\n";
+            cout << prevStep[marked] << "  [a = " << (x + y) - B << ", b = " << B << "]\n";
             print_transitions((x + y) - B, B);
             break;
 
         case 7:
             //State (0, a + b)
-            cout << prevStep[marked] "  [a = " << x + y << ", b = " << 0 << "]\n";
+            cout << prevStep[marked] << "  [a = " << x + y << ", b = " << 0 << "]\n";
             print_transitions(x + y, 0);
             break;
 
         case 8:
             //State ((a+b) - B, B)
-            cout << prevStep[marked] "  [a = " << A << ", b = " << (x + y) - B << "]\n";
+            cout << prevStep[marked] << "  [a = " << A << ", b = " << (x + y) - B << "]\n";
             print_transitions(A, (x + y) - B);
             break;
         }
