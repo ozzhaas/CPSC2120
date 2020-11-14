@@ -5,7 +5,7 @@
 */
 
 #include <iostream>
-#include <stdio>
+#include <stdio.h>
 
 const int N = 1001; //Maximum that the max capacity of either jug can be
 int X; //X is the goal units of water in the jugs combined
