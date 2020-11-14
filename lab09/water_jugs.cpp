@@ -18,11 +18,11 @@ int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
 int X; //X is the goal units of water in the jugs combined
 bool visited[N][N];
 int marked;
-string prevStep = "";
+string prevStep[10] = "start";
 
 
-bool visit(int x, int y, string lastMove) {
-
+bool visit(int x, int y, string previous[10]) {
+    string lastMove = "";
     if (x < 0 || y < 0 || x > N-1 || y > N-1) {
         return false;
     }
@@ -38,55 +38,72 @@ bool visit(int x, int y, string lastMove) {
     }
 
     //State(A, b) jug 1 is filled//
-    if (visit(A, y, "Fill jug 1")) {
+    lastMove = "Fill jug 1";
+    if (visit(A, y, lastMove)) {
         visited[A][y] = true;
         marked = 1; //1 for filling jug1
+        previous[marked] = lastMove;
         return true;
     }
 
     //State(0, b) jug 1 is emptied//
-    if (visit(0, y, "Empty jug 1")) {
+    lastMove = "Empty jug 1"
+    if (visit(0, y, lastMove)) {
         visited[0][y] = true;
         marked = 2; //2 for emptying jug1
+        previous[marked] = lastMove;
         return true;
     }
 
     //State(a, B) jug 2 is filled//
-    if (visit(x, B, "Fill jug 2")) {
+    lastMove = "Fill jug 2";
+    if (visit(x, B, lastMove)) {
         visited[x][B] = true;
         marked = 3; //3 for filling jug2
+        previous[marked] = lastMove;
         return true;
     }
 
     //State(a, 0) jug 2 is emptied//
-    if (visit(x, 0, "Empty jug 2")) {
+    lastMove = "Empty jug 2";
+    if (visit(x, 0, lastMove)) {
         visited[x][0] = true;
         marked = 4; //4 for emptying jug2
+        previous[marked] = lastMove;
         return true;
     }
 
     //State(0, a + b) or ((a + b)-B, B) jug 1 is poured into jug 2//
-    if (visit(0, x + y, "Pour 1 -> 2")) {
+    lastMove = "Pour 1 -> 2";
+    if (visit(0, x + y, lastMove)) {
         visited[0][x + y] = true;
         marked = 5; //5 for pouring jug1 into jug2
+        previous[marked] = lastMove;
         return true;
     }
 
-    if (visit((x + y) - B, B, "Pour 1 -> 2")) {
+    lastMove = "Pour 1 -> 2";
+    if (visit((x + y) - B, B, lastMove)) {
         visited[(x + y) - B][B] = true;
-        marked = 5; //5 for pouring jug1 into jug2
+        marked = 6; //5 for pouring jug1 into jug2
+        previous[marked] = lastMove;
         return true;
     }
 
     //State(a + b, 0) or (B, (a + b)-B) jug 2 is poured into jug 1//
-    if (visit(x + y, 0, "Pour 2 -> 1")) {
+    lastMove = "Pour 2 -> 1";
+    if (visit(x + y, 0, lastMove)) {
         visited[x + y][0] = true;
-        marked = 6; //6 for pouring jug2 into jug1
+        marked = 7; //6 for pouring jug2 into jug1
+        previous[marked] = lastMove;
         return true;
     }
-    if (visit(B, (x + y) - B, "Pour 2 -> 1")) {
+
+    lastMove = "Pour 2 -> 1";
+    if (visit(B, (x + y) - B, lastMove)) {
         visited[B][(x + y) - B] = true;
-        marked = 6; //6 for pouring jug2 into jug1
+        marked = 8; //6 for pouring jug2 into jug1
+        previous[marked] = lastMove;
         return true;
     }
 
@@ -99,48 +116,46 @@ void print_transitions(int x, int y) {
     cout << finalState << endl;
     switch(finalState) {
         case 1:
-            cout << "Fill jug 1  [a = " << A << ", b = " << y << "]\n";
+            cout << previous[marked] "  [a = " << A << ", b = " << y << "]\n";
             print_transitions(A, y);
             break;
         case 2:
-            cout << "Empty jug 1  [a = " << 0 << ", b = " << y << "]\n";
+            cout << previous[marked] "  [a = " << 0 << ", b = " << y << "]\n";
             print_transitions(0, y);
             break;
 
         case 3:
-            cout << "Fill jug 2  [a = " << x << ", b = " << B << "]\n";
+            cout << previous[marked] "  [a = " << x << ", b = " << B << "]\n";
             print_transitions(x, B);
             break;
 
         case 4:
-            cout << "Empty jug 2  [a = " << x << ", b = " << 0 << "]\n";
+            cout << previous[marked] "  [a = " << x << ", b = " << 0 << "]\n";
             print_transitions(x, 0);
             break;
 
         case 5:
             //State (0, a + b)
-            if (x == 0 && y == x + y) {
-                cout << "Pour 1 -> 2 [a = " << 0 << ", b = " << x + y << "]\n";
-                print_transitions(0, x + y);
-            }
-            //State ((a+b) - B, B)
-            else if (x == (x + y) - B && y == B) {
-                cout << "Pour 1 -> 2 [a = " << (x + y) - B << ", b = " << B << "]\n";
-                print_transitions((x + y) - B, B);
-            }
+            cout << previous[marked] "  [a = " << 0 << ", b = " << x + y << "]\n";
+            print_transitions(0, x + y);
             break;
 
         case 6:
-            //State (0, a + b)
-            if (y == 0 && x == x + y) {
-                cout << "Pour 2 -> 1 [a = " << x + y << ", b = " << 0 << "]\n";
-                print_transitions(x + y, 0);
-            }
             //State ((a+b) - B, B)
-            else if (x == A && y == (x + y) - B) {
-                cout << "Pour 2 -> 1 [a = " << A << ", b = " << (x + y) - B << "]\n";
-                print_transitions(A, (x + y) - B);
-            }
+            cout << previous[marked] "  [a = " << (x + y) - B << ", b = " << B << "]\n";
+            print_transitions((x + y) - B, B);
+            break;
+
+        case 7:
+            //State (0, a + b)
+            cout << previous[marked] "  [a = " << x + y << ", b = " << 0 << "]\n";
+            print_transitions(x + y, 0);
+            break;
+
+        case 8:
+            //State ((a+b) - B, B)
+            cout << previous[marked] "  [a = " << A << ", b = " << (x + y) - B << "]\n";
+            print_transitions(A, (x + y) - B);
             break;
         }
 }
@@ -159,9 +174,12 @@ int main () {
 
     int a = 0, b = 0;
 
-    visit(a, b, prevStep);
-    print_transitions(a, b);
-
+    if (visit(a, b, prevStep)){
+        print_transitions(a, b);
+    }
+    else {
+        cout << "Impossible!\n";
+    }
 
     return 0;
 }
