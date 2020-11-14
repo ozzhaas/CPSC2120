@@ -105,7 +105,6 @@ bool can_visit(int x, int y) {
 
 void print_transitions(int x, int y) {
     int finalState = marked;
-    cout << finalState << endl;
     switch(finalState) {
         case 1:
             cout << prevStep[marked] << "  [a = " << A << ", b = " << y << "]\n";
@@ -164,7 +163,8 @@ int main () {
     cin >> X;
     cout << endl << endl;
 
-    int a = 0, b = 0;
+    int a = 0;
+    int b = 0;
 
     if (can_visit(a, b)){
         print_transitions(a, b);
