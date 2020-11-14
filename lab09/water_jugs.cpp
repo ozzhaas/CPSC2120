@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <string>
 
+using namespace std;
 
 const int N = 1001; //Maximum that the max capacity of either jug can be
 int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
