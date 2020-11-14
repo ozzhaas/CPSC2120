@@ -18,7 +18,7 @@ int A, B; //Big A and Big B are the max capacity for jugs 1 and 2 respectively
 int X; //X is the goal units of water in the jugs combined
 bool visited[N][N];
 int marked;
-string prevStep = NULL;
+string prevStep = "";
 
 
 bool visit(int x, int y, string lastMove) {
