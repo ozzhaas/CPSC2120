@@ -13,12 +13,14 @@
 class WordLadder {
 
     private:
-        vector<String> wordVec;
-        vector<Node> nodeList;
-        StringIntMap dict;
         typedef string Node; //a node is equivalent to a word
         Node start;
         Node end;
+        
+        vector<string> wordVec;
+        vector<Node> nodeList;
+        StringIntMap dict;
+
 
         map<Node, int> distance;
 
