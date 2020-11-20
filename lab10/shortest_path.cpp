@@ -42,7 +42,7 @@ WordLadder::WordLadder() {
 
 
 void WordLadder::readStartandEnd(Node &src, Node &dest) {
-    char userInput = '';
+    char userInput;
     string s, d; //s for start, d for destination
 
     cout << "Enter the word you want to start with: \n";
@@ -50,17 +50,21 @@ void WordLadder::readStartandEnd(Node &src, Node &dest) {
     cout << "Enter the word you want to end with: \n";
     cin >> d;
     cout << "Want me to find the shortest path or word ladder from "
-            + src + " to " + dest + " ? (\"Y\" for yes or \"N\" for no.)";
+            + s + " to " + d + " ? (\"Y\" for yes or \"N\" for no.)";
     cin >> userInput;
     userInput = toupper(userInput);
-    while (userInput == "N") {
+    while (userInput == 'N') {
         cout << "Re-enter the word you want to start with: \n";
         cin >> s;
         cout << "Re-enter the word you want to end with: \n";
         cin >> d;
+        cout << "Want me to find the shortest path or word ladder from "
+                + s + " to " + d + " ? (\"Y\" for yes or \"N\" for no.)";
+        cin >> userInput;
+        userInput = toupper(userInput);
     }
-        src = s;
-        dest = d;
+    src = s;
+    dest = d;
 }
 
 
