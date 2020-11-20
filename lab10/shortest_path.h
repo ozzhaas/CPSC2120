@@ -33,9 +33,9 @@ class WordLadder {
     public:
         WordLadder();
         ~WordLadder();
-        void readStartandEnd();
+        void readStartandEnd(Node &src, Node &dest);
         void adjacencyList(StringIntMap&);
-        string breadth_first(Node src, Node dest);
+        string breadth_first(Node &src, Node &dest);
         int findLongestLadder();
         void printLadderPath();
 };

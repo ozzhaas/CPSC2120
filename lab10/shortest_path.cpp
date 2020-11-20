@@ -10,6 +10,7 @@
 #include <string>
 #include <map>
 #include <algorithm>
+#include <fstream>
 #include "shortest_path.h"
 #include "stringIntMap.h"
 
@@ -26,7 +27,7 @@ WordLadder::WordLadder() {
 
     if (input.fail()) {
         cout << "Input file error.\n";
-        return -1;
+        exit();
     }
 
     while(input >> in) {
@@ -73,7 +74,7 @@ void WordLadder::adjacencyList(StringIntMap &dict) {
             for (char j = 97; j < 122; j++) {
                 adjWord[i] = j;
                 if ((dict.find(adjWord)) && (adjWord != beenThere)) {
-                    oneLetterDiff.push_back(adjWord)
+                    oneLetterDiff.push_back(adjWord);
                 }
             }
             adjWord[i] = letterStorage;
