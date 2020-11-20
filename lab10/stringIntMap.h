@@ -8,6 +8,7 @@
 #define STRINGINTMAP_H
 
 #include <string>
+#include <assert.h>
 using namespace std;
 
 class StringIntMap {

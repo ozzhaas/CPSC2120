@@ -11,7 +11,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
-#include <ctype>
+#include <ctype.h>
 #include "shortest_path.h"
 #include "stringIntMap.h"
 
