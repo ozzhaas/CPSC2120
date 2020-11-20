@@ -178,7 +178,7 @@ void printLadderPath(Node &src, Node& dest) {
     if (src != dest) {
         finalSol.push_back(pred[dest]);
         printLadderPath(src, pred[dest]);
-        var++;
+        var = findLongestLadder();
     }
     cout << var << endl;;
 }
