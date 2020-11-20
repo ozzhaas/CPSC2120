@@ -11,6 +11,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
+#include <ctype>
 #include "shortest_path.h"
 #include "stringIntMap.h"
 
@@ -27,7 +28,7 @@ WordLadder::WordLadder() {
 
     if (input.fail()) {
         cout << "Input file error.\n";
-        exit();
+        return;
     }
 
     while(input >> in) {
@@ -51,7 +52,7 @@ void WordLadder::readStartandEnd(Node &src, Node &dest) {
     cout << "Want me to find the shortest path or word ladder from "
             + src + " to " + dest + " ? (\"Y\" for yes or \"N\" for no.)";
     cin >> userInput;
-    userInput = toUpper(userInput);
+    userInput = toupper(userInput);
     while (userInput == "N") {
         cout << "Re-enter the word you want to start with: \n";
         cin >> s;
