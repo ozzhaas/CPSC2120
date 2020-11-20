@@ -31,7 +31,7 @@ WordLadder::WordLadder() {
 
     while(input >> in) {
         dict.insert(in, count);
-        inputVec.push_back(in);
+        wordVec.push_back(in);
         count++;
     }
 
@@ -62,7 +62,7 @@ void WordLadder::readStartandEnd(Node &src, Node &dest) {
 }
 
 
-void WordLadder::adjacencyList(stringIntMap &dict) {
+void WordLadder::adjacencyList(StringIntMap &dict) {
     int length = 0;
 
     for (auto adjWord : wordVec) {
@@ -163,18 +163,6 @@ int main () {
     readStartandEnd();
     isAdjacent(&dict);
     breadth_first(&start, &end);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

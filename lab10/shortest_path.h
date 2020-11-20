@@ -16,7 +16,7 @@ class WordLadder {
         typedef string Node; //a node is equivalent to a word
         Node start;
         Node end;
-        
+
         vector<string> wordVec;
         vector<Node> nodeList;
         StringIntMap dict;
@@ -33,24 +33,12 @@ class WordLadder {
     public:
         WordLadder();
         ~WordLadder();
-        pair<Node, Node> readStartandEnd());
+        void readStartandEnd();
         void adjacencyList(StringIntMap&);
         string breadth_first(Node src, Node dest);
         int findLongestLadder();
         void printLadderPath();
-
-
-
-
-
-
-
-
-
-
-
-
-}
+};
 
 
 

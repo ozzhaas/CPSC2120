@@ -4,7 +4,7 @@
   11/20/20
 */
 
-#include "StringIntMap.h"
+#include "stringIntMap.h"
 
 using namespace std;
 
