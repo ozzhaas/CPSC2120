@@ -1,8 +1,8 @@
-/* Kellen Haas
-   CPSC2120
-   lab10
-   11/19/20
- */
+/*Kellen Haas
+  CPSC 2120
+  Lab10
+  11/20/20
+*/
 
 #include <iostream>
 #include <stdio.h>

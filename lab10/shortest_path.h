@@ -1,5 +1,11 @@
+/*Kellen Haas
+  CPSC 2120
+  Lab10
+  11/20/20
+*/
+
 #ifndef SHORTEST_PATH_H
-#def SHORTEST_PATH_H
+#define SHORTEST_PATH_H
 
 #include "stringIntMap.h"
 
