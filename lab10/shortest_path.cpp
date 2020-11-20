@@ -13,36 +13,54 @@
 #include <algorithm>
 #include <fstream>
 #include <ctype.h>
-#include "shortest_path.h"
 #include "stringIntMap.h"
 
 using namespace std;
 
+typedef string Node; //a node is equivalent to a word
+Node start;
+Node end;
+
+vector<string> wordVec;
+vector<Node> nodeList;
+StringIntMap dict;
+
+map<Node, int> distance;
+map<Node, Node> pred;
+map<Node, vector<Node>> neighbors;
+map<pair<Node, Node>, int> edge_wt;
 
 int MAX_LEN = 999999;
 
-WordLadder::WordLadder() {
-    ifstream input;
-    input.open("words5.txt");
-    string in;
-    int count;
+WordLadder::WordLadder() {}
 
-    if (input.fail()) {
-        cout << "Input file error.\n";
-        return;
+
+void build_graph(void) {
+    int numrows = wordVec.size();
+    int numcols = wordVec[0].length();
+
+    for (int i = 0; i < numrows; i++) {
+        for (int j = 0; j < numcols; j++) {
+            nodeList.push_back(make_pair(i, j));
+        }
+    }
+    int di[] = {+1, -1, 0, 0};
+    int dj[] = {0, 0, +1, -1};
+
+    for (int i = 1; i < numrows - 1; i++) {
+        for (int j = 1; j < numcols - 1; j++) {
+            for (int k = 0; k < 4; k++) {
+                Node x = make_pair(i, j);
+                Node nbr = make_pair(i + di[k], j + dj[k]);
+                neighbors[x].push_back(nbr);
+            }
+        }
     }
 
-    while(input >> in) {
-        dict.insert(in, count);
-        wordVec.push_back(in);
-        count++;
-    }
-
-    input.close();
 }
 
 
-void WordLadder::readStartandEnd(Node &src, Node &dest) {
+void readStartandEnd(Node &src, Node &dest) {
     char userInput;
     string s, d; //s for start, d for destination
 
@@ -69,7 +87,7 @@ void WordLadder::readStartandEnd(Node &src, Node &dest) {
 }
 
 
-void WordLadder::adjacencyList(StringIntMap &dict) {
+void adjacencyList(StringIntMap &dict) {
     int length = 0;
 
     for (auto adjWord : wordVec) {
@@ -90,7 +108,7 @@ void WordLadder::adjacencyList(StringIntMap &dict) {
 }
 
 
-string WordLadder::breadth_first(Node &src, Node &dest) {
+string breadth_first(Node &src, Node &dest) {
     int num = 999999;
 
     for (Node a : neighbors) {
@@ -104,24 +122,24 @@ string WordLadder::breadth_first(Node &src, Node &dest) {
 
     while(!to_visit.empty()) {
         Node x = to_visit.front();
-        previous = x;
+        previous = distance[x];
         to_visit.pop();
         if(x == dest) {
             return true;
         }
-        for (Node i : neighbors[x]) {
+        for (auto &i : neighbors[x]) {
             if (distance[i] == num) {
+                pred[i] = x;
+                to_visit.push(i);
                 distance[i] = distance[x] + 1;
             }
-            pred[i] = x;
-            to_visit.push(i);
         }
     }
     return previous;
 }
 
 
-int WordLadder::findLongestLadder() {
+int findLongestLadder() {
     int num = 0;
     int longest = 0;
     vector<string> sol;
@@ -153,7 +171,7 @@ int WordLadder::findLongestLadder() {
 }
 
 
-void WordLadder::printLadderPath(Node &src, Node& dest) {
+void printLadderPath(Node &src, Node& dest) {
     int var = 0;
     if (dest == NULL) {return;}
 
@@ -167,6 +185,13 @@ void WordLadder::printLadderPath(Node &src, Node& dest) {
 
 
 int main () {
+    string mainWord;
+    ifstream input;
+    input.open("words5.txt");
+    while (input >> mainWord) {
+        wordVec.push_back(mainWord);
+    }
+
     readStartandEnd();
     isAdjacent(&dict);
     breadth_first(&start, &end);
