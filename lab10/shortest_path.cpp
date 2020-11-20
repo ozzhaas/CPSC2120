@@ -32,8 +32,6 @@ map<pair<Node, Node>, int> edge_wt;
 
 int MAX_LEN = 999999;
 
-WordLadder::WordLadder() {}
-
 
 void build_graph(void) {
     int numrows = wordVec.size();
