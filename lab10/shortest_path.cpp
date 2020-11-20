@@ -10,6 +10,8 @@
 #include <string>
 #include <map>
 #include <algorithm>
+#include "shortest_path.h"
+#include "stringIntMap.h"
 
 using namespace std;
 
