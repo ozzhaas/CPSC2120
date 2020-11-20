@@ -42,7 +42,7 @@ WordLadder::WordLadder() {
 
 
 void WordLadder::readStartandEnd(Node &src, Node &dest) {
-    string userInput = "";
+    char userInput = '';
     string s, d; //s for start, d for destination
 
     cout << "Enter the word you want to start with: \n";
