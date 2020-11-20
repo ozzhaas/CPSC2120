@@ -72,7 +72,7 @@ void WordLadder::readStartandEnd(Node &src, Node &dest) {
 void WordLadder::adjacencyList(StringIntMap &dict) {
     int length = 0;
 
-    for (auto &adjWord : wordVec) {
+    for (auto adjWord : wordVec) {
         vector<string> oneLetterDiff;
         string beenThere = adjWord;
         for(unsigned int i = 0; i < adjWord.size(); i++) {
@@ -93,7 +93,7 @@ void WordLadder::adjacencyList(StringIntMap &dict) {
 string WordLadder::breadth_first(Node &src, Node &dest) {
     int num = 999999;
 
-    for (auto &a : neighbors) {
+    for (Node a : neighbors) {
         distance[a] == num;
     }
 
@@ -109,7 +109,7 @@ string WordLadder::breadth_first(Node &src, Node &dest) {
         if(x == dest) {
             return true;
         }
-        for (auto &i : neighbors[x]) {
+        for (Node i : neighbors[x]) {
             if (distance[i] == num) {
                 distance[i] = distance[x] + 1;
             }
@@ -133,7 +133,7 @@ int WordLadder::findLongestLadder() {
     sol.clear();
     finalSol.clear();
 
-    for (auto &word : wordVec) {
+    for (auto word : wordVec) {
         string bfs = breadth_first(word);
         num = distance[bfs];
         if (num > longest) {
@@ -146,7 +146,7 @@ int WordLadder::findLongestLadder() {
         pred.clear();
         sol.clear();
     }
-    for (auto &word : finalSol) {
+    for (auto word : finalSol) {
         cout << word << endl;
     }
     return longest;
