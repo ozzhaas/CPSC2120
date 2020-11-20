@@ -21,7 +21,7 @@ typedef string Node; //a node is equivalent to a word
 Node start;
 Node end;
 
-vector<string> wordVec;
+vector<pair<Node, Node>> wordVec;
 vector<Node> nodeList;
 StringIntMap dict;
 
