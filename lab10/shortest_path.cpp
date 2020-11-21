@@ -140,7 +140,7 @@ bool isOneLetterDiff(void) {
 int findLongestLadder(StringIntMap dict) {
     if (dict.find(startNode) || dict.find(endNode)) {return 0;}
     queue<Node> to_visit;
-    to_visit.push_back(startNode);
+    to_visit.push(startNode);
     dict.remove(startNode);
     while (!to_visit.empty()) {
         string curr = to_visit.front();
