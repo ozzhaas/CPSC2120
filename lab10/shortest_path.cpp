@@ -17,43 +17,24 @@
 
 using namespace std;
 
-typedef string Node; //a node is equivalent to a word
-Node startNode;
-Node endNode;
 
-vector<string> words;
+struct Node {
+    string w;
+    int dist;
+};
+
+
+typedef string Node;
+StringIntMap stringSet;
+vector<string> solution;
+vector<string> solFinal;
+
 vector<Node> all_nodes;
-StringIntMap dict;
-
 map<Node, int> dist;
+vector<int> distValues;
 map<Node, Node> pred;
 map<Node, vector<Node>> neighbors;
 
-
-
-// void build_graph(void) {
-//     int numrows = words.size();
-//     int numcols = words[0].length();
-//
-//     for (int i = 0; i < numrows; i++) {
-//         for (int j = 0; j < numcols; j++) {
-//             all_nodes.push_back(make_pair(i, j));
-//         }
-//     }
-//     int di[] = {+1, -1, 0, 0};
-//     int dj[] = {0, 0, +1, -1};
-//
-//     for (int i = 1; i < numrows - 1; i++) {
-//         for (int j = 1; j < numcols - 1; j++) {
-//             for (int k = 0; k < 4; k++) {
-//                 Node x = make_pair(i, j);
-//                 Node nbr = make_pair(i + di[k], j + dj[k]);
-//                 neighbors[x].push_back(nbr);
-//             }
-//         }
-//     }
-//
-// }
 
 
 void readStartandEnd(void) {
@@ -82,111 +63,144 @@ void readStartandEnd(void) {
     endNode = d;
 }
 
+//
+// bool isOneLetterDiff(Node &startNode, Node &endNode) {
+//     if (startNode.length() != endNode.length()) {return false;}
+//     int diff = 0;
+//     for (unsigned int i = 0; i < startNode.length(); i++) {
+//         if (startNode[i] != endNode[i]) {
+//             diff += 1;
+//         }
+//         if (diff > 1) {
+//             return false;
+//         }
+//     }
+//     if (diff == 1) {return true;}
+//     else {return false;}
+// }
 
-bool isOneLetterDiff(void) {
-    if (startNode.length() != endNode.length()) {return false;}
-    int diff = 0;
-    for (unsigned int i = 0; i < startNode.length(); i++) {
-        if (startNode[i] != endNode[i]) {
-            diff += 1;
+
+void adjacencyList() {
+    char letter;
+    for (auto word : all_nodes) {
+        vector<Node> changeOneLetter;
+        string oldWord = word;
+        for (unsigned int i = 0; i < word.size(); i++) {
+            letter = word[i];
+            for(int j = 97; j < 122; j++) {
+                word[i] = j;
+                if (stringSet.find(word) && word != oldWord) {
+                    changeOneLetter.push_back(word);
+                }
+            }
+            word[i] = letter;
         }
-        if (diff > 1) {
-            return false;
-        }
+    neighbors.insert(make_pair(word, changeOneLetter));
     }
-    if (diff == 1) {return true;}
-    else {return false;}
 }
 
-//
-// void adjacencyList(StringIntMap &dict) {
-//     int length = 0;
-//
-//
-// }
 
 
-// string breadth_first(Node &src, Node &dest) {
-//     int num = 999999;
-//
-//     for (Node a : neighbors) {
-//         dist[a] == wordVec;
-//     }
-//
-//     dist[src] = 0;
-//     queue<Node> to_visit;
-//     to_visit.push(src);
-//     string previous;
-//
-//     while(!to_visit.empty()) {
-//         Node x = to_visit.front();
-//         previous = dist[x];
-//         to_visit.pop();
-//         if(x == dest) {
-//             return true;
-//         }
-//         for (auto &i : neighbors[x]) {
-//             if (dist[i] == num) {
-//                 pred[i] = x;
-//                 to_visit.push(i);
-//                 dist[i] = dist[x] + 1;
-//             }
-//         }
-//     }
-//     return previous;
-// }
+string breadth_first(Node &src, Node &dest) {
+    int num = 999999;
 
-
-int findLongestLadder(StringIntMap dict) {
-    if (dict.find(startNode) || dict.find(endNode)) {return 0;}
-    queue<Node> to_visit;
-    to_visit.push(startNode);
-    dict.remove(startNode);
-    while (!to_visit.empty()) {
-        string curr = to_visit.front();
-        to_visit.pop();
-        for (auto i : dict) {
-            if (isOneLetterDiff(curr.first, dict[i])) {
-                if (dict[i] == endNode) {
-                    return curr.second + 1;
-                }
-                to_visit.push(dict[i], cur.second + 1);
-                dict.remove(i);
-            }
-        }
+    for (const Node &a : all_nodes) {
+        dist[a] == all_nodes.size();
     }
+
+    dist[src] = 0;
+    queue<Node> to_visit;
+    to_visit.push(src);
+    string previous;
+
+    beenthere.push_back(startNode);
+    if (stringSet.find(endNode) == stringSet.end()) {return 0;}
+    to_visit.push(startNode);
+    while (!to_visit.empty()) {
+        Node n = to_visit.front();
+        to_visit.pop();
+        string tempWord = n.word;
+        int tempDist = n.dist;
+
+        if (tempWord == endNode.word) {
+            return tempDist;
+        }
+
+    }
+    return previous;
+}
+
+
+int findLongestLadder(Node &startNode, Node &endNode) {
+    vector<Node> beenthere;
+    queue<Node> to_visit;
+    int wordLength = startNode.word.length();
+    int longest = 0;
+    int num = 0;
+    dist.clear();
+    pred.clear();
+    solution.clear();
+
+
+    for (auto &word : all_nodes) {
+        string tempWord = breadth_first(word);
+        num = dist[tempWord];
+        if (num > longest) {
+            printLadderPath(word, tempWord);
+            solFinal = solution;
+            longest = num;
+        }
+        distValues.push_back(num);
+
+        dist.clear();
+        pred.clear();
+        solution.clear();
+    }
+
+    for (auto &w : solFinal) {
+        cout << w << endl;
+    }
+
     return 0;
 }
 
 
-void printLadderPath() {
+int printLadderPath(Node &startNode, Node &endNode) {
     int var = 0;
-    if (endNode == NULL) {return;}
 
     if (startNode != endNode) {
         finalSol.push_back(pred[endNode]);
         printLadderPath(startNode, pred[endNode]);
         var = findLongestLadder();
     }
-    cout << var << endl;;
+    cout << var << endl;
+    return var;
 }
 
 
 int main () {
+    Node startNode;
+    Node endNode;
     string mainWord;
+    int count = 0;
     ifstream input;
+
     input.open("words5.txt");
     while (input >> mainWord) {
-        wordVec.push_back(mainWord);
+        stringSet.insert(mainWord, count);
+        all_nodes.push_back(mainWord);
+        count++;
     }
 
-    StringIntMap mainDict;
-    readStartandEnd();
-    findLongestLadder(mainDict);
-    printLadderPath();
-    // isAdjacent(&dict);
-    // breadth_first(&startNode, &endNode);
+    input.close();
 
+
+    readStartandEnd(startNode, endNode);
+    adjacencyList(startNode, endNode);
+    int temp = findLongestLadder(startNode, endNode);
+    printLadderPath(startNode, endNode);
+
+    cout << "Distance = " << temp << endl;
 
 
 
