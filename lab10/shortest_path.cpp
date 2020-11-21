@@ -161,7 +161,7 @@ int main () {
     breadth_first(startNode);
     printLadderPath(startNode, endNode);
 
-    cout << "Distance = " << temp << endl;
+    // cout << "Distance = " << temp << endl;
 
 
 
