@@ -99,13 +99,14 @@ void breadth_first(Node startNode) {
 
 void printLadderPath(Node startNode, Node endNode) {
     int var = 0;
+    cout << "STARTNODE in Print: " << startNode << endl;
     cout << "ENDNODE in Print: " << endNode << endl;
 
-    if (startNode != endNode) {
-        // solFinal.push_back(pred[endNode]);
-        printLadderPath(startNode, pred[endNode]);
-        // var = findLongestLadder();
-    }
+    // if (startNode != endNode) {
+    //     // solFinal.push_back(pred[endNode]);
+    //     printLadderPath(startNode, pred[endNode]);
+    //     // var = findLongestLadder();
+    // }
     cout << pred[endNode] << endl;
     // cout << var << endl;
 }
