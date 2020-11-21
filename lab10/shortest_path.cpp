@@ -105,6 +105,19 @@ void breadth_first(Node &src, Node &dest) {
 }
 
 
+int printLadderPath(Node &startNode, Node &endNode) {
+    int var = 0;
+
+    if (startNode != endNode) {
+        finalSol.push_back(pred[endNode]);
+        printLadderPath(startNode, pred[endNode]);
+        var = findLongestLadder();
+    }
+    cout << var << endl;
+    return var;
+}
+
+
 int findLongestLadder(Node &startNode, Node &endNode) {
     vector<Node> beenthere;
     queue<Node> to_visit;
@@ -116,7 +129,7 @@ int findLongestLadder(Node &startNode, Node &endNode) {
 
 
     for (Node word : all_nodes) {
-        string tempWord = breadth_first(word);
+        string tempWord = breadth_first(startNode, endNode);
         num = dist[tempWord];
         if (num > longest) {
             printLadderPath(word, tempWord);
@@ -135,19 +148,6 @@ int findLongestLadder(Node &startNode, Node &endNode) {
     }
 
     return 0;
-}
-
-
-int printLadderPath(Node &startNode, Node &endNode) {
-    int var = 0;
-
-    if (startNode != endNode) {
-        finalSol.push_back(pred[endNode]);
-        printLadderPath(startNode, pred[endNode]);
-        var = findLongestLadder();
-    }
-    cout << var << endl;
-    return var;
 }
 
 
