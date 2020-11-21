@@ -19,8 +19,7 @@ using namespace std;
 
 
 typedef string Node;
-Node startNode;
-Node endNode;
+
 
 StringIntMap stringSet;
 vector<string> solution;
@@ -34,7 +33,7 @@ map<Node, vector<Node>> neighbors;
 
 int findLongestLadder();
 
-void readStartandEnd() {
+void readStartandEnd(Node &startNode, Node &endNode) {
 
     cout << "Enter the word you want to start with: \n";
     cin >> startNode;
@@ -47,7 +46,7 @@ void readStartandEnd() {
 
 
 
-void adjacencyList() {
+void adjacencyList(Node &startNode, Node &endNode) {
     char letter;
     for (auto word : all_nodes) {
         vector<Node> changeOneLetter;
@@ -68,7 +67,7 @@ void adjacencyList() {
 
 
 
-string breadth_first() {
+string breadth_first(Node &startNode, Node& endNode) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
@@ -95,12 +94,12 @@ string breadth_first() {
 }
 
 
-int printLadderPath() {
+int printLadderPath(Node &startNode, Node &endNode) {
     int var = 0;
 
     if (startNode != endNode) {
         // solFinal.push_back(pred[endNode]);
-        printLadderPath();
+        printLadderPath(startNode, pred[endNode]);
         // var = findLongestLadder();
     }
     cout << pred[endNode] << endl;
@@ -143,7 +142,8 @@ int findLongestLadder() {
 
 
 int main () {
-
+    Node startNode;
+    Node endNode;
     string mainWord;
     int count = 0;
     ifstream input;
@@ -158,8 +158,8 @@ int main () {
     input.close();
 
 
-    readStartandEnd();
-    adjacencyList();
+    readStartandEnd(startNode, endNode);
+    adjacencyList(startNode, endNode);
     int temp = findLongestLadder();
     printLadderPath();
 
