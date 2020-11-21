@@ -158,8 +158,8 @@ int main () {
 
     readStartandEnd(startNode, endNode);
     adjacencyList(startNode, endNode);
-    int temp = findLongestLadder();
-    printLadderPath();
+    breadth_first(startNode);
+    printLadderPath(startNode, endNode);
 
     cout << "Distance = " << temp << endl;
 
