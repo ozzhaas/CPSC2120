@@ -25,7 +25,7 @@ vector<string> words;
 vector<Node> all_nodes;
 StringIntMap dict;
 
-map<Node, int> distance;
+map<Node, int> dist;
 map<Node, Node> pred;
 map<Node, vector<Node>> neighbors;
 
@@ -110,26 +110,26 @@ bool isOneLetterDiff(void) {
 //     int num = 999999;
 //
 //     for (Node a : neighbors) {
-//         distance[a] == wordVec;
+//         dist[a] == wordVec;
 //     }
 //
-//     distance[src] = 0;
+//     dist[src] = 0;
 //     queue<Node> to_visit;
 //     to_visit.push(src);
 //     string previous;
 //
 //     while(!to_visit.empty()) {
 //         Node x = to_visit.front();
-//         previous = distance[x];
+//         previous = dist[x];
 //         to_visit.pop();
 //         if(x == dest) {
 //             return true;
 //         }
 //         for (auto &i : neighbors[x]) {
-//             if (distance[i] == num) {
+//             if (dist[i] == num) {
 //                 pred[i] = x;
 //                 to_visit.push(i);
-//                 distance[i] = distance[x] + 1;
+//                 dist[i] = dist[x] + 1;
 //             }
 //         }
 //     }
