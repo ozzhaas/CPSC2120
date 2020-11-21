@@ -19,6 +19,9 @@ using namespace std;
 
 
 typedef string Node;
+Node startNode;
+Node endNode;
+
 StringIntMap stringSet;
 vector<string> solution;
 vector<string> solFinal;
@@ -155,8 +158,7 @@ int findLongestLadder(Node &startNode, Node &endNode) {
 
 
 int main () {
-    Node startNode;
-    Node endNode;
+
     string mainWord;
     int count = 0;
     ifstream input;
