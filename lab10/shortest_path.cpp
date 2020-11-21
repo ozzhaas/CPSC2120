@@ -81,7 +81,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-void breadth_first(Node &src, Node &dest) {
+string breadth_first(Node &src, Node &dest) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
