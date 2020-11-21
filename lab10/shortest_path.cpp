@@ -18,8 +18,8 @@
 using namespace std;
 
 typedef string Node; //a node is equivalent to a word
-Node start;
-Node end;
+Node startNode;
+Node endNode;
 
 vector<string> words;
 vector<Node> all_nodes;
@@ -78,16 +78,16 @@ void readStartandEnd(void) {
         cin >> userInput;
         userInput = toupper(userInput);
     }
-    start = s;
-    end = d;
+    startNode = s;
+    endNode = d;
 }
 
 
 bool isOneLetterDiff(void) {
-    if (start.length() != end.length()) {return false;}
+    if (startNodeNode.length() != endNode.length()) {return false;}
     int diff = 0;
-    for (int i = 0; i < start.lenght(); i++) {
-        if (start[i] != end[i]) {
+    for (int i = 0; i < startNode.lenght(); i++) {
+        if (startNode[i] != endNode[i]) {
             diff += 1;
         }
         if (diff > 1) {
@@ -138,16 +138,16 @@ bool isOneLetterDiff(void) {
 
 
 int findLongestLadder(StringIntMap dict) {
-    if (dict.find(start) || dict.find(end)) {return 0;}
+    if (dict.find(startNode) || dict.find(endNode)) {return 0;}
     queue<Node> to_visit;
-    to_visit.push_back(start);
-    dict.remove(start);
+    to_visit.push_back(startNode);
+    dict.remove(startNode);
     while (!to_visit.empty()) {
         string curr = to_visit.front();
         to_visit.pop();
         for (auto i : dict) {
             if (isOneLetterDiff(curr.first, dict[i])) {
-                if (dict[i] == end) {
+                if (dict[i] == endNode) {
                     return curr.second + 1;
                 }
                 to_visit.push(dict[i], cur.second + 1);
@@ -161,11 +161,11 @@ int findLongestLadder(StringIntMap dict) {
 
 void printLadderPath() {
     int var = 0;
-    if (end == NULL) {return;}
+    if (endNode == NULL) {return;}
 
-    if (start != end) {
-        finalSol.push_back(pred[end]);
-        printLadderPath(start, pred[end]);
+    if (startNode != endNode) {
+        finalSol.push_back(pred[endNode]);
+        printLadderPath(startNode, pred[endNode]);
         var = findLongestLadder();
     }
     cout << var << endl;;
@@ -185,7 +185,7 @@ int main () {
     findLongestLadder(mainDict);
     printLadderPath();
     // isAdjacent(&dict);
-    // breadth_first(&start, &end);
+    // breadth_first(&startNode, &endNode);
 
 
 
