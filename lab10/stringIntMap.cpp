@@ -64,7 +64,7 @@ int &StringIntMap::operator[](string key)
   int h = myhash(key, size);
   Node *n = table[h];
   while (n != NULL) {
-    if (n->key == key) return n->val;
+    if (n->key == key){ return n->val;}
     n = n->next;
   }
 }
