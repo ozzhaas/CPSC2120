@@ -18,12 +18,6 @@
 using namespace std;
 
 
-struct Node {
-    string w;
-    int dist;
-};
-
-
 typedef string Node;
 StringIntMap stringSet;
 vector<string> solution;
@@ -113,19 +107,16 @@ string breadth_first(Node &src, Node &dest) {
     to_visit.push(src);
     string previous;
 
-    beenthere.push_back(startNode);
-    if (stringSet.find(endNode) == stringSet.end()) {return 0;}
-    to_visit.push(startNode);
     while (!to_visit.empty()) {
         Node n = to_visit.front();
         to_visit.pop();
-        string tempWord = n.word;
-        int tempDist = n.dist;
-
-        if (tempWord == endNode.word) {
-            return tempDist;
+        for (const Node &x : neighbors[n])
+            if (dist[x] == all_nodes.size()) {
+                distance[x] = 1 + distance[x];
+                pred[x] = n;
+                to_visit.push(x);
+            }
         }
-
     }
     return previous;
 }
@@ -134,7 +125,6 @@ string breadth_first(Node &src, Node &dest) {
 int findLongestLadder(Node &startNode, Node &endNode) {
     vector<Node> beenthere;
     queue<Node> to_visit;
-    int wordLength = startNode.word.length();
     int longest = 0;
     int num = 0;
     dist.clear();
@@ -158,7 +148,7 @@ int findLongestLadder(Node &startNode, Node &endNode) {
     }
 
     for (Node w : solFinal) {
-        cout << w.word << endl;
+        cout << w << endl;
     }
 
     return 0;
