@@ -41,12 +41,16 @@ void readStartandEnd(Node &startNode, Node &endNode) {
     cin >> endNode;
     cout << "Finding the shortest path or word ladder from "
             + startNode + " to " + endNode + "...\n";
+    cout << "STARTNODE in read: " << startNode << endl;
+    cout << "ENDNODE in read: " << endNode << endl;
 }
 
 
 
 
 void adjacencyList(Node &startNode, Node &endNode) {
+    cout << "STARTNODE in adjacencyList: " << startNode << endl;
+    cout << "ENDNODE in adjacencyList: " << endNode << endl;
     char letter;
     for (auto word : all_nodes) {
         vector<Node> changeOneLetter;
@@ -68,7 +72,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 void breadth_first(Node startNode) {
-
+    cout << "STARTNODE in breadth_first: " << startNode << endl;
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
     }
@@ -95,6 +99,7 @@ void breadth_first(Node startNode) {
 
 void printLadderPath(Node startNode, Node endNode) {
     int var = 0;
+    cout << "ENDNODE in Print: " << endNode << endl;
 
     if (startNode != endNode) {
         // solFinal.push_back(pred[endNode]);
@@ -154,6 +159,9 @@ int main () {
     }
 
     input.close();
+
+    cout << "STARTNODE in main: " << startNode << endl;
+    cout << "ENDNODE in main: " << endNode << endl;
 
 
     readStartandEnd(startNode, endNode);
