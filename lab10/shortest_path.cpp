@@ -122,7 +122,7 @@ int findLongestLadder() {
         string tempWord = breadth_first();
         num = dist[tempWord];
         if (num > longest) {
-            printLadderPath(word, tempWord);
+            printLadderPath();
             solFinal = solution;
             longest = num;
         }
