@@ -7,6 +7,8 @@
 #ifndef STRINGINTMAP_H
 #define STRINGINTMAP_H
 
+#include <iostream>
+#include <stdio.h>
 #include <string>
 #include <assert.h>
 using namespace std;

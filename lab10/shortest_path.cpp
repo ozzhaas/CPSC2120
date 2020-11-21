@@ -31,7 +31,7 @@ map<Node, vector<Node>> neighbors;
 
 
 
-void readStartandEnd(void) {
+void readStartandEnd(Node &startNode, Node &endNode) {
     char userInput;
     string s, d; //s for start, d for destination
 
@@ -110,7 +110,7 @@ string breadth_first(Node &src, Node &dest) {
     while (!to_visit.empty()) {
         Node n = to_visit.front();
         to_visit.pop();
-        for (const Node &x : neighbors[n])
+        for (const Node &x : neighbors[n]) {
             if (dist[x] == all_nodes.size()) {
                 distance[x] = 1 + distance[x];
                 pred[x] = n;
