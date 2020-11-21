@@ -99,11 +99,12 @@ int printLadderPath() {
     int var = 0;
 
     if (startNode != endNode) {
-        solFinal.push_back(pred[endNode]);
+        // solFinal.push_back(pred[endNode]);
         printLadderPath();
         // var = findLongestLadder();
     }
-    cout << var << endl;
+    cout << pred[endNode] << endl;
+    // cout << var << endl;
     return var;
 }
 
