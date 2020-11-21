@@ -84,9 +84,9 @@ void readStartandEnd(void) {
 
 
 bool isOneLetterDiff(void) {
-    if (startNodeNode.length() != endNode.length()) {return false;}
+    if (startNode.length() != endNode.length()) {return false;}
     int diff = 0;
-    for (int i = 0; i < startNode.lenght(); i++) {
+    for (int i = 0; i < startNode.length(); i++) {
         if (startNode[i] != endNode[i]) {
             diff += 1;
         }
