@@ -27,6 +27,7 @@ vector<string> solution;
 vector<string> solFinal;
 
 vector<Node> all_nodes;
+set<string>word;
 map<Node, int> dist;
 vector<int> distValues;
 map<Node, Node> pred;
@@ -70,8 +71,8 @@ void adjacencyList() {
 
 string breadth_first() {
 
-    for (Node &a : all_nodes) {
-        dist[a] == all_nodes.size();
+    for (Node &a : stringSet) {
+        dist[a] == stringSet.size();
     }
 
     dist[startNode] = 0;
