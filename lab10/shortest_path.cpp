@@ -67,7 +67,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-void breadth_first(Node &startNode) {
+void breadth_first(Node startNode) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
@@ -93,7 +93,7 @@ void breadth_first(Node &startNode) {
 }
 
 
-void printLadderPath(Node &startNode, Node &endNode) {
+void printLadderPath(Node startNode, Node endNode) {
     int var = 0;
 
     if (startNode != endNode) {
