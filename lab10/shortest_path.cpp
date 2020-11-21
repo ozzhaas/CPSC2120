@@ -32,10 +32,10 @@ vector<int> distValues;
 map<Node, Node> pred;
 map<Node, vector<Node>> neighbors;
 
-int findLongestLadder(Node&, Node&);
+int findLongestLadder();
 
-void readStartandEnd(Node &startNode, Node &endNode) {
-    
+void readStartandEnd() {
+
     cout << "Enter the word you want to start with: \n";
     cin >> startNode;
     cout << "Enter the word you want to end with: \n";
@@ -47,7 +47,7 @@ void readStartandEnd(Node &startNode, Node &endNode) {
 
 
 
-void adjacencyList(Node &startNode, Node &endNode) {
+void adjacencyList() {
     char letter;
     for (auto word : all_nodes) {
         vector<Node> changeOneLetter;
@@ -68,7 +68,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-string breadth_first(Node &startNode, Node &endNode) {
+string breadth_first() {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
@@ -95,20 +95,20 @@ string breadth_first(Node &startNode, Node &endNode) {
 }
 
 
-int printLadderPath(Node &startNode, Node &endNode) {
+int printLadderPath() {
     int var = 0;
 
     if (startNode != endNode) {
         solFinal.push_back(pred[endNode]);
-        printLadderPath(startNode, pred[endNode]);
-        var = findLongestLadder(startNode, endNode);
+        printLadderPath();
+        var = findLongestLadder();
     }
     cout << var << endl;
     return var;
 }
 
 
-int findLongestLadder(Node &startNode, Node &endNode) {
+int findLongestLadder() {
     vector<Node> beenthere;
     queue<Node> to_visit;
     int longest = 0;
@@ -119,7 +119,7 @@ int findLongestLadder(Node &startNode, Node &endNode) {
 
 
     for (Node word : all_nodes) {
-        string tempWord = breadth_first(startNode, endNode);
+        string tempWord = breadth_first();
         num = dist[tempWord];
         if (num > longest) {
             printLadderPath(word, tempWord);
@@ -157,10 +157,10 @@ int main () {
     input.close();
 
 
-    readStartandEnd(startNode, endNode);
-    adjacencyList(startNode, endNode);
-    int temp = findLongestLadder(startNode, endNode);
-    printLadderPath(startNode, endNode);
+    readStartandEnd();
+    adjacencyList();
+    int temp = findLongestLadder();
+    printLadderPath();
 
     cout << "Distance = " << temp << endl;
 
