@@ -142,7 +142,7 @@ int findLongestLadder(Node &startNode, Node &endNode) {
     solution.clear();
 
 
-    for (auto &word : all_nodes) {
+    for (Node word : all_nodes) {
         string tempWord = breadth_first(word);
         num = dist[tempWord];
         if (num > longest) {
@@ -157,8 +157,8 @@ int findLongestLadder(Node &startNode, Node &endNode) {
         solution.clear();
     }
 
-    for (auto &w : solFinal) {
-        cout << w << endl;
+    for (Node w : solFinal) {
+        cout << w.word << endl;
     }
 
     return 0;
