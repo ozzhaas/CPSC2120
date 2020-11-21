@@ -60,7 +60,7 @@ void readStartandEnd(Node &startNode, Node &endNode) {
 
 
 
-void adjacencyList() {
+void adjacencyList(Node &startNode, Node &endNode) {
     char letter;
     for (auto word : all_nodes) {
         vector<Node> changeOneLetter;
@@ -102,13 +102,6 @@ void breadth_first(Node &src, Node &dest) {
             }
         }
     }
-}
-
-
-bool operator< (Node x, Node y) {
-  if (x.first < y.first) return true;
-  if (x.first > y.first) return false;
-  return x.second < y.second;
 }
 
 
