@@ -109,7 +109,7 @@ int printLadderPath(Node &startNode, Node &endNode) {
     int var = 0;
 
     if (startNode != endNode) {
-        finalSol.push_back(pred[endNode]);
+        solFinal.push_back(pred[endNode]);
         printLadderPath(startNode, pred[endNode]);
         var = findLongestLadder();
     }
