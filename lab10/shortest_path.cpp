@@ -57,21 +57,7 @@ void readStartandEnd(Node &startNode, Node &endNode) {
     endNode = d;
 }
 
-//
-// bool isOneLetterDiff(Node &startNode, Node &endNode) {
-//     if (startNode.length() != endNode.length()) {return false;}
-//     int diff = 0;
-//     for (unsigned int i = 0; i < startNode.length(); i++) {
-//         if (startNode[i] != endNode[i]) {
-//             diff += 1;
-//         }
-//         if (diff > 1) {
-//             return false;
-//         }
-//     }
-//     if (diff == 1) {return true;}
-//     else {return false;}
-// }
+
 
 
 void adjacencyList() {
@@ -95,30 +81,34 @@ void adjacencyList() {
 
 
 
-string breadth_first(Node &src, Node &dest) {
-    int num = 999999;
+void breadth_first(Node &src, Node &dest) {
 
-    for (const Node &a : all_nodes) {
+    for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
     }
 
     dist[src] = 0;
     queue<Node> to_visit;
     to_visit.push(src);
-    string previous;
 
     while (!to_visit.empty()) {
         Node n = to_visit.front();
         to_visit.pop();
-        for (const Node &x : neighbors[n]) {
-            if (dist[x] == all_nodes.size()) {
-                distance[x] = 1 + distance[x];
-                pred[x] = n;
-                to_visit.push(x);
+        for (Node n : neighbors[x]) {
+            if (dist[n] == all_nodes.size()) {
+                distance[n] = 1 + distance[x];
+                pred[n] = x;
+                to_visit.push(n);
             }
         }
     }
-    return previous;
+}
+
+
+bool operator< (Node x, Node y) {
+  if (x.first < y.first) return true;
+  if (x.first > y.first) return false;
+  return x.second < y.second;
 }
 
 
