@@ -67,7 +67,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-string breadth_first(Node &startNode, Node& endNode) {
+void breadth_first(Node &startNode, Node& endNode) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
@@ -89,12 +89,11 @@ string breadth_first(Node &startNode, Node& endNode) {
                 to_visit.push(n);
             }
         }
-        return previous;
     }
 }
 
 
-int printLadderPath(Node &startNode, Node &endNode) {
+void printLadderPath(Node &startNode, Node &endNode) {
     int var = 0;
 
     if (startNode != endNode) {
@@ -104,7 +103,6 @@ int printLadderPath(Node &startNode, Node &endNode) {
     }
     cout << pred[endNode] << endl;
     // cout << var << endl;
-    return var;
 }
 
 
@@ -119,7 +117,7 @@ int findLongestLadder() {
 
 
     for (Node word : all_nodes) {
-        string tempWord = breadth_first();
+        breadth_first();
         num = dist[tempWord];
         if (num > longest) {
             printLadderPath();
