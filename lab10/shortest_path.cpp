@@ -90,9 +90,11 @@ void breadth_first(Node &src, Node &dest) {
     dist[src] = 0;
     queue<Node> to_visit;
     to_visit.push(src);
+    string previous;
 
     while (!to_visit.empty()) {
         Node x = to_visit.front();
+        previous = x;
         to_visit.pop();
         for (Node n : neighbors[x]) {
             if (dist[n] == all_nodes.size()) {
@@ -101,6 +103,7 @@ void breadth_first(Node &src, Node &dest) {
                 to_visit.push(n);
             }
         }
+        return previous;
     }
 }
 
@@ -111,7 +114,7 @@ int printLadderPath(Node &startNode, Node &endNode) {
     if (startNode != endNode) {
         solFinal.push_back(pred[endNode]);
         printLadderPath(startNode, pred[endNode]);
-        var = findLongestLadder();
+        var = findLongestLadder(startNode, endNode);
     }
     cout << var << endl;
     return var;
