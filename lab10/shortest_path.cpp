@@ -35,29 +35,13 @@ map<Node, vector<Node>> neighbors;
 int findLongestLadder(Node&, Node&);
 
 void readStartandEnd(Node &startNode, Node &endNode) {
-    char userInput;
-    string s, d; //s for start, d for destination
-
+    
     cout << "Enter the word you want to start with: \n";
-    cin >> s;
+    cin >> startNode;
     cout << "Enter the word you want to end with: \n";
-    cin >> d;
-    cout << "Want me to find the shortest path or word ladder from "
-            + s + " to " + d + " ? (\"Y\" for yes or \"N\" for no.)";
-    cin >> userInput;
-    userInput = toupper(userInput);
-    while (userInput == 'N') {
-        cout << "Re-enter the word you want to start with: \n";
-        cin >> s;
-        cout << "Re-enter the word you want to end with: \n";
-        cin >> d;
-        cout << "Want me to find the shortest path or word ladder from "
-                + s + " to " + d + " ? (\"Y\" for yes or \"N\" for no.)";
-        cin >> userInput;
-        userInput = toupper(userInput);
-    }
-    startNode = s;
-    endNode = d;
+    cin >> endNode;
+    cout << "Finding the shortest path or word ladder from "
+            + startNode + " to " + endNode + "...\n";
 }
 
 
