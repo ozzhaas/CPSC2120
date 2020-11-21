@@ -96,7 +96,7 @@ void breadth_first(Node &src, Node &dest) {
         to_visit.pop();
         for (Node n : neighbors[x]) {
             if (dist[n] == all_nodes.size()) {
-                distance[n] = 1 + distance[x];
+                dist[n] = 1 + dist[x];
                 pred[n] = x;
                 to_visit.push(n);
             }
