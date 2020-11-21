@@ -84,15 +84,15 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-string breadth_first(Node &src, Node &dest) {
+string breadth_first(Node &startNode, Node &endNode) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
     }
 
-    dist[src] = 0;
+    dist[startNode] = 0;
     queue<Node> to_visit;
-    to_visit.push(src);
+    to_visit.push(startNode);
     string previous;
 
     while (!to_visit.empty()) {
