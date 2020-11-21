@@ -29,7 +29,7 @@ vector<int> distValues;
 map<Node, Node> pred;
 map<Node, vector<Node>> neighbors;
 
-
+int findLongestLadder(Node&, Node&);
 
 void readStartandEnd(Node &startNode, Node &endNode) {
     char userInput;
