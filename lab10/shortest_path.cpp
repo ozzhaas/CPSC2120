@@ -106,37 +106,37 @@ void printLadderPath(Node &startNode, Node &endNode) {
 }
 
 
-int findLongestLadder() {
-    vector<Node> beenthere;
-    queue<Node> to_visit;
-    int longest = 0;
-    int num = 0;
-    dist.clear();
-    pred.clear();
-    solution.clear();
-
-
-    for (Node word : all_nodes) {
-        breadth_first(word);
-        num = dist[tempWord];
-        if (num > longest) {
-            printLadderPath();
-            solFinal = solution;
-            longest = num;
-        }
-        distValues.push_back(num);
-
-        dist.clear();
-        pred.clear();
-        solution.clear();
-    }
-
-    for (Node w : solFinal) {
-        cout << w << endl;
-    }
-
-    return 0;
-}
+// int findLongestLadder() {
+//     vector<Node> beenthere;
+//     queue<Node> to_visit;
+//     int longest = 0;
+//     int num = 0;
+//     dist.clear();
+//     pred.clear();
+//     solution.clear();
+//
+//
+//     for (Node word : all_nodes) {
+//         breadth_first(word);
+//         num = dist[];
+//         if (num > longest) {
+//             printLadderPath();
+//             solFinal = solution;
+//             longest = num;
+//         }
+//         distValues.push_back(num);
+//
+//         dist.clear();
+//         pred.clear();
+//         solution.clear();
+//     }
+//
+//     for (Node w : solFinal) {
+//         cout << w << endl;
+//     }
+//
+//     return 0;
+// }
 
 
 int main () {
