@@ -67,7 +67,7 @@ void adjacencyList(Node &startNode, Node &endNode) {
 
 
 
-void breadth_first(Node &startNode, Node& endNode) {
+void breadth_first(Node &startNode) {
 
     for (Node &a : all_nodes) {
         dist[a] == all_nodes.size();
@@ -117,7 +117,7 @@ int findLongestLadder() {
 
 
     for (Node word : all_nodes) {
-        breadth_first();
+        breadth_first(word);
         num = dist[tempWord];
         if (num > longest) {
             printLadderPath();
