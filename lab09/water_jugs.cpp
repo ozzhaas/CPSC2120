@@ -31,15 +31,15 @@ void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
     State s = {true, pred_a, pred_b, pred_string};
     S[a][b] = s;
 
-    visit(A, b, a, b, "Fill jug 1\t");
-    visit(a, B, a, b, "Fill jug 2\t");
-    visit(0, b, a, b, "Empty jug 1\t");
-    visit(a, 0, a, b, "Empty jug 2\t");
+    visit(A, b, a, b, "Fill jug 1\t\t");
+    visit(a, B, a, b, "Fill jug 2\t\t");
+    visit(0, b, a, b, "Empty jug 1\t\t");
+    visit(a, 0, a, b, "Empty jug 2\t\t");
 
     int pour_quantity = min(a, B-b);
-    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour jug 1 -> jug 2");
+    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour jug1->jug2");
     pour_quantity = min(b, A-a);
-    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour jug 2 -> jug 1");
+    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour jug2->jug1");
 }
 
 
@@ -63,7 +63,7 @@ int main () {
     cin >> X;
     cout << endl << endl;
 
-    visit(0, 0, 0, 0, "Starting point");
+    visit(0, 0, 0, 0, "Starting point\t\t");
 
     for (int i = 0; i <= X; i++) {
         if (S[i][X-i].beenthere) {
