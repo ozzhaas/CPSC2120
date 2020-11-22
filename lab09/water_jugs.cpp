@@ -31,7 +31,7 @@ void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
     State s = {true, pred_a, pred_b, pred_string};
     S[a][b] = s;
 
-    visit(A, b, a, b "Fill A");
+    visit(A, b, a, b, "Fill A");
     visit(a, B, a, b, "Fill B");
     visit(0, b, a, b, "Empty A");
     visit(a, 0, a, b, "Empty B");
