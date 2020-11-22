@@ -47,7 +47,7 @@ void print_transitions(int a, int b) {
     if (a + b != 0) {
         print_transitions(S[a][b].pred_a, S[a][b].pred_b);
     }
-    cout << S[a][b].pred_string << " [" << a << ", " << b << "]\n";
+    cout << S[a][b].pred_string << " [a = " << a << ", " << "b = " << b << "]\n";
 
 }
 
