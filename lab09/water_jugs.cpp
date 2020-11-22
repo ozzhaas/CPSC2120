@@ -37,9 +37,9 @@ void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
     visit(a, 0, a, b, "Empty jug 2\t\t");
 
     int pour_quantity = min(a, B-b);
-    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour jug1->jug2");
+    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour jug1->jug2\t\t");
     pour_quantity = min(b, A-a);
-    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour jug2->jug1");
+    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour jug2->jug1"\t\t);
 }
 
 
