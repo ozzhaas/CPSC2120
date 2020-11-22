@@ -43,7 +43,7 @@ void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
 }
 
 
-void print_transitions(int x, int y) {
+void print_transitions(int a, int b) {
     if (a + b != 0) {
         print_transitions(S[a][b].pred_a, S[a][b].pred_b);
     }
