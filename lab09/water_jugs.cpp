@@ -31,15 +31,15 @@ void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
     State s = {true, pred_a, pred_b, pred_string};
     S[a][b] = s;
 
-    visit(A, b, a, b, "Fill A");
-    visit(a, B, a, b, "Fill B");
-    visit(0, b, a, b, "Empty A");
-    visit(a, 0, a, b, "Empty B");
+    visit(A, b, a, b, "Fill jug 1\t");
+    visit(a, B, a, b, "Fill jug 2\t");
+    visit(0, b, a, b, "Empty jug 1\t");
+    visit(a, 0, a, b, "Empty jug 2\t");
 
     int pour_quantity = min(a, B-b);
-    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour A into B");
+    visit(a - pour_quantity, b + pour_quantity, a, b, "Pour jug 1 -> jug 2");
     pour_quantity = min(b, A-a);
-    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour B into A");
+    visit(a + pour_quantity, b - pour_quantity, a, b, "Pour jug 2 -> jug 1");
 }
 
 
@@ -47,7 +47,7 @@ void print_transitions(int a, int b) {
     if (a + b != 0) {
         print_transitions(S[a][b].pred_a, S[a][b].pred_b);
     }
-    cout << S[a][b].pred_string << " (" << a << ", " << b << ")\n";
+    cout << S[a][b].pred_string << " [" << a << ", " << b << "]\n";
 
 }
 
