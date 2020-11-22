@@ -25,7 +25,7 @@ struct State {
 
 
 
-void can_visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
+void visit(int a, int b, int pred_a, int pred_b, const char *pred_string) {
 
     if (S[a][b].beenthere) {return;}
     State s = {true, pred_a, pred_b, pred_string};
