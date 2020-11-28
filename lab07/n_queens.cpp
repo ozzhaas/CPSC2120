@@ -21,10 +21,10 @@ bool even = false;
 bool check_pos(int r, int c) {
     int row = r;
     int col = c;
-
-    int leftdiag[N];
-    int rightdiag[N];
-    int column[N];
+    // 
+    // int leftdiag[N];
+    // int rightdiag[N];
+    // int column[N];
 
 
 /*******************Second Solution...May Be Faster?*******************/
@@ -53,7 +53,7 @@ bool check_pos(int r, int c) {
         }
     }
 
-    for (row = r - 1, col = c + 1; col >= 0 && r < N; row++, col--) {
+    for (row = r - 1, col = c + 1; col < N && row >= 0; row--, col++) {
         if (board[row][col]) {
             return false;
         }
