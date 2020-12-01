@@ -16,6 +16,9 @@ struct Pixel {
 int width, height;
 Pixel *image;
 
+typedef pair<int,int> Node;
+
+
 Pixel white = { 255, 255, 255 };
 Pixel black = { 0, 0, 0 };
 
@@ -41,32 +44,53 @@ void write_image(const char *filename) {
 /* To be completed from here on... */
 
 void calculate_blur(void) {
+    vector<Pixel> vec;
     // Modify image to add blur effect
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            if (image[i].r == 255 && image[i].g == 255 && image[i].b == 255) {
-
+            Pixel tmpPixel = get_pixel(i, j);
+            //All the white p
+            if (tmpPixel.r == 255 && tmpPixel.g == 255 && tmpPixel.b == 255) {
+                vec.push_back(tmpPixel);
             }
-            else if (image[i+1].r == 255 && image[i+1].g == 255 && image[i+1].b == 255) {
-                //Pixel is white
-
-            }
-            else if (image[i-1].r == 255 && image[i-1].g == 255 && image[i-1].b == 255) {
-
-            }
-            else if (image[j].r == 255 && image[j].g == 255 && image[j].b == 255) {
-
-            }
-            else if (image[j+1].r == 255 && image[j+1].g == 255 && image[j+1].b == 255) {
-
-            }
-            else if (image[j-1].r == 255 && image[j-1].g == 255 && image[j-1].b == 255) {
-
-            }
-
         }
     }
 }
+
+//Node = a pixel
+void bfs(Node source, Node dest) {
+    vector<Node> all_nodes;
+    map<Node, int> dist;
+    map<Node, Node> pred;
+    map<Node, vector<Node>> nbrs;
+    map<pair<Node,Node>, int> edge_wt;
+
+    // Use something larger than the max possible sp length...
+    int inf = 999999;
+
+    for (Node &a : all_nodes) {dist[a] = inf;}
+
+    dist[source] = 0;
+    queue<Node> to_visit;
+    to_visit.push(source);
+
+
+    while (!to_visit.empty()) {
+        Node x = to_visit.front();
+        to_visit.pop();
+        if (x == dest) {return;};
+
+        for (Node n : nbrs[x]) {
+            // Edge weight always just 1
+            if (dist[n] == inf) {
+                dist[n] = dist[x] + 1;
+                pred[n] = x;
+                to_visit.push(n);
+            }
+        }
+    }
+}
+
 
 int main(void) {
     read_image("paw.ppm");
