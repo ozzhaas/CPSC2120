@@ -63,7 +63,6 @@ void bfs(Node source, Node dest) {
     map<Node, int> dist;
     map<Node, Node> pred;
     map<Node, vector<Node>> nbrs;
-    map<pair<Node,Node>, int> edge_wt;
 
     // Use something larger than the max possible sp length...
     int inf = 999999;
