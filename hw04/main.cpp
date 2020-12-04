@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 #include <queue>
-#include "freeglut.h"
+#include "glut.h"
 #include "graphics.h"
 using namespace std;
 
