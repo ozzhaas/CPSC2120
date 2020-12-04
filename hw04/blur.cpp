@@ -1,3 +1,9 @@
+/* Kellen Haas
+   CPSC2120
+   HW04
+   12/4/2020
+*/
+
 #include <iostream>
 #include <cstdio>
 #include <cmath>
@@ -127,10 +133,7 @@ void calculate_blur(void) {
             get_pixel(i, j).b = math(dist[make_pair(i, j)] - 1);
         }
     }
-
 }
-
-
 
 
 int main(void) {
