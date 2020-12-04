@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-// #include "glut.h"
+#include "glut.h"
 #include "graphics.h"
 
 static int window_id, window_xsize, window_ysize;
