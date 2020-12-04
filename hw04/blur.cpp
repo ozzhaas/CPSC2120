@@ -22,7 +22,7 @@ typedef pair<int, int> Node;
 int width, height;
 Pixel *image;
 vector<Node> all_nodes;
-map<Node, int> dist;
+map<Node, double> dist;
 map<Node, Node> pred;
 map<Node, vector<Node>> nbrs;
 
@@ -87,36 +87,44 @@ void bfs(Node source) {
 void build_graph(int numrows, int numcols) {
     int di[] = {+1,-1, 0, 0};
     int dj[] = {0, 0, +1,-1};
-    for (int i = 1; i < numrows - 1; i++) {
-        for (int j = 1; j < numcols - 1; j++) {
+    for (int i = 1; i < numcols - 1; i++) {
+        for (int j = 1; j < numrows - 1; j++) {
+            Node x = make_pair(i, j);
             for (int k = 0; k < 4; k++) {
-                Node x = make_pair(i, j);
                 Node nbr = make_pair(i + di[k], j + dj[k]);
-                if (image[(j * numrows) + i].r == 255 &&
-                    image[(j * numrows) + i].g == 255 &&
-                    image[(j * numrows) + i].b == 255) {
-                    nbrs[x].push_back(nbr);
-                }
+                nbrs[x].push_back(nbr);
             }
+            if (image[(j * numcols) + i].r == 255 &&
+                image[(j * numcols) + i].g == 255 &&
+                image[(j * numcols) + i].b == 255) {
+                    nbrs[megaNode].push_back(x);
+            }
+        }
+    }
+    for (int i = 0; i < numcols; i++) {
+        for (int j = 0; j < numrows; j++) {
+            Node x = make_pair(i, j);
+            all_nodes.push_back(x);
         }
     }
 }
 
 
+double math(int a) {
+    double result = (255 * pow(0.9, a));
+    return result;
+}
+
+
 void calculate_blur(void) {
     // Modify image to add blur effect
-    int di[] = {+1,-1, 0, 0};
-    int dj[] = {0, 0, +1,-1};
+    bfs(megaNode);
+
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            bfs(megaNode);
-            for (int k = 0; k < 4; k++) {
-                if (dist[{i, j}] > 50) {
-                    return;
-                }
-                Node nbr = make_pair(i + di[k], j + dj[k]);
-                nbrs[{i, j}].r = 255 * pow(0.9, i);
-            }
+            get_pixel(i, j).r = 255 * pow(0.9, dist[make_pair(i, j)] - 1);
+            get_pixel(i, j).g = math(dist[make_pair(i, j)] - 1);
+            get_pixel(i, j).b = math(dist[make_pair(i, j)] - 1);
         }
     }
 
@@ -127,7 +135,7 @@ void calculate_blur(void) {
 
 int main(void) {
     read_image("paw.ppm");
-    build_graph(width, height);
+    build_graph(height, width);
     calculate_blur();
     write_image("paw2.ppm");
 }
