@@ -97,8 +97,6 @@ void build_graph(int numrows, int numcols) {
 
 
 void build_seam_graph(int numrows, int numcols) {
-    int di[] = {+1,-1, 0, 0};
-    int dj[] = {0, 0, +1,-1};
     for (int i = 1; i < numcols - 1; i++) {
         for (int j = 1; j < numrows - 1; j++) {
             Node x = make_pair(i, j);
@@ -108,7 +106,7 @@ void build_seam_graph(int numrows, int numcols) {
                 Node newNbr = make_pair(i + 1, j - 1);
                 nbrs[x].push_back(newNbr);
             }
-            if (x > 0) {
+            if (i > 0) {
                 Node newNbr = make_pair(i - 1, j - 1);
                 nbrs[x].push_back(newNbr);
             }
@@ -159,17 +157,21 @@ void seam_bfs(Node source) {
              weight[make_pair(i, j)] = width * height;
          }
      }
-     weight[megaNode] = 0;
      priority_queue<Node> seam_to_visit;
      seam_to_visit.pop();
 
-    while (!seam_to_visit.empty()) {
+     while (!seam_to_visit.empty()) {
         Node x = seam_to_visit.top();
         seam_to_visit.pop();
 
+        weight[megaNode] = 0;
         for (Node n : nbrs[x]) {
             // Edge weight always just 1
             if (get_pixel(n.first, n.second).r + weight[x] < weight[x]) {
+                if (dist[n] == inf) {
+                    dist[n] = dist[x] + 1;
+                    pred[n] = x;
+                }
                 weight[n] = get_pixel(n.first, n.second).r + weight[x];
                 pred[n] = x;
                 seam_to_visit.push(n);
@@ -198,7 +200,15 @@ void calculate_blur(void) {
 
 // To be written -- solve a shortest path problem to find a seam and color it red
 void calculate_seam(void) {
+    bfs(megaNode);
 
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < width; j++) {
+            get_pixel(i, j).r = 255 * pow(0.9, weight[make_pair(i, j)] -1);
+            get_pixel(i, j).g = 0;
+            get_pixel(i, j).b = 0;
+        }
+    }
 }
 
 
