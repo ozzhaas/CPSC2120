@@ -18,10 +18,10 @@ int main (void) {
     input.open("tf.txt");
 
     while (getline(input, temp)) {
-        string sub = temp.substr(29, ' ');
+        string sub = temp.substr(31, ' ');
         int num = temp.find(' ');
-        size_t pos = temp.find("is");
-        string end = temp.substr(pos + 3);
+        string num = sub.substr(0, ' ');
+        cout << num << endl;
         cout << sub << " ";
         cout << end << endl;
 
