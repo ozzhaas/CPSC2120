@@ -19,7 +19,7 @@ int main (void) {
 
     while (getline(input, temp)) {
         size_t numPos = temp.find("question");
-        string num = temp.substr(numPos, ' ');
+        string num = temp.at(numPos);
         size_t pos = temp.find("is");
         string end = temp.substr(pos + 3);
         cout << num << " ";
