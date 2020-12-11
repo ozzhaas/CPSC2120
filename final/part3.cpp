@@ -46,8 +46,8 @@ void count_occurrences(Node *head, string m)
 Node *insert_sorted(Node *head, int freq)
 {
   // Base case: inserting new first element
-  if (head == NULL || freq < head->freq) return new Node(m, freq, head);
-  head->next = insert_sorted(head->next, m);
+  if (head == NULL || freq < head->freq) return new Node(freq, head);
+  head->next = insert_sorted(head->next, freq);
   return head;
 }
 
