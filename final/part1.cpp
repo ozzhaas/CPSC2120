@@ -21,10 +21,12 @@ int main (void) {
         string sub = temp.substr(31, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
-        
+        size_t is = sub.find("is");
+        string trueOrFalse = sub.substr(is, '\n');
 
-        cout << endl << endl;
-        cout << number << endl;
+
+        cout << number << " ";
+        cout << trueOrFalse << endl;
         // cout << end << endl;
 
     }
