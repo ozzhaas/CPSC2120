@@ -35,10 +35,11 @@ int main(void)
 {
     vector<intFreq> myInts;
     intFreq testInts;
-    string in;
+    int in[1000];
 
-    while (cin >> in) {
-        testInts.value = stoi(in);
+    int j = 0;
+    while (cin >> in[j]) {
+        testInts.value = stoi(in[j]);
         testInts.freq = 0;
 
         for (unsigned int i = 0; i < myInts.size(); i++) {
@@ -46,8 +47,9 @@ int main(void)
                 myInts[i].freq++;
             }
         }
-        sort(myInts.begin(), myInts.end(), compareFreq);
+        j++;
     }
+    sort(myInts.begin(), myInts.end(), compareFreq);
 
     for (unsigned int i = 0; i < myInts.size(); i++) {
         cout << myInts[i].value;
