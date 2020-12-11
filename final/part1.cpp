@@ -20,7 +20,7 @@ int main (void) {
 
     while (getline(input, temp)) {
         // size_t pos = temp.find("question");
-        string number = temp.substr(temp.find(' '), 3);
+        string number = temp.substr(temp.find_last_of(' ', 29), 3);
 
         // size_t num = temp.find("is");
         // string number = temp.substr(pos + 9, ' ');
