@@ -22,7 +22,7 @@ int main (void) {
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
         size_t is = sub.find("is");
-        string trueOrFalse = temp.substr(30, ' ');
+        string trueOrFalse = temp.substr(30, is - 1);
 
 
         cout << number << " ";
