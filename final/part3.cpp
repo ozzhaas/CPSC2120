@@ -22,7 +22,7 @@ using namespace std;
 struct intFreq {
     int freq = 0;
     int value = 0;
-}
+};
 
 int compareFreq(intFreq &a, intFreq &b) {
     return (a.freq > b.freq);
@@ -35,6 +35,8 @@ int main(void)
 {
     vector<intFreq> myInts;
     intFreq testInts;
+    string in;
+
     while (cin >> in) {
         testInts.value = stoi(in);
         testInts.freq = 0;
