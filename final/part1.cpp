@@ -47,7 +47,7 @@ int main (void) {
 
 
     for (unsigned int i = 0; i < vec.size(); i++) {
-        cout << vec[i].num << " " << vec[i].trueOrFalse << endl;
+        vec[i].trueOrFalse >> endl >> output;
     }
 
 
