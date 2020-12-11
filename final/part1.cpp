@@ -27,9 +27,13 @@ int main (void) {
 
     input.seekg(ios::beg);
 
+    while (getline(input, temp)) {
+        vec.push_back(temp.at(sizeof(temp)));
+    }
 
-
-
+    for (unsigned int i = 0; i < vec.size(); i++) {
+        cout << vec[i] << endl;
+    }
 
 
 
