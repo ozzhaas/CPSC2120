@@ -21,8 +21,7 @@ int main (void) {
         string sub = temp.substr(31, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
-        cout << num << endl;
-        cout << sub << " ";
+        
 
         cout << endl << endl;
         cout << number << endl;
