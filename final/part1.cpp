@@ -22,7 +22,7 @@ int main (void) {
         int num = sub.find(' ');
         cout << num << endl;
         cout << sub << " ";
-        cout << end << endl;
+        // cout << end << endl;
 
     }
 
