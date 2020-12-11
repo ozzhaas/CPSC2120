@@ -61,7 +61,7 @@ void print_ints(Node *head) {
 
 int main(void)
 {
-  Node **head;
+  Node *head;
   int max = 0;
 
   for (int i=0; i<size; i++) head[i] = NULL;
