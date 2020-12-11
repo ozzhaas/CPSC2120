@@ -43,11 +43,11 @@ void count_occurrences(Node *head, string m)
 }
 
 // Insert to keep list sorted
-Node *insert_sorted(Node *head, int val)
+Node *insert_sorted(Node *head, string m)
 {
   // Base case: inserting new first element
-  if (head == NULL || val < head->freq) return new Node(freq, head);
-  head->next = insert_sorted(head->next, val);
+  if (head == NULL || stoi(m) < head->freq) return new Node(m, freq, head);
+  head->next = insert_sorted(head->next, m);
   return head;
 }
 
