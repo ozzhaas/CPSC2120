@@ -36,8 +36,10 @@ void count_occurrences(Node *head, string m)
 {
   int count = 0;
   for (Node *n = head; n != NULL; n = n->next)
-    if (n->myInts == m) count++;
-    n->freq = count;
+    if (n->myInts == m) {
+        count++;
+        n->freq = count;
+    }
 }
 
 // Insert to keep list sorted
