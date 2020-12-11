@@ -22,7 +22,7 @@ int main (void) {
     while (getline(input, temp)) {
         size_t pos = temp.find("question");
         size_t num = temp.find("is");
-        string number = temp.substr(pos + 9, num);
+        string number = temp.substr(pos + 9, 'i');
         char TorF = temp.back();
         cout << number << " ";
         cout << TorF << endl;
