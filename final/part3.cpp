@@ -17,8 +17,9 @@ using namespace std;
 
 struct Node {
   string myInts;
+  int freq = 0;
   Node *next;
-  Node (string m, Node *n) { myInts = m; next = n; }
+  Node (string m, int f, Node *n) { myInts = m; freq = f; next = n; }
 };
 
 const int size = 1000000;
@@ -31,24 +32,45 @@ int myhash(string m, int table_size)
   return h;
 }
 
-int count_occurrences(Node *head, string m)
+void count_occurrences(Node *head, string m)
 {
   int count = 0;
   for (Node *n = head; n != NULL; n = n->next)
     if (n->myInts == m) count++;
-  return count;
+    n->freq = count;
+}
+
+// Insert to keep list sorted
+Node *insert_sorted(Node *head, int val)
+{
+  // Base case: inserting new first element
+  if (head == NULL || val < head->freq) return new Node(freq, head);
+  head->next = insert_sorted(head->next, val);
+  return head;
+}
+
+
+void print_ints(Node *head) {
+    if (head == NULL) return;
+    print_ints(head->next);
+
+    cout << head->myInts << "\n";
 }
 
 int main(void)
 {
   Node **head;
-  head = new Node *[size];
+  int max = 0;
+
   for (int i=0; i<size; i++) head[i] = NULL;
   string in;
-  while (cin >> in) {
-    int h = myhash(in, size);
-    if (count_occurrences(head[h], in) == 1) cout << in << "\n";
-    head[h] = new Node (in, head[h]);
-  }
+    while (cin >> in) {
+        head = insert_sorted(head, in);
+        // int h = myhash(in, size);
+        count_occurrences(head[h], in);
+        print_ints(head);
+    }
+
+
   return 0;
 }
