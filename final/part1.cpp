@@ -23,6 +23,9 @@ int main (void) {
         string number = sub.substr(0, num);
         cout << num << endl;
         cout << sub << " ";
+
+        cout << endl << endl;
+        cout << number << endl;
         // cout << end << endl;
 
     }
