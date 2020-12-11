@@ -13,7 +13,7 @@ using namespace std;
 
 int main (void) {
     string temp;
-    vector<int> vec;
+    vector<string> vec;
     ifstream input;
     input.open("tf.txt");
 
