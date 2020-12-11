@@ -21,9 +21,8 @@ int main (void) {
     int i = 0;
     while (getline(input, temp)) {
         size_t pos = temp.find("question");
-        string sub = temp.substr(pos + 9);
         size_t num = sub.find("is");
-        string number = sub.substr(pos, num - 1);
+        string number = temp.substr(pos + 9, num - 1);
         char TorF = temp.back();
         cout << number << " ";
         cout << TorF << endl;
