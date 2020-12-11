@@ -20,12 +20,10 @@ int main (void) {
 
     int i = 0;
     while (getline(input, temp)) {
-        size_t pos = temp.find(' ', 29);
-        string sub = temp.substr(pos, ' ');
-        size_t num = sub.find(' ');
-        string number = sub.substr(0, num);
+        size_t pos = temp.find("question");
+        string sub = temp.substr(pos + 9, ' ');
         char TorF = temp.back();
-        cout << number << " ";
+        cout << sub << " ";
         cout << TorF << endl;
     }
 
