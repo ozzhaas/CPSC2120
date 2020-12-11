@@ -23,7 +23,6 @@ struct intFreq {
     int freq = 0;
     int value = 0;
 }
-vector<intFreq> myInts;
 
 int compareFreq(intFreq &a, intFreq &b) {
     return (a.freq > b.freq);
@@ -34,6 +33,7 @@ int compareFreq(intFreq &a, intFreq &b) {
 
 int main(void)
 {
+    vector<intFreq> myInts;
     intFreq testInts;
     while (cin >> in) {
         testInts.value = stoi(in);
@@ -51,6 +51,6 @@ int main(void)
         cout << myInts[i].value;
     }
 
-    
+
   return 0;
 }
