@@ -15,6 +15,11 @@ struct myLine {
 };
 
 
+int compareNums (const myLine &a, const myLine &b) {
+    return a.num < b.num;
+}
+
+
 int main (void) {
     string temp;
     vector<myLine> vec;
@@ -63,12 +68,4 @@ int main (void) {
 
 
     return 0;
-}
-
-
-
-
-
-int compareNums (const myLine &a, const myLine &b) {
-    return a.num < b.num;
 }
