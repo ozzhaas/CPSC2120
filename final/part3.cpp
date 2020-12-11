@@ -35,7 +35,7 @@ int count_occurrences(Node *head, string m)
 {
   int count = 0;
   for (Node *n = head; n != NULL; n = n->next)
-    if (n->name == m) count++;
+    if (n->myInts == m) count++;
   return count;
 }
 
