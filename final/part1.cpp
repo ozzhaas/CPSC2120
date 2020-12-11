@@ -9,13 +9,19 @@
 
 using namespace std;
 
+struct myLine {
+    char trueOrFalse;
+    int num;
+};
 
 
 int main (void) {
     string temp;
-    vector<char> vec;
+    vector<myLine> vec;
     ifstream input;
     input.open("tf.txt");
+    ofstream output;
+    output.open("answers.txt");
     string line;
 
     while (getline(input, temp)) {
@@ -26,8 +32,17 @@ int main (void) {
         // size_t num = temp.find("is");
         // string number = temp.substr(pos + 9, ' ');
         char TorF = temp.back();
-        cout << number << " ";
-        cout << TorF << endl;
+        int line_number = stoi(number);
+        myLine outLine;
+        outLine.num = line_number;
+        outLine.trueOrFalse = TorF;
+        vec.push_back(outLine);
+        sort(vec.begin(), vec.end(), compareNums);
+    }
+
+
+    for (unsigned int i = 0; i < vec.size(); i++) {
+        cout << vec[i].num << " " << vec[i].trueOrFalse << endl;
     }
 
 
@@ -47,6 +62,13 @@ int main (void) {
 
 
 
-
     return 0;
+}
+
+
+
+
+
+int compareNums (const myLine &a, const myLine &b) {
+    return a.num < b.num;
 }
