@@ -13,7 +13,7 @@ using namespace std;
 
 int main (void) {
     string temp;
-
+    vector<int> vec;
     ifstream input;
     input.open("tf.txt");
 
@@ -22,11 +22,12 @@ int main (void) {
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
         size_t is = sub.find("is");
-        string trueOrFalse = temp.substr(30, is - 1);
-
-
+        string garbage = temp.substr(30, is);
+        for (int i = 0; i < sizeof(garbage); i++) {
+            vec.push_back(i);
+        }
         cout << number << " ";
-        cout << trueOrFalse << endl;
+        cout << vec[vec.size()] << endl;
         // cout << end << endl;
 
     }
