@@ -20,7 +20,7 @@ int main (void) {
 
     int i = 0;
     while (getline(input, temp)) {
-        size_t pos = temp.find(' ', 29);
+        size_t pos = temp.find(' ', 30);
         string sub = temp.substr(pos, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
