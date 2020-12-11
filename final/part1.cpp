@@ -19,13 +19,15 @@ int main (void) {
 
     int i = 0;
     while (getline(input, temp)) {
-        vec.push_back(temp.at(sizeof(temp) + 5));
+        size_t F = temp.find('F');
+        size_t T = temp.find('T');
+        string fString = temp.substr(F);
+        string tString = temp.substr(T);
         string sub = temp.substr(31, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
         cout << number << " ";
-        cout << vec[i] << endl;
-        i++;
+        cout << fString << tString << endl;
     }
 
 
