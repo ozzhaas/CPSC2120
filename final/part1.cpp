@@ -34,7 +34,8 @@ int main (void) {
         input >> temp;
         input >> temp;
         input >> num;
-        questions.num = num;
+        string tempNum = stoi(num);
+        questions.num = tempNum;
         input >> temp;
         input >> TorF;
         questions.TorF = TorF;
