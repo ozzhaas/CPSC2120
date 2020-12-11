@@ -9,25 +9,36 @@
 
 using namespace std;
 
+struct numTorF {
+    int num = 0;
+    char TorF;
+};
+
 
 
 int main (void) {
+    numTorF questions;
     string temp;
     vector<char> vec;
     ifstream input;
     input.open("tf.txt");
-    string line;
+    string num;
+    char TorF;
 
     int i = 0;
     while (getline(input, temp)) {
-        size_t pos = temp.find(' ', 30);
-        string sub = temp.substr(pos, ' ');
-        size_t num = sub.find(' ');
-        string number = sub.substr(0, num);
-        size_t loc = sub.find("is");
-        string TorF = sub.substr(loc, '\n');
-        cout << number << " ";
-        cout << TorF << endl;
+        input >> temp;
+        input >> temp;
+        input >> temp;
+        input >> temp;
+        input >> temp;
+        input >> temp;
+        input >> num;
+        questions.num = num;
+        input >> temp;
+        input >> TorF;
+        questions.TorF = TorF;
+        cout << questions.num << " " << questions.TorF << endl;
     }
 
 
