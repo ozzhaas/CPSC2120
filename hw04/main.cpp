@@ -15,18 +15,21 @@ struct Pixel {
 };
 
 typedef pair<int, int> Node;
-int inf = 999999;
+typedef pair<double,Node> pin; // (distance to node, node)
+double inf = 999999.0;
 
 vector<Node> all_nodes;
 map<Node, double> dist;
 map<Node, Node> pred;
 map<Node, vector<Node>> nbrs;
-map<Node, int>weight;
+map<pair<Node,Node>, int> edge_wt;
+map<Node, double> weight;
 
 int width, height;
 Pixel *image;
 Node megaNode = make_pair(-1, -1);
-
+int best_val = 999999;
+Node incumbent;
 
 Pixel white = { 255, 255, 255 };
 Pixel black = { 0, 0, 0 };
@@ -96,18 +99,19 @@ void build_graph(int numrows, int numcols) {
 }
 
 
-void build_seam_graph(int numrows, int numcols) {
+void build_seam_graph(int numcols, int numrows) {
+    nbrs.clear();
     for (int i = 1; i < numcols - 1; i++) {
-        for (int j = 1; j < numrows - 1; j++) {
+        for (int j = 0; j < numrows - 1; j++) {
             Node x = make_pair(i, j);
-            Node nbr = make_pair(i, j - 1);
+            Node nbr = make_pair(i, j + 1);
             nbrs[x].push_back(nbr);
             if (i < width -1) {
-                Node newNbr = make_pair(i + 1, j - 1);
+                Node newNbr = make_pair(i + 1, j + 1);
                 nbrs[x].push_back(newNbr);
             }
             if (i > 0) {
-                Node newNbr = make_pair(i - 1, j - 1);
+                Node newNbr = make_pair(i - 1, j + 1);
                 nbrs[x].push_back(newNbr);
             }
             dist[x] = inf;
@@ -148,49 +152,54 @@ void bfs(Node source) {
 
 
 //Node = a pixel
-void seam_bfs(Node source) {
+void seam_dijkstra(Node source) {
     // Use something larger than the max possible sp length...
-    int inf = 999999;
-
-     for (int i = 0; i < width; i++) {
-         for (int j = 0; j < width; j++) {
-             weight[make_pair(i, j)] = width * height;
-         }
-     }
-     priority_queue<Node> seam_to_visit;
-     seam_to_visit.pop();
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+         weight[make_pair(i, j)] = width * height;
+        }
+    }
+    //pair <double, src>
+     priority_queue<pin, vector<pin>, greater<pin>> seam_to_visit;
+     seam_to_visit.push(make_pair(0, source));
 
      while (!seam_to_visit.empty()) {
-        Node x = seam_to_visit.top();
+        Node x = seam_to_visit.top().second;
         seam_to_visit.pop();
 
         weight[megaNode] = 0;
         for (Node n : nbrs[x]) {
-            // Edge weight always just 1
-            if (get_pixel(n.first, n.second).r + weight[x] < weight[x]) {
-                if (dist[n] == inf) {
-                    dist[n] = dist[x] + 1;
-                    pred[n] = x;
-                }
-                weight[n] = get_pixel(n.first, n.second).r + weight[x];
+            int w = get_pixel(n.first, n.second).r;
+            if (dist[x] + w < dist[n]) {
+                dist[n] = dist[x] + w;
                 pred[n] = x;
-                seam_to_visit.push(n);
+                seam_to_visit.push(make_pair(dist[n], n));
             }
-        }
-        if (x.second == height - 1) {
-            mark_path(x);
-            return;
+            // // Edge weight always just 1
+            // if (get_pixel(n.first, n.second).r + weight[n] < weight[x]) {
+            //     weight[n] = get_pixel(n.first, n.second).r + weight[x];
+            //     pred[n] = x;
+            //     seam_to_visit.push(make_pair(dist[n], n));
+            // }
+            if (x.second == height - 1 && weight[x] < best_val) {
+                cout << "Marking path...\n";
+                incumbent = x;
+                best_val = weight[incumbent];
+            }
         }
     }
 }
 
+
 // Import this from your solution to the first part...
 void calculate_blur(void) {
+    // cout << "megaNode: " << megaNode.first << megaNode.second << endl;
     bfs(megaNode);
+
 
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            get_pixel(i, j).r = 255 * pow(0.9, dist[make_pair(i, j)] - 1);
+            get_pixel(i, j).r = math(dist[make_pair(i, j)] - 1);
             get_pixel(i, j).g = math(dist[make_pair(i, j)] - 1);
             get_pixel(i, j).b = math(dist[make_pair(i, j)] - 1);
         }
@@ -200,11 +209,12 @@ void calculate_blur(void) {
 
 // To be written -- solve a shortest path problem to find a seam and color it red
 void calculate_seam(void) {
-    bfs(megaNode);
+     // cout << "megaNode: " << megaNode.first << megaNode.second << endl;
+    seam_dijkstra(megaNode);
 
     for (int i = 0; i < width; i++) {
-        for (int j = 0; j < width; j++) {
-            get_pixel(i, j).r = 255 * pow(0.9, weight[make_pair(i, j)] -1);
+        for (int j = 0; j < height; j++) {
+            get_pixel(i, j).r = 255;
             get_pixel(i, j).g = 0;
             get_pixel(i, j).b = 0;
         }
@@ -227,7 +237,7 @@ cout << "Removing seam to decrease width to " << width-1 << "\n";
         for (int x=0; x<width; x++) {
             if (get_pixel(x,y) == red) {
                 if (where_red!=-1) {
-                    cout << "Error: row " << y << " hass >1 red pixel set\n"; exit(0);
+                    cout << "Error: row " << y << " has >1 red pixel set\n"; exit(0);
                 }
                 else {
                     where_red = x;
@@ -326,6 +336,8 @@ bool timer(int msec) {
 int main(int argc, char *argv[])
 {
   read_image("billboard.ppm");
-  calculate_blur();
+
+  build_seam_graph(width, height);
+  calculate_seam();
   init_graphics(argc, argv, width, height, render, keyhandler, timer);
 }
