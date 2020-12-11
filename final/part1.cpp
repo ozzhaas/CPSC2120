@@ -17,23 +17,18 @@ int main (void) {
     ifstream input;
     input.open("tf.txt");
 
+    int i = 0;
     while (getline(input, temp)) {
+        vec.push_back(temp.at(sizeof(temp)));
         string sub = temp.substr(31, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
-
-
-    }
-
-    input.seekg(ios::beg);
-
-    while (getline(input, temp)) {
-        vec.push_back(temp.at(sizeof(temp)));
-    }
-
-    for (unsigned int i = 0; i < vec.size(); i++) {
+        cout << number << " ";
         cout << vec[i] << endl;
+        i++;
     }
+
+
 
 
 
