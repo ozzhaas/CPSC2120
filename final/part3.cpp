@@ -39,7 +39,7 @@ int main(void)
 
     int j = 0;
     while (cin >> in[j]) {
-        testInts.value = stoi(in[j]);
+        testInts.value = in[j];
         testInts.freq = 0;
 
         for (unsigned int i = 0; i < myInts.size(); i++) {
