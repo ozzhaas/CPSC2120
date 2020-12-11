@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <algorithms>
+#include <sstream>
+#include <fstream>
+
+
+
+int main (void) {
+    string temp;
+
+    ifstream input;
+    input.open("tf.txt");
+
+    while (getline(input, temp)) {
+        size_t pos = temp.find("is");
+        string end = temp.substr(pos);
+        cout << end << endl;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
