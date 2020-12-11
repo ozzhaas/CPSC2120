@@ -22,7 +22,6 @@ int main (void) {
     while (getline(input, temp)) {
         size_t pos = temp.find(' ', 29);
         string sub = temp.substr(pos, ' ');
-        string sub = temp.substr(, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
         char TorF = temp.back();
