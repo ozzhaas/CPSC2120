@@ -19,7 +19,7 @@ int main (void) {
 
     while (getline(input, temp)) {
         size_t pos = temp.find("is");
-        string end = temp.substr(pos);
+        string end = temp.substr(pos + 1);
         cout << end << endl;
 
     }
