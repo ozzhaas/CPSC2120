@@ -19,10 +19,11 @@ int main (void) {
 
     int i = 0;
     while (getline(input, temp)) {
-        string TorF = temp.substr(sizeof(temp), '\n');
         string sub = temp.substr(31, ' ');
         size_t num = sub.find(' ');
         string number = sub.substr(0, num);
+        size_t loc = sub.find("is");
+        string TorF = sub.substr(loc, '\n');
         cout << number << " ";
         cout << TorF << endl;
     }
