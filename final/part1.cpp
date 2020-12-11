@@ -25,7 +25,7 @@ int main (void) {
         size_t pos = temp.find("is");
         string end = temp.substr(pos + 3);
         cout << num << " ";
-        // cout << end << endl;
+        cout << end << endl;
 
     }
 
