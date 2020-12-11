@@ -24,7 +24,7 @@ int main (void) {
         string num = temp.substr(numPos + 9, ' ');
         string garbage = temp.substr(numPos + 9);
         cout << num << " ";
-        cout << end << endl;
+        // cout << end << endl;
 
     }
 
