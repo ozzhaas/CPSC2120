@@ -19,7 +19,8 @@ int main (void) {
 
     while (getline(input, temp)) {
         string sub = temp.substr(31, ' ');
-        int num = sub.find(' ');
+        size_t num = sub.find(' ');
+        string number = sub.substr(0, num);
         cout << num << endl;
         cout << sub << " ";
         // cout << end << endl;
