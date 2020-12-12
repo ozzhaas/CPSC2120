@@ -1,0 +1,24 @@
+Kellen Haas
+CPSC2120
+Final Part 4
+
+
+O(n^2) ? maybe
+
+O(n^2)
+
+O(m log n)
+
+O(1)
+
+O(k + N)
+
+O(n log n)
+
+O(log n)
+
+O(log n)
+
+O(n^2)
+
+O(log n)

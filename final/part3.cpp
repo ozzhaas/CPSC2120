@@ -1,3 +1,11 @@
+/*Kellen Haas
+  CPSC2120
+  Final
+  12/11/20
+*/
+
+
+
 /* Order by frequency
    1. read in input
    2. store all comma separated ints in a hash table
@@ -5,6 +13,7 @@
       (highest frequency -> lowest frequency)
    4.
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>

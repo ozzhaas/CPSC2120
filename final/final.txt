@@ -1,5 +1,5 @@
 CpSc 2120 Fall 2020
-Final Exam.  25 possible points.  
+Final Exam.  25 possible points.
 
 Please upload on handin any files requested by the directions of
 individual problems.  You use any resources you want for this exam
@@ -75,8 +75,10 @@ question...)
 the number of nodes n and the number of edges m, what is the worst-case
 running time?
 
+
+
 // nbrs[x] is a vector of all nodes that are neighbors of x
-map<int,vector<int>> nbrs;   
+map<int,vector<int>> nbrs;
 
 // n is the total number of nodes in our graph
 int breadth_first_search(int source, int destination, int n)
@@ -102,6 +104,7 @@ int breadth_first_search(int source, int destination, int n)
 solution for part 3 of homework #4?  (N and M here refer to the
 variables by these names being used in Dr. Dean's code)
 
+
 4(d). What is the running time of this code as a function of N:
 
 void foo(int N) { if (N>10) foo(N/3); }
@@ -115,22 +118,26 @@ for (int j=0; j<N; j++)
 for (int k=N; k>0; k=k/2)
   k /= 2;
 
+
 4(f). What is the fastest possible worst-case running time for sorting
 a list of 2120 integers?
 
+
 4(g). What is the worst-case running time for the fastest possible
 running time for building a kD tree on N points in 3 dimensions?
+
 
 4(h). What is the fastest possible worst-case running time for
 converting a binary search tree on N elements into a binary heap on N
 elements?
 
+
 4(i). What is the fastest possible worst-case running time for sorting
 an N-element array whose first half is increasing and whose second
 half is decreasing?
+
 
 4(j). Given N integers in stored a balanced BST, you want to find the
 smallest value of V such that you can fit at least half of the
 integers into a range of size V.  What is the fastest possible
 worst-case running time for solving this problem?
-
