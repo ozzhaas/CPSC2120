@@ -18,8 +18,8 @@ int main () {
     unsigned int i = 0;
     while (i < inputLine.length()) {
         if (inputLine[i] == 'A') {
-            const char* convert = inputLine[i + 1];
-            aliceSum = aliceSum + atoi(convert);
+            int convert = inputLine[i + 1] - '0';
+            aliceSum = aliceSum + convert;
         }
         else if (inputLine[i] == 'B') {
             barbSum = barbSum + (atoi(inputLine[i + 1]));
