@@ -14,7 +14,6 @@ int main () {
     string inputLine;
 
     getline(cin, inputLine);
-    cout << inputLine << endl;
 
     for (unsigned int i = 0; i < sizeof(inputLine); i++) {
         if (inputLine[i] == 'A') {
