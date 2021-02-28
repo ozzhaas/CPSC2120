@@ -26,11 +26,11 @@ int main () {
         if (aliceSum >= 10 && barbSum >= 10) {
             if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
                 cout << "A" << endl;
-                return;
+                return 0;
             }
             else if ((inputLine[i] == 'B') && (barbSum - aliceSum >= 2)) {
                 cout << "B" << endl;
-                return;
+                return 0;
             }
         }
     }
