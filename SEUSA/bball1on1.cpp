@@ -18,13 +18,15 @@ int main () {
     unsigned int i = 0;
     while (i < inputLine.length()) {
         if (inputLine[i] == 'A') {
-            aliceSum = aliceSum + (atoi(inputLine[i + 1]));
+            int convert = atoi(inputLine[i + 1]);
+            aliceSum = aliceSum + convert;
         }
         else if (inputLine[i] == 'B') {
             barbSum = barbSum + (atoi(inputLine[i + 1]));
         }
     }
 
+// A2B1A2B2A2A2A2
 
     if (aliceSum > barbSum) {
         cout << "A" << endl;
