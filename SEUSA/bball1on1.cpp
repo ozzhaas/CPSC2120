@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <math>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ int main () {
         else if (inputLine[i] == 'B') {
             barbSum = barbSum + (inputLine[i + 1] - '0');
         }
-        if (aliceSum >= 10 && barbSum >= 10) {
+        if (aliceSum >= 10 && barbSum >= 10 && abs(aliceSum - barbSum) <= 1) {
             if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
                 cout << "A" << endl;
                 return 0;
