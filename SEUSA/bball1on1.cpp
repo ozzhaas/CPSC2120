@@ -37,13 +37,13 @@ int main () {
 
 
 // A2B1A2B2A2A2A2
-    // 
-    // if (aliceSum > barbSum) {
-    //     cout << "A" << endl;
-    // }
-    // else {
-    //     cout << "B" << endl;
-    // }
+     
+    if (aliceSum > barbSum) {
+        cout << "A" << endl;
+    }
+    else {
+        cout << "B" << endl;
+    }
 
 
     return 0;
