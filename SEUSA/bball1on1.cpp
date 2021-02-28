@@ -14,6 +14,7 @@ int main () {
     string inputLine;
 
     getline(cin, inputLine);
+    cout << inputLine << endl;
 
     unsigned int i = 0;
     while (i < inputLine.length()) {
