@@ -24,10 +24,10 @@ int main () {
             barbSum = barbSum + (inputLine[i + 1] - '0');
         }
         if (aliceSum == 10 && barbSum == 10) {
-            if ((inputLine[i] == 'A') && (inputLine[i + 1] == 2)) {
+            if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
                 cout << "A" << endl;
             }
-            else if ((inputLine[i] == 'B') && (inputLine[i + 1] == 2)) {
+            else if ((inputLine[i] == 'B') && (barbSum - aliceSum >= 2)) {
                 cout << "B" << endl;
             }
         }
