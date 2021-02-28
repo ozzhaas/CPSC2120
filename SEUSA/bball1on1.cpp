@@ -26,6 +26,7 @@ int main () {
         if (aliceSum >= 10 && barbSum >= 10) {
             if ((aliceSum - barbSum == 0) || (barbSum - aliceSum == 0)) {
                 cout << "tie?" << endl;
+                return 0;
             }
             if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
                 cout << "A" << endl;
