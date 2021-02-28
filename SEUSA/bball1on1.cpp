@@ -16,8 +16,7 @@ int main () {
     getline(cin, inputLine);
     cout << inputLine << endl;
 
-    unsigned int i = 0;
-    while (i < inputLine.length()) {
+    for (int i = 0; i < sizeof(inputLine); i++) {
         if (inputLine[i] == 'A') {
             int convert = inputLine[i + 1] - '0';
             aliceSum = aliceSum + convert;
