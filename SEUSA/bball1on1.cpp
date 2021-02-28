@@ -16,7 +16,7 @@ int main () {
 
     getline(cin, inputLine);
 
-    for (unsigned int i = 0; i < sizeof(inputLine); i++) {
+    for (unsigned int i = 0; i < inputLine.length(); i++) {
         if (inputLine[i] == 'A') {
             int convert = inputLine[i + 1] - '0';
             aliceSum = aliceSum + convert;
@@ -24,8 +24,11 @@ int main () {
         else if (inputLine[i] == 'B') {
             barbSum = barbSum + (inputLine[i + 1] - '0');
         }
-        if (aliceSum >= 10 && barbSum >= 10 && abs(aliceSum - barbSum) <= 1) {
+        if (aliceSum >= 10 && barbSum >= 10) {
             if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
+                // if (abs(aliceSum - barbSum) <= 1) {
+                //
+                // }
                 cout << "A" << endl;
                 return 0;
             }
