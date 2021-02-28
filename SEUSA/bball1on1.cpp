@@ -22,7 +22,7 @@ int main () {
             aliceSum = aliceSum + convert;
         }
         else if (inputLine[i] == 'B') {
-            barbSum = barbSum + (atoi(inputLine[i + 1]));
+            barbSum = barbSum + (inputLine[i + 1] - '0');
         }
     }
 
