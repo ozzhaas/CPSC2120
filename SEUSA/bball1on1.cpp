@@ -32,7 +32,7 @@ int main () {
                 cout << "B" << endl;
                 return 0;
             }
-            else if ((aliceSum - barbSum == 0) || (barbSum - aliceSum == 0)) {
+            else if (aliceSum == barbSum) {
                 cout << "tie?" << endl;
                 return 0;
             }
