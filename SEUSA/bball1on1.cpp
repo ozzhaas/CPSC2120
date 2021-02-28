@@ -13,7 +13,7 @@ int main () {
     int barbSum = 0;
     string inputLine;
 
-    cin >> inputLine;
+    getline(inputLine);
 
     unsigned int i = 0;
     while (i < inputLine.length()) {
