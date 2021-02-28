@@ -18,7 +18,7 @@ int main () {
     unsigned int i = 0;
     while (i < inputLine.length()) {
         if (inputLine[i] == 'A') {
-            int convert = atoi(inputLine[i + 1]);
+            int convert = stoi(inputLine[i + 1]);
             aliceSum = aliceSum + convert;
         }
         else if (inputLine[i] == 'B') {
