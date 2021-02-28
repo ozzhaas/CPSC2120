@@ -26,9 +26,11 @@ int main () {
         if (aliceSum >= 10 && barbSum >= 10) {
             if ((inputLine[i] == 'A') && (aliceSum - barbSum >= 2)) {
                 cout << "A" << endl;
+                return;
             }
             else if ((inputLine[i] == 'B') && (barbSum - aliceSum >= 2)) {
                 cout << "B" << endl;
+                return;
             }
         }
     }
@@ -37,7 +39,7 @@ int main () {
 
 
 // A2B1A2B2A2A2A2
-     
+
     if (aliceSum > barbSum) {
         cout << "A" << endl;
     }
