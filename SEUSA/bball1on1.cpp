@@ -15,13 +15,13 @@ int main () {
 
     cin >> inputLine;
 
-    int i = 0;
+    unsigned int i = 0;
     while (i < inputLine.length()) {
         if (inputLine[i] == 'A') {
-            aliceSum = aliceSum + (stoi(inputLine[i + 1]));
+            aliceSum = aliceSum + (atoi(inputLine[i + 1]));
         }
         else if (inputLine[i] == 'B') {
-            barbSum = barbSum + (stoi(inputLine[i + 1]));
+            barbSum = barbSum + (atoi(inputLine[i + 1]));
         }
     }
 
