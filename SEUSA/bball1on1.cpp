@@ -23,7 +23,7 @@ int main () {
         else if (inputLine[i] == 'B') {
             barbSum = barbSum + (inputLine[i + 1] - '0');
         }
-        if (aliceSum == 10 and barbSum == 10) {
+        if (aliceSum == 10 && barbSum == 10) {
             if ((inputLine[i] == 'A') && (inputLine[i + 1] == 2)) {
                 cout << "A" << endl;
             }
