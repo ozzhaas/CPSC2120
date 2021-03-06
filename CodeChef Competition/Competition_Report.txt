@@ -1,0 +1,39 @@
+Kellen Haas
+CPSC 4890
+Dr. Dean
+12/8/2020
+
+                        Programming Competition Report
+
+I participated in CodeChef's November Lunchtime competition and their November
+CodeKombat Wildcard Round. I was not able to finish the first problem for either
+contest at first. However, I did revisit them and I was able to complete them
+after the contest had finished.
+
+I struggled with some of the very basic concepts of reading in a file in C++,
+which is super unusual for me, but I think it was a result of being a bit
+flustered and nervous because it was my first time competing. After revisiting
+the problems, I realized how significantly simple the gasoline introduction
+problem was and I was able to think of a solution for the maximum absolute difference
+between the smallest and largest elements in an array.
+
+I was definitely overthinking the two problems during my first attempt, but I
+still found the overall experience to be positive and beneficial for me. I think
+I could really benefit from participating in more of these competitions as they
+are extremely similar to the way we take tests and have to solve problems in
+a short period of time. I think that overall I can improve on my first approach
+to problems. I should take some time to draw out the problem and try to find a
+solution on paper before beginning to code.
+
+I am incredibly sorry that I am submitting this report late, and outside of
+my coding experience, I also need to change my approach for time management.
+I hope that changing this will allow for me to have that extra necessary time
+that I always seem to need whenever something in my program starts to go wrong.
+I thoroughly enjoyed this class as I have in the past. Even though I may not
+completely understand all of the problems or their solutions, I think it is
+important for me to experience a few challenging problems that I may not get the
+correct answer to, but in the long run I will have learned some new technique
+from it.
+
+I hope you have a wonderful holiday and I look forward to taking this class again
+next semester!
