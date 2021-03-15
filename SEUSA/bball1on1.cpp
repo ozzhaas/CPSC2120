@@ -1,3 +1,9 @@
+/* Kellen Haas
+   CPSC 4890
+   ICPC Regionals Practice Competition
+   Basketball One-on-One
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>

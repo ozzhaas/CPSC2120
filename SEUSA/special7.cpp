@@ -1,8 +1,16 @@
 /*Kellen Haas
+  Project Her 1.0
   Prob Code: PH101
   Special 7
   codechef.com
 */
+
+#include <iostream>
+#include <stdio.h>
+#include <string>
+
+
+using namespace std;
 
 
 
@@ -29,19 +37,25 @@
 
 int main (void) {
     int numOfTestCases = 0;
-    string N;
+    bool result = false;
 
     cin >> numOfTestCases;
 
-    for (int i = 0; i < numOfTestCases; i++) {
+    while (numOfTestCases--) {
+        string N;
         cin >> N;
 
-        if (N[i] == '7') {
-            cout << "True\n";
+        for (unsigned int i = 0; i < N.size(); i++) {
+            if (N[i] == '7') {
+                result = true;
+                break;
+            }
+            else {
+                result = false;
+            }
         }
-        else {
-            cout << "False\n";
-        }
+        if (result) {cout << "True\n";}
+        else {cout << "False\n";}
     }
 
     return 0;
