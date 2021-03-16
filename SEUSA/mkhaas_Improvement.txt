@@ -1,0 +1,27 @@
+Kellen Haas
+CPSC 4890
+Areas of Improvement
+
+
+Personally, I think that my first and foremost goal should be learning to
+complete as many problems as I can. Currently, I find that I will pick a problem
+and just continue working on it until I either run out of time, or successfully
+complete it. This could be hindering my personal success as well as the success
+of my teammates. I need to work on being able to put down a problem if I've
+spent time on it and cannot figure it out.
+
+As far as specific algorithms or data structures that I could you improvement on,
+I think that I'd say all of them (but I know that's not allowed). I could use
+practice on problems that involve trees, hash tables, stacks, and sets/maps. As
+far as algorithms go, I could use improvement in sorting, graph theory, greedy,
+dynamic programming, and NP complete algorithms. Even if improving just means
+practicing so that I can better understand the problems presented in competitions.
+It would be nice to have more confidence when going into competitions and I think
+I could easily achieve that by becoming more familiar with competition-like
+problems.
+
+Here is an example of a problem that makes me nervous just from reading the prompt:
+CodeChef Project Her 1.0 (Women's only), Weird Fibonacci (Problem Code: PH104)
+
+Generally speaking, I find problems involving matrices or multi-dimensional arrays
+to be a bit more challenging as well.

@@ -1,3 +1,11 @@
+/*Kellen Haas
+  CPSC 4890
+  ICPC Regionals Problem K
+  Missing Number
+*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -42,7 +50,7 @@ int main (void) {
         input2 = '0';
         newNum = "";
     }
-
+cd
 
 
     for (int i = 1; i < n - 1; i++) {
